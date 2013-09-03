@@ -1,0 +1,111 @@
+.view-item {
+	width:535px;
+	height:298px;
+	border:1px solid #fff;
+	overflow:hidden;
+}
+	.view-item img {
+		margin:0;
+	}
+
+.thumb-item {
+	width:536px;
+}
+	.thumb-item-txt p {
+		font:bold 10pt arial, sans-serif;
+		color:#fff;
+		text-align:left;
+	}
+
+#imageCaption {
+	margin:12px 0 20px 0;
+	background:none;
+}
+	#imageCaption h1 {
+		font:bold 2em times new roman;
+		font-style:italic;
+		color:#fff;
+	}
+	.recipedownload {
+		background:none;
+	}
+		.recipedownload p {
+			float:left;
+			font:normal 8pt arial, sans-serif;
+			color:#000;
+		}
+		.recipedownload a {
+			float:left;
+			height:15px;
+			margin-left:5px;
+			padding-left:20px;
+			font:normal 8pt arial, sans-serif;
+			color:#635c57;
+			text-decoration:none;
+			background: url(../images/download.gif) no-repeat left top;
+		}
+		.recipedownload a:hover {
+			text-decoration:underline;
+		}
+
+	.recipe-desc {
+		width:536px;
+		margin-top:10px;
+		background:none;
+		border-bottom:0px solid #7d746d;
+		padding-bottom:20px;
+	}
+		ul.recipe-desc-cont {
+			width:230px;
+			float:left;
+			margin:0 20px 0 15px;
+			list-style-type:square;
+		}
+			ul.recipe-desc-cont p {
+				margin-left:-15px;
+				font:bold 8pt arial, sans-serif;
+				color:#000;
+			}
+			
+			ul.recipe-desc-cont li {
+				font:normal 8pt arial, sans-serif;
+				color:#000;
+			}
+
+/*
+a img {
+	width:48px;
+	height:48px;
+	border:1px solid #000;
+}
+a:hover img {
+	border:1px solid #ccc;
+}
+*/
+.test-container {
+	margin-left:30px;
+	width:573px;
+	border:1px solid #000;
+	background-color:#afa399;
+}
+
+.slider-col {
+	margin:18px 0 18px 18px;
+	border:0px solid red;
+}
+	.recipes-btn {
+		width:159px;
+		height:25px;
+		margin:0 18px 0 0;
+		border:0;
+		float:right;
+		background: url(../images/recipes-btn.gif) no-repeat;
+		cursor:pointer;
+	}
+/*tambahan*/
+#recipes{float:right; margin-right:20px;}
+.recipe_img img{margin:0px 0px 15px;}	
+.img_carousel img{margin:0px; width:48px;
+	height:48px;
+	border:1px solid #000;}
+.img_carousel img:hover{border:1px solid #ccc;}

@@ -1,0 +1,33 @@
+{include file="$MAIN_TPL_HEADER"}
+	<div id="PageContent_main">
+		<div id="PageContent">					
+			<center>
+				<div id="main_content">
+					<div class="button_pages3 dash_title">
+						<div class="fleft">View rooms</div>
+						<div class="fright">
+							<a class="buttonLink button_backL" href="{$ADMIN_PATH}rooms">Back to rooms</a>					
+						</div>
+						<div class="clearall"></div>
+					</div>
+						<div class="dash_content_color">
+						<table>
+							<tr>
+								<td width="100" class="bold">Name</td>
+								<td width="10" class="bold">:</td>
+								<td>{$item.name}</td>
+							</tr>
+							<tr>
+								<td width="100" class="bold">Description</td>
+								<td width="10" class="bold">:</td>
+								<td>{$item.description}</td>
+							</tr>												
+						</table>
+					</div>
+				</div>
+			</center>
+			</div>
+			<div class="clearall"></div>
+		<div id="foot3"></div>			
+	</div>	
+{include file="$MAIN_TPL_FOOTER"}

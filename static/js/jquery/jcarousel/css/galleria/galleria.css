@@ -1,0 +1,9 @@
+.galleria{list-style:none;width:560px; margin-top:10px; border:1px solid red;}
+.galleria li{display:block;width:50px;height:50px;overflow:hidden;float:left;margin:0 10px 0px 0}
+.galleria li a{display:none}
+.galleria li div{position:absolute;display:none;top:0;left:180px}
+.galleria li div img{cursor:pointer}
+.galleria li.active div img,.galleria li.active div{display:block}
+.galleria li img.thumb{cursor:pointer;top:auto;left:auto;display:block;width:auto;height:auto}
+.galleria li .caption{display:block;padding-top:.5em}
+* html .galleria li div span{width:0px} /* MSIE bug */

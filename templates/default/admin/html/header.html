@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>{$PAGETITLE}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta http-equiv="Content-language" content="id" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+		<meta name="robots" content="noodp,noydir" />
+		{section name=icss loop=$CSS}
+		<link href="{$CSS[icss]}" type="text/css" rel="stylesheet" media="screen" />
+		{/section}
+		{foreach item=js from=$add_JS}
+		{$js}
+		{/foreach}
+		{section name=ijs loop=$JS}
+		<script src="{$JS[ijs]}" type="text/javascript"></script>
+		{/section}
+		<script language="javascript" type="text/javascript">
+		// <![CDATA[
+		{section name=ijs loop=$InlineJS}
+		{$InlineJS[ijs]}
+		{/section}
+		// ]]>
+		</script>
+		{foreach item=js2 from=$add_JS2}
+		{$js2}
+		{/foreach}
+        <style type="text/css" rel="stylesheet">
+            {literal}
+            *html div,img{
+            {/literal}
+                behavior:url({$CSS_PATH}iepngfix.htc);
+            {literal}
+            }
+            {/literal}
+        </style>
+
+	</head>
+	<body>
+	<div id="header">
+	<div class="headerLogo">
+            <div style="width:400px;float:left;color:#FFF;font-weight:bold;font-size:14pt;">{$settings.application_name}</div>
+            <div style="width:200px;float:right;text-align:right;color:#FFF;font-weight:bold;font-size:9pt;">{if $user_full_name !=''}Welcome, {$user_full_name} ({$role_full_name}){/if}</div>
+            <div style="clear:both;"></div>
+        </div>
+    <div>
+		<div class="menu">
+			{if $header_menu!='disabled'}
+				{$MAIN_MENU}
+			{/if}
+		</div>
+	</div>	
+	</div>
+	<div id="head2"></div>	

@@ -1,0 +1,51 @@
+{include file="$MAIN_TPL_HEADER"}
+	<div id="PageContent_main">
+		<div id="PageContent">					
+			<center>
+			<div class="paddingUPLogin"></div>
+			<div id="main_content_login">
+				<div class="dash_preview_login">
+					<div class="dash_title">Login Admin</div>
+					<div class="dash_content_login">
+						<div id="login_area">					 
+							<div id="title_message" class="title_message">Please fill username and password..</div>
+							<br/>
+							<form name="flogin" id="flogin">
+							<table width="100%" cellspacing="0" cellpadding="0" class="table_login">
+								<tr>
+									<td class="table_content_left">
+										Username
+									</td>
+									<td class="table_content_right">
+										<input type="text" name="username" id="username" value="your username" class="vusername is_required"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="table_content_left">
+										Password
+									</td>
+									<td class="table_content_right">
+										<input type="password" value="password" name="password" id="password" class="vusername is_required"/>
+									</td>
+								</tr>								
+								<tr>									
+									<td class="login_button" colspan="2">
+										<br/>						
+										<div class="buttonDiv button_login fright" id="do_login">Login</div>
+										<input type="hidden"  value="login" id="login" name="login">
+
+									</td>
+								</tr>
+							</table>
+							</form>
+						</div>
+					</div>
+				</div>							
+				<div class="clearall"></div>
+			</div>
+			</center>		
+		</div>	
+		<div id="foot3"></div>
+	</div>
+	
+{include file="$MAIN_TPL_FOOTER"}

@@ -1,0 +1,44 @@
+        .lavaLampBottomStyle {
+           padding: 0px 10px 5px 10px;
+            overflow: hidden;
+        }
+                .lavaLampBottomStyle li {
+                    float: left;
+                    list-style: none;
+                }
+                    .lavaLampBottomStyle li.back {
+                        border: 1px solid #454545;
+                        width: 9px;
+                        height: 30px;
+                        z-index: 8;
+                        position: absolute;
+						background-color:#252525;
+						-moz-border-radius-topleft: 5px;
+						-moz-border-radius-topright: 5px;
+						-moz-border-radius-bottomleft: 5px;
+						-moz-border-radius-bottomright: 5px;
+						-webkit-border-top-left-radius: 5px;
+						-webkit-border-top-right-radius: 5px;
+						-webkit-border-bottom-left-radius: 5px;
+						-webkit-border-bottom-right-radius: 5px;
+                    }
+                    .lavaLampBottomStyle li a {
+                        font: bold 14px arial;
+                        text-decoration: none;
+                        color: #fff;
+                        outline: none;
+                        text-align: center;
+                        top: 7px;
+                        text-transform: uppercase;
+                        letter-spacing: 0;
+                        z-index: 10;
+                        display: block;
+                        float: left;
+                        height: 30px;
+                        position: relative;
+                        overflow: hidden;
+                        margin: auto 10px;
+                    }   
+                        .lavaLampBottomStyle li a:hover, .lavaLampBottomStyle li a:active, .lavaLampBottomStyle li a:visited {
+                            border: none;
+                        }                     
