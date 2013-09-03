@@ -4,15 +4,14 @@
 			<center>
 				<div id="main_content">
 					<div class="button_pages3 dash_title"> 
-						<div class="fleft">Edit rooms</div>
+						<div class="fleft">Add Package</div>
 						<div class="fright">
-							<a class="buttonLink button_backL" href="{$ADMIN_PATH}rooms">Back to rooms</a>					
+							<a class="buttonLink button_backL" href="{$ADMIN_PATH}packages">Back to packages</a>					
 						</div>
 						<div class="clearall"></div>
 					</div>
 						<div class="dash_content_color">
-						<form name="new_web_content" id="form" method="POST" action="{$ADMIN_PATH}rooms/do_edit"  enctype="multipart/form-data"> 
-						  <input type="hidden" name="id" value="{$id}" />
+						<form name="new_web_content" id="form" enctype="multipart/form-data" method="POST" action="{$ADMIN_PATH}packages/do_add">            
 							<table width="100%" id="tblwMce">
 								<tr>
 									<td width="100" class="bold ">Name</td>
@@ -25,6 +24,16 @@
 									<td class="bold pad0px">
 										<textarea name="description" id="description" rows="10" cols="60">{$description}</textarea>
 									</td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Duration</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="duration" id="duration" value="{$duration}" size="20"/>&nbsp;eg; 1 month</td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Price</td>
+									<td width="10" class="bold ">:</td>
+									<td>$&nbsp;<input type="text" name="price" id="price" value="{$price}" size="5"/></td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>

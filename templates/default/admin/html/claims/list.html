@@ -1,0 +1,58 @@
+{include file="$MAIN_TPL_HEADER"}
+	<div id="PageContent_main">
+			<div id="PageContent">					
+				<center>
+				<div id="main_content">
+					<div class="errortxt "></div>
+					<div class="confirmtxt"></div>
+					{$searchForm}	
+					<br/>
+					<div class="button_pages3 dash_title">
+						<div class="fleft">CLAIMS</div>
+						<div class="fright">
+						 <a class="buttonLink button_addL" href="{$ADMIN_PATH}claims/add" >Add New Claim</a>	
+						</div>
+						<div class="clearall"></div>
+					</div>
+						{if $data_show >= 1}
+							<table width="100%" cellpadding="0" cellspacing="0" >
+							<tr class="trtable">
+								<td width="200" >Name</td>
+                                                                <td width="200">Username</td>
+                                                                <td width="200" >Email</td>
+                                                                <td width="200" >Date</td>
+                                                                <td width="200" >Status</td>
+								<td>Option</td>
+							</tr>	
+							{foreach item=item from=$list}
+							<tr class="trtable2">
+								<td >{$item.name}</td>
+                                                                <td >{$item.username}</td>
+                                                                <td >{$item.email}</td>
+                                                                <td >{$item.date}</td>
+                                                                <td >{if $item.is_approved == '1'}Approved{else}Rejected{/if}</td>
+								<td >
+                                                                    <a href="{$ADMIN_PATH}claims/edit/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
+                                                                    <a href="{$ADMIN_PATH}claims/approve/{$item.id}" class="Tlink">Approve</a> &nbsp; | &nbsp; 
+							            <a href="{$ADMIN_PATH}claims/reject/{$item.id}" class="Tlink">Reject</a>
+								</td>
+							</tr>
+							{/foreach}
+							</table>
+						{else}
+							<table width="100%" cellpadding="0" cellspacing="0" >
+							<tr class="trtable">
+								<td ><center>Data Not Found !!</center></td>
+							</tr>
+							</table>
+						{/if}
+						<div class="pagebar">
+							{$pagination}
+						</div>
+				</div>
+				</center>
+			</div>
+			<div class="clearall"></div>
+		<div id="foot3"></div>			
+	</div>	
+{include file="$MAIN_TPL_FOOTER"}
