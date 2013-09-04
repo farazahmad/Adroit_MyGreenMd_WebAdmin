@@ -1,0 +1,85 @@
+{include file="$MAIN_TPL_HEADER"}
+	<div id="PageContent_main">
+			<div id="PageContent">					
+				<center>
+				<div id="main_content">
+					<div class="errortxt "></div>
+					<div class="confirmtxt"></div>
+					{$searchForm}	
+					<br/>
+					<div class="button_pages3 dash_title">
+						<div class="fleft">DOCTORS</div>
+						<div class="fright">
+						 <a class="buttonLink button_addL" href="{$ADMIN_PATH}doctors/add" >Add New Doctor</a>	
+						</div>
+						<div class="clearall"></div>
+					</div>
+						{if $data_show >= 1}
+							<table width="100%" cellpadding="0" cellspacing="0" >
+							<tr class="trtable">
+                                                                <td width="100" >&nbsp;</td>
+                                                                <td width="350">&nbsp;</td>
+                                                                <td width="100" >Timing</td>
+                                                                <td width="100" >Phone</td>
+                                                                <td width="100" >View/Count</td>
+                                                                <td width="100" >Highlight</td>
+                                                                <td width="100" >Featured</td>
+								<td >Option</td>
+							</tr>	
+							{foreach item=item from=$list}
+							<tr class="trtable2">
+                                                                <td><img src="{$PATH_UPLOAD}doctors/{$item.picture}" style="width:100px;"/></td>
+								<td >
+                                                                Name: <b>{$item.name}</b><br/>
+                                                                Location: <b>{$item.address},{$item.city} {$item.state}</b><br/>
+                                                                Website: <b>{$item.website}</b><br/>
+                                                                Email: <b>{$item.email}</b><br/><br/>
+                                                                <input name="rating{$item.id}" type="radio" class="star required" value="1" disabled="disabled" {if $item.rating == 1}checked="checked"{/if}/> 
+                                                                <input name="rating{$item.id}" type="radio" class="star" value="2" disabled="disabled" {if $item.rating == 2}checked="checked"{/if}/> 
+                                                                <input name="rating{$item.id}" type="radio" class="star" value="3" disabled="disabled" {if $item.rating == 3}checked="checked"{/if}/> 
+                                                                <input name="rating{$item.id}" type="radio" class="star" value="4" disabled="disabled" {if $item.rating == 4}checked="checked"{/if}/> 
+                                                                <input name="rating{$item.id}" type="radio" class="star" value="5" disabled="disabled" {if $item.rating == 5}checked="checked"{/if}/>
+                                                                <td >{$item.timing}</td>
+                                                                <td >{$item.phone}</td>
+                                                                <td >{$item.counter}</td>
+                                                                <td ><input type="checkbox" onchange="javascript:highlight(this, '{$item.id}');" name="highlight" id="highlight" {if $item.highlight == 1}checked{/if}/>Highlight</td>
+                                                                <td ><input type="checkbox" onchange="javascript:featured(this, '{$item.id}');" name="featured" id="featured" {if $item.featured == 1}checked{/if}/>Featured</td>
+								<td >
+                                                                       <a href="{$ADMIN_PATH}reviews/doctor/{$item.id}" class="Tlink">Reviews</a> &nbsp; | &nbsp; 
+                                                                       <a href="{$ADMIN_PATH}deals/doctor/{$item.id}" class="Tlink">Deals</a> &nbsp; | &nbsp; 
+								       <a href="{$ADMIN_PATH}doctors/edit/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
+								       <a href="#" onclick="deleteconfirm('{$ADMIN_PATH}doctors/delete/{$item.id}');" class="Tlink">Delete</a>
+								</td>
+							</tr>
+							{/foreach}
+							</table>
+						{else}
+							<table width="100%" cellpadding="0" cellspacing="0" >
+							<tr class="trtable">
+								<td ><center>Data Not Found !!</center></td>
+							</tr>
+							</table>
+						{/if}
+						<div class="pagebar">
+							{$pagination}
+						</div>
+				</div>
+				</center>
+			</div>
+			<div class="clearall"></div>
+		<div id="foot3"></div>			
+	</div>	
+{include file="$MAIN_TPL_FOOTER"}
+{literal}
+<script>
+  function highlight(data, id){
+      var path = '{/literal}{$ADMIN_PATH}{literal}';
+      window.location=path+'doctors/highlight/'+id+'/'+data.checked;
+  }
+  
+  function featured(data, id){
+      var path = '{/literal}{$ADMIN_PATH}{literal}';
+      window.location=path+'doctors/featured/'+id+'/'+data.checked;
+  }
+</script>
+{/literal}

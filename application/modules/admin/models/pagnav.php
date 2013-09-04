@@ -52,12 +52,12 @@ END;
 		$sess_do = $this->input->post($searchVar_session."_do");
 		if($sess_do=="reset"){
 			$this->session->unset_userdata($searchVar_session."_txtsearch");
-			redirect('admin/'.$searchVar_session);
+			redirect($searchVar_session);
 		}else
 		{
 			if(!empty($sess_search)){
 				$this->session->set_userdata(array($searchVar['session']."_txtsearch"=>$sess_search));
-				redirect('admin/'.$searchVar['session']);
+				redirect($searchVar['session']);
 			}
 			
 		}	

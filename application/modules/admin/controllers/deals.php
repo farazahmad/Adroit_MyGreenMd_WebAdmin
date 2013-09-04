@@ -64,10 +64,11 @@ class Deals extends AdminController {
         $this->smarty->display('deals/list.html');
     }
 	
- 	function add()
+ 	function add($type_name="", $type_id="")
     {
-        $this->all_js->tinymce('description');
-		$this->all_js->formvalidator(ADMIN_PATH.'deals/do_add');
+         $this->smarty->assign('type_name', $type_name);
+         $this->smarty->assign('type_id', $type_id);
+	 $this->all_js->formvalidator(ADMIN_PATH.'deals/do_add');
          $this->smarty->display('deals/add.html');
     }
 
@@ -76,7 +77,6 @@ class Deals extends AdminController {
         $query = $this->db->get_where('deals', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
-        $this->all_js->tinymce('description');
 		$this->all_js->formvalidator(ADMIN_PATH.'deals/do_edit');  
         $this->smarty->display('deals/edit.html');
    }    
@@ -99,14 +99,20 @@ class Deals extends AdminController {
     {
         // save the object
         $fields = array (
+            'type_name'  => $this->input->post('type_name'),
+            'type_id'  => $this->input->post('type_id'),
             'name'  => $this->input->post('name'),
             'description' => $this->input->post('description'),
             'expiry' => $this->input->post('expiry')
         );
 
         $this->db->insert('deals', $fields);
-        $this->session->set_flashdata('confirmtxt',"new data has been added!");       
-        redirect('deals/', 'refresh');
+        $this->session->set_flashdata('confirmtxt',"new data has been added!"); 
+        if($this->input->post('type_name')!=''){
+            redirect('deals/'.$this->input->post('type_name').'/'.$this->input->post('type_id'), 'refresh');
+        }else{
+          redirect('deals/', 'refresh');
+        }
     }
 
     function do_edit()
@@ -122,5 +128,65 @@ class Deals extends AdminController {
         $this->db->update('deals', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
         redirect('deals/', 'refresh');
+    }
+    
+    function dispensery($id)
+    {
+        //search var session, make session with this var
+	$searchVar['session']="deals";
+	//use search sql method here and use {searchVar} for input
+	$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
+	$this->pagnav->addSearch($searchVar);
+	$getData=$this->pagnav->pagination("","","deals","","type_id=$id And type_name='dispensery'","",ADMIN_PATH."deals/page/","",$searchVar);			
+	$this->smarty->assign("pagination", $getData['paging']);
+        $rows   = $getData['result'];
+	$this->smarty->assign('list', $rows);
+	$this->smarty->assign('data_show', $getData['num_row_total']);
+        $query = $this->db->get_where('dispenseries', array('id' => $id));
+	$data = $query->row_array();
+        $this->smarty->assign('deal_title', $data["name"]);
+        $this->smarty->assign('type_name', "dispensery");
+        $this->smarty->assign('type_id', $id);
+        $this->smarty->display('deals/list.html');
+    }
+    
+    function doctor($id)
+    {
+        //search var session, make session with this var
+	$searchVar['session']="deals";
+	//use search sql method here and use {searchVar} for input
+	$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
+	$this->pagnav->addSearch($searchVar);
+	$getData=$this->pagnav->pagination("","","deals","","type_id=$id And type_name='doctor'","",ADMIN_PATH."deals/page/","",$searchVar);			
+	$this->smarty->assign("pagination", $getData['paging']);
+        $rows   = $getData['result'];
+	$this->smarty->assign('list', $rows);
+	$this->smarty->assign('data_show', $getData['num_row_total']);
+        $query = $this->db->get_where('doctors', array('id' => $id));
+	$data = $query->row_array();
+        $this->smarty->assign('deal_title', $data["name"]);
+        $this->smarty->assign('type_name', "doctor");
+        $this->smarty->assign('type_id', $id);
+        $this->smarty->display('deals/list.html');
+    }
+    
+    function smoke_shop($id)
+    {
+        //search var session, make session with this var
+	$searchVar['session']="deals";
+	//use search sql method here and use {searchVar} for input
+	$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
+	$this->pagnav->addSearch($searchVar);
+	$getData=$this->pagnav->pagination("","","deals","","type_id=$id And type_name='smoke_shop'","",ADMIN_PATH."deals/page/","",$searchVar);			
+	$this->smarty->assign("pagination", $getData['paging']);
+        $rows   = $getData['result'];
+	$this->smarty->assign('list', $rows);
+	$this->smarty->assign('data_show', $getData['num_row_total']);
+        $query = $this->db->get_where('smoke_stores', array('id' => $id));
+	$data = $query->row_array();
+        $this->smarty->assign('deal_title', $data["name"]);
+        $this->smarty->assign('type_name', "smoke_shop");
+        $this->smarty->assign('type_id', $id);
+        $this->smarty->display('deals/list.html');
     }
 }

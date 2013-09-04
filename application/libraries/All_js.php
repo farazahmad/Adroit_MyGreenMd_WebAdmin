@@ -43,7 +43,6 @@ END;
 		$datajs=<<<END
 		<script type="text/javascript" src="{$BASE_JS_PATH}tiny_mce/tiny_mce_gzip.js"></script> \n
 		<script type="text/javascript" src="{$BASE_JS_PATH}tiny_mce/tiny_mce.js"></script> \n
-		<script type="text/javascript" src="{$BASE_JS_PATH}tiny_mce/plugins/tinybrowser/tb_tinymce.js.php"></script> \n
 END;
 		}
 		if($val=="uicalendar"){
@@ -51,6 +50,13 @@ END;
 		<link type="text/css" href="{$BASE_JS_PATH}jquery/css/ui-darkness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />\n
 		<script type="text/javascript" src="{$BASE_JS_PATH}jquery/ui.core.js"></script> \n
 		<script type="text/javascript" src="{$BASE_JS_PATH}jquery/ui.datepicker.js"></script> \n	
+END;
+		}
+		if($val=="rating"){
+		$datajs= <<<END
+		<link type="text/css" href="{$BASE_JS_PATH}jquery/rating/jquery.rating.css" rel="stylesheet" />\n
+		<script type="text/javascript" src="{$BASE_JS_PATH}jquery/rating/jquery.rating.js"></script> \n
+		<script type="text/javascript" src="{$BASE_JS_PATH}jquery/rating/jquery.rating.pack.js"></script> \n	
 END;
 		}
 		if($val=="editor"){
@@ -223,7 +229,6 @@ END;
 												file_browser_callback : "tinyBrowser",
 												mode : "'.$mode.'",
 												theme : "advanced",
-												plugins : "inlinepopups,preview,media,searchreplace,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount",
 												theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink",
 												theme_advanced_buttons2 : "formatselect,fontselect,fontsizeselect,code",theme_advanced_buttons3 : "",
 												theme_advanced_toolbar_location : "top",

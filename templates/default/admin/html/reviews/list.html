@@ -8,9 +8,9 @@
 					{$searchForm}	
 					<br/>
 					<div class="button_pages3 dash_title">
-						<div class="fleft">DEALS {if $deal_title !=''}for {$deal_title}{/if}</div>
+						<div class="fleft">REVIEWS {if $review_title !=''}for {$review_title}{/if}</div>
 						<div class="fright">
-						 <a class="buttonLink button_addL" href="{$ADMIN_PATH}deals/add{if $deal_title !=''}/{$type_name}/{$type_id}{/if}" >Add New Deal</a>	
+						 <a class="buttonLink button_addL" href="{$ADMIN_PATH}reviews/add{if $review_title !=''}/{$type_name}/{$type_id}{/if}" >Add New Review</a>	
 						</div>
 						<div class="clearall"></div>
 					</div>
@@ -19,17 +19,19 @@
 							<tr class="trtable">
 								<td width="100" >Name</td>
                                                                 <td>Description</td>
-                                                                <td width="100" >Expiry on</td>
+                                                                <td width="100" >Username</td>
+                                                                <td width="100" >Date</td>
 								<td width="100">Option</td>
 							</tr>	
 							{foreach item=item from=$list}
 							<tr class="trtable2">
 								<td >{$item.name}</td>
                                                                 <td >{$item.description}</td>
-                                                                <td >{$item.expiry}</td>
+                                                                <td >{$item.username}</td>
+                                                                <td >{$item.date}</td>
 								<td >
-									<a href="{$ADMIN_PATH}deals/edit/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
-									<a href="#" onclick="deleteconfirm('{$ADMIN_PATH}deals/delete/{$item.id}');" class="Tlink">Delete</a>
+									<a href="{$ADMIN_PATH}reviews/edit/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
+									<a href="#" onclick="deleteconfirm('{$ADMIN_PATH}reviews/delete/{$item.id}');" class="Tlink">Delete</a>
 								</td>
 							</tr>
 							{/foreach}

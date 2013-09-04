@@ -32,8 +32,8 @@ class Account extends AdminController
 
     function password()
     {
-        $access_page = $this->menu->get_page_permission("Change Password");
-        $this->menu->check_write_access($access_page, "");
+        #$access_page = $this->menu->get_page_permission("Change Password");
+       # $this->menu->check_write_access($access_page, "");
         
         $this->all_js->formvalidator(ADMIN_PATH.'account/change_password');
         $this->smarty->display('pages/password.html');

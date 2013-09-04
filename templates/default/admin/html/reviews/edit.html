@@ -4,16 +4,15 @@
 			<center>
 				<div id="main_content">
 					<div class="button_pages3 dash_title"> 
-						<div class="fleft">Add deal</div>
+						<div class="fleft">Edit reviews</div>
 						<div class="fright">
-							<a class="buttonLink button_backL" href="{$ADMIN_PATH}deals">Back to deals</a>					
+							<a class="buttonLink button_backL" href="{$ADMIN_PATH}reviews">Back to reviews</a>					
 						</div>
 						<div class="clearall"></div>
 					</div>
 						<div class="dash_content_color">
-						<form name="new_web_content" id="form" enctype="multipart/form-data" method="POST" action="{$ADMIN_PATH}deals/do_add">            
-                                                    <input type="hidden" name="type_name" value="{$type_name}" />
-                                                    <input type="hidden" name="type_id" value="{$type_id}" />
+						<form name="new_web_content" id="form" method="POST" action="{$ADMIN_PATH}reviews/do_edit"  enctype="multipart/form-data"> 
+						  <input type="hidden" name="id" value="{$id}" />
 							<table width="100%" id="tblwMce">
 								<tr>
 									<td width="100" class="bold ">Name</td>
@@ -28,9 +27,14 @@
 									</td>
 								</tr>
                                                                 <tr>
-									<td width="100" class="bold ">Expiry</td>
+									<td width="100" class="bold ">Username</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="expiry" id="expiry" value="{$expiry}" size="20"/>&nbsp;eg: 10:00PM</td>
+									<td><input type="text" name="username" id="username" value="{$username}" size="30"/></td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Date</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="date" id="date" value="{$date}" size="10"/></td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
