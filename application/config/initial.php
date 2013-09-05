@@ -73,4 +73,15 @@ define('SMTP_PASS', 'unlockaja');
 */
 define('PER_PAGE', 10);
 
+#AUTHORIZE.NET
+#=====================================
+#define('AUTHORIZE_URL', "https://secure.authorize.net/gateway/transact.dll"); //live url
+define('AUTHORIZE_URL', "https://test.authorize.net/gateway/transact.dll"); //testing url
+define('AUTHORIZE_LOGIN', "3U8c3eGh3CYc");
+define('AUTHORIZE_TRANS_KEY', "6t6Bdp6nL74Rr8xk");
 
+#PUSH NOTIFICATION
+#========================
+#define('GATEWAY_URL', "gateway.push.apple.com"); //live url
+define('GATEWAY_URL', "gateway.sandbox.push.apple.com"); //testing url
+define('PASSPHARSE', "123456789");

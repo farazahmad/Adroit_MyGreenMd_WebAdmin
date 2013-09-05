@@ -50,14 +50,13 @@ class Payments extends AdminController {
         $pin = $this->input->post('pin');
         $amount = $this->input->post('amount');
         
-        // posting to: https://secure.authorize.net/gateway/transact.dll
-        $post_url = "https://test.authorize.net/gateway/transact.dll";
+        $post_url = AUTHORIZE_URL;
 
         $post_values = array(
 
                 // the API Login ID and Transaction Key must be replaced with valid values
-                "x_login"		=> "3U8c3eGh3CYc",
-                "x_tran_key"		=> "6t6Bdp6nL74Rr8xk",
+                "x_login"		=> AUTHORIZE_LOGIN,
+                "x_tran_key"		=> AUTHORIZE_TRANS_KEY,
                 "x_version"             => "3.1",
                 "x_delim_data"		=> "TRUE",
                 "x_delim_char"		=> "|",

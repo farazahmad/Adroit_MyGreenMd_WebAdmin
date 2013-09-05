@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 05, 2013 at 09:53 AM
+-- Generation Time: Sep 05, 2013 at 10:54 AM
 -- Server version: 5.1.49
 -- PHP Version: 5.3.26-1~dotdeb.0
 
@@ -88,6 +88,27 @@ INSERT INTO `deals` (`id`, `type_id`, `type_name`, `name`, `description`, `expir
 (1, NULL, NULL, 'Dispensry Name', 'test', '10:00'),
 (3, 1, 'dispensery', 'test', 'test', '10:00'),
 (4, 1, 'doctor', 'Deal for doctor', 'Deal for doctor', '10:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `device_tokens`
+--
+
+CREATE TABLE IF NOT EXISTS `device_tokens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `apple_id` varchar(255) DEFAULT NULL,
+  `device_token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `device_tokens`
+--
+
+INSERT INTO `device_tokens` (`id`, `apple_id`, `device_token`) VALUES
+(1, '1', 'b67cc395f8be5a8993a49089c6b7684ada31005440b30fbf85168dc41e525231'),
+(2, '2', '3e32056b928a48935577893cd561729a169f37aca52481d7ba9d8c93dc0b0c6d');
 
 -- --------------------------------------------------------
 
@@ -263,14 +284,12 @@ CREATE TABLE IF NOT EXISTS `push_notifications` (
   `message` text,
   `datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `push_notifications`
 --
 
-INSERT INTO `push_notifications` (`id`, `message`, `datetime`) VALUES
-(1, 'test', '2013-09-05 08:56:06');
 
 -- --------------------------------------------------------
 
