@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 04, 2013 at 11:34 AM
+-- Generation Time: Sep 05, 2013 at 09:53 AM
 -- Server version: 5.1.49
 -- PHP Version: 5.3.26-1~dotdeb.0
 
@@ -236,18 +236,21 @@ INSERT INTO `pages` (`id`, `title`, `url`, `content`, `meta_keywords`, `meta_des
 CREATE TABLE IF NOT EXISTS `payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cc_number` varchar(255) DEFAULT NULL,
-  `expiry_month` int(1) DEFAULT NULL,
+  `expiry_month` varchar(2) DEFAULT NULL,
   `expiry_year` int(4) DEFAULT NULL,
   `pin` int(10) DEFAULT NULL,
   `amount` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `payments`
 --
 
+INSERT INTO `payments` (`id`, `cc_number`, `expiry_month`, `expiry_year`, `pin`, `amount`, `created_at`) VALUES
+(1, '4007000000027', '01', 2025, 324, 200, '2013-09-05 09:44:12'),
+(2, '370000000000002', '01', 2022, 324, 200, '2013-09-05 09:52:18');
 
 -- --------------------------------------------------------
 
@@ -260,12 +263,14 @@ CREATE TABLE IF NOT EXISTS `push_notifications` (
   `message` text,
   `datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `push_notifications`
 --
 
+INSERT INTO `push_notifications` (`id`, `message`, `datetime`) VALUES
+(1, 'test', '2013-09-05 08:56:06');
 
 -- --------------------------------------------------------
 
