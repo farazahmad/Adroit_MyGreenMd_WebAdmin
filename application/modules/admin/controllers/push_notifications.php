@@ -93,12 +93,16 @@ class Push_notifications extends AdminController {
             $body['aps']['notifurl'] = 'http://www.mydomain.com';
             $body['aps']['badge'] = 2;
 
-            //Setup stream (connect to Apple Push Server)
-            $ctx = stream_context_create();
-            stream_context_set_option($ctx, 'ssl', 'passphrase', PASSPHARSE);
-            stream_context_set_option($ctx, 'ssl', 'local_cert', 'MyGreenMDCertificate.pem');
-            $fp = stream_socket_client('ssl://'.GATEWAY_URL.':2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
-            stream_set_blocking ($fp, 0); 
+            try{
+              //Setup stream (connect to Apple Push Server)
+              $ctx = stream_context_create();
+              stream_context_set_option($ctx, 'ssl', 'passphrase', PASSPHARSE);
+              stream_context_set_option($ctx, 'ssl', 'local_cert', ROOTPATH.'apns-mygreen-md.pem');
+              $fp = stream_socket_client('ssl://'.GATEWAY_URL.':2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
+              stream_set_blocking ($fp, 0); 
+            }catch (Exception $e) {
+                
+            }
             // This allows fread() to return right away when there are no errors. But it can also miss errors during 
             //  last  seconds of sending, as there is a delay before error is returned. Workaround is to pause briefly 
             // AFTER sending last notification, and then do one more fread() to see if anything else is there.
