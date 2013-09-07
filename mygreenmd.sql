@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 07, 2013 at 11:12 AM
+-- Generation Time: Sep 07, 2013 at 01:22 PM
 -- Server version: 5.1.49
 -- PHP Version: 5.3.26-1~dotdeb.0
 
@@ -67,6 +67,29 @@ CREATE TABLE IF NOT EXISTS `claims` (
 INSERT INTO `claims` (`id`, `name`, `username`, `email`, `date`, `phone`, `is_approved`, `type_id`, `type_name`) VALUES
 (1, 'ari', 'ari', 'ari.p@kiranatama.com', '2013-09-03', NULL, 1, NULL, NULL),
 (2, 'test', 'test', 'aribasc3om@test.com', '2013-09-07', NULL, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `message` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `email`, `state`, `phone`, `message`) VALUES
+(1, 'ari', 'aribascom@tkhkg.bom', 'Bandung', '09843', 'test');
 
 -- --------------------------------------------------------
 

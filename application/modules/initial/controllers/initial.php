@@ -15,13 +15,51 @@ class Initial extends InitialController {
      
    function index(){
       $this->smarty->assign('WEBTITLE' , "Home");	
+      $this->smarty->assign('active_menu' , "home");	
       $this->smarty->display('pages/index.html');
+   }
+   
+   function advertising(){
+      $this->smarty->assign('WEBTITLE' , "Advertising");	
+      $this->smarty->assign('active_menu' , "advertising");
+      
+      $query_packages = $this->db->query("SELECT * FROM `packages`");
+      $packages = $query_packages->result_array();   
+      $this->smarty->assign('packages' , $packages);
+      $this->smarty->display('pages/advertising.html');
+   }
+   
+   function contact(){
+      $this->smarty->assign('WEBTITLE' , "Advertising");
+      $this->smarty->assign('active_menu' , "contact");
+      
+      $data_post = $this->input->post('data');
+        $this->smarty->assign('data_post',$data_post);
+        $do_send = $this->input->post('save');
+
+        if(!empty($do_send)){
+                $data_contact = array (	
+                        'name' => $data_post['name'],
+                        'email' => $data_post['email'],
+                        'state' => $data_post['state'],
+                        'phone' =>$data_post['phone'],
+                        'message' =>$data_post['message']
+                );
+                if($this->db->insert('contacts', $data_contact)){ 
+                        $this->smarty->assign('status_submit',"success");
+                }else
+                {
+                        $this->smarty->assign('status_submit',"failed");
+                }
+        }
+      $this->smarty->display('pages/contact.html');
    }
       
    function about(){
      $this->content("about_us");
      $this->smarty->assign("link","about");
      $this->smarty->assign("label","About");
+     $this->smarty->assign('active_menu' , "about");
      $this->smarty->display('pages/content.html');
    }
       

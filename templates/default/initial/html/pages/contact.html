@@ -1,0 +1,55 @@
+{include file="$MAIN_TPL_HEADER"}
+<div class="article">
+  <h2><span>Contact</span></h2>
+  <div class="clr"></div>
+  <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet </p>
+</div>
+<div class="article">
+  <h2><span>Send us</span> mail</h2>
+  <div class="clr"></div>
+  {if $status_submit == "success"}
+    <div class="notif_green" id="ssc_msg" style="margin:0;">Thank you, your data has been saved.</div>
+  {/if}
+  <form action="{$current_url}" method="post" id="ContactForm" name="ContactForm">
+    <ol>
+      <li>
+        <label for="name">Full Name (required)</label>
+        <input name="data[name]" id="name"  class="text" />
+      </li>
+      <li>
+        <label for="email">Email Address (required)</label>
+        <input name="data[email]" id="email" class="text" />
+      </li>
+      <li>
+        <label for="state">City, State</label>
+        <input id="state" name="data[state]" class="text" />
+      </li>
+      <li>
+        <label for="website">Phone (required)</label>
+        <input id="phone" name="data[phone]" class="text" />
+      </li>
+      <li>
+        <label for="message">Your Message (required)</label>
+        <textarea name="data[message]" id="message"rows="8" cols="50"></textarea>
+      </li>
+      <li>
+        <input id="save" name="save" type="hidden" value="save" />
+        <input type="image" name="imageField" id="imageField" src="{$IMG_URL}submit.gif" class="send" onclick="check_field();" />
+        <div class="clr"></div>
+      </li>
+    </ol>
+  </form>
+</div>
+{include file="$MAIN_TPL_FOOTER"}
+{literal}
+<script type="text/javascript">
+  function check_field(){
+  	if($("#name").val() != '' && $("#email").val() != '' && $("#message").val() != ''){
+  	  $("#ContactForm").submit();
+  	}else{
+      $("#ssc_msg").hide();
+      $("#err_msg").fadeIn();
+  	}
+  }
+</script>
+{/literal}
