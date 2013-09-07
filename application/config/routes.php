@@ -40,23 +40,26 @@
 |
 */
 
-$route['default_controller'] = "admin/Initial";
-$route['login.html'] = "admin/initial/login";
-$route['login'] = "admin/initial/login";
-$route['logout.html'] = "admin/initial/logout";
-$route['logout'] = "admin/initial/logout";
-$route['home.html'] = "admin/initial/home";
-$route['home'] = "admin/initial/home";
-$route['settings'] = "admin/initial/settings";
-$route['do_settings'] = "admin/initial/do_settings";
-$route['dashboard.html'] = "admin/initial/dashboard";
-$route['dashboard'] = "admin/initial/dashboard";
-$route['setlang/(:any).html'] = "admin/initial/setlang/$1/$2";
-$route['setlang/(:any)'] = "admin/initial/setlang/$1/$2";
+$route['default_controller'] = "Initial";
+$route['admin'] = "admin/initial";
+$route['admin/login.html'] = "admin/initial/login";
+$route['admin/login'] = "admin/initial/login";
+$route['admin/logout.html'] = "admin/initial/logout";
+$route['admin/logout'] = "admin/initial/logout";
+$route['admin/home.html'] = "admin/initial/home";
+$route['admin/home'] = "admin/initial/home";
+$route['admin/dashboard.html'] = "admin/initial/dashboard";
+$route['admin/dashboard'] = "admin/initial/dashboard";
+$route['admin/setlang/(:any).html'] = "admin/initial/setlang/$1/$2";
+$route['admin/setlang/(:any)'] = "admin/initial/setlang/$1/$2";
 
+$route['api'] = "api/initial";
+$route['api/(:any)'] = "api/initial/$1";
+$route['admin/(:any).html'] = "admin/$1";
+$route['admin/(:any)'] = "admin/$1";
 
-$route['(:any).html'] = "admin/$1";
-$route['(:any)'] = "admin/$1";
+$route['(:any).html'] = "initial/$1";
+$route['(:any)'] = "initial/$1";
 $route['scaffolding_trigger'] = "";
 
 

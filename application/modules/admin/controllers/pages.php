@@ -12,7 +12,7 @@ class Pages extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -73,6 +73,6 @@ class Pages extends AdminController {
         $query = $this->db->get_where('pages', array('id' => $this->input->post('id')));
         $data=$query->row_array();
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('pages/'.$data["url"], 'refresh');
+        redirect('admin/pages/'.$data["url"], 'refresh');
     }
 }

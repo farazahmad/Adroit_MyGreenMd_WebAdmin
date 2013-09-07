@@ -12,7 +12,7 @@ class Reviews extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -103,7 +103,7 @@ class Reviews extends AdminController {
 	function delete($id){
 		$this->db->delete('reviews', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
-		redirect('reviews', 'refresh');
+		redirect('admin/reviews', 'refresh');
 	}
 
 
@@ -122,9 +122,9 @@ class Reviews extends AdminController {
         $this->db->insert('reviews', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!");       
         if($this->input->post('type_name')!=''){
-            redirect('reviews/'.$this->input->post('type_name').'/'.$this->input->post('type_id'), 'refresh');
+            redirect('admin/reviews/'.$this->input->post('type_name').'/'.$this->input->post('type_id'), 'refresh');
         }else{
-          redirect('reviews/', 'refresh');
+          redirect('admin/reviews/', 'refresh');
         }
     }
 
@@ -141,26 +141,26 @@ class Reviews extends AdminController {
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('reviews', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('reviews/', 'refresh');
+        redirect('admin/reviews/', 'refresh');
     }
     
-    function dispensery($id)
+    function dispensary($id)
     {
         //search var session, make session with this var
 		$searchVar['session']="reviews";
 		//use search sql method here and use {searchVar} for input
 		$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%' OR username LIKE '%{searchVar}%'";
 		$this->pagnav->addSearch($searchVar);
-		$getData=$this->pagnav->pagination("","","reviews","","type_id=$id And type_name='dispensery'","",ADMIN_PATH."reviews/page/","",$searchVar);			
+		$getData=$this->pagnav->pagination("","","reviews","","type_id=$id And type_name='dispensary'","",ADMIN_PATH."reviews/page/","",$searchVar);			
 		$this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
 		$this->smarty->assign('list', $rows);
 		$this->smarty->assign('data_show', $getData['num_row_total']);
         
-        $query = $this->db->get_where('dispenseries', array('id' => $id));
+        $query = $this->db->get_where('dispensaries', array('id' => $id));
 	$data = $query->row_array();
         $this->smarty->assign('review_title', $data["name"]);
-        $this->smarty->assign('type_name', "dispensery");
+        $this->smarty->assign('type_name', "dispensary");
         $this->smarty->assign('type_id', $id);
         $this->smarty->display('reviews/list.html');
     }

@@ -4,14 +4,14 @@
 			<center>
 				<div id="main_content">
 					<div class="button_pages3 dash_title"> 
-						<div class="fleft">Edit dispenseries</div>
+						<div class="fleft">Edit dispensaries</div>
 						<div class="fright">
-							<a class="buttonLink button_backL" href="{$ADMIN_PATH}dispenseries">Back to dispenseries</a>					
+							<a class="buttonLink button_backL" href="{$ADMIN_PATH}dispensaries">Back to dispensaries</a>					
 						</div>
 						<div class="clearall"></div>
 					</div>
 						<div class="dash_content_color">
-						<form name="new_web_content" id="form" method="POST" action="{$ADMIN_PATH}dispenseries/do_edit"  enctype="multipart/form-data"> 
+						<form name="new_web_content" id="form" method="POST" action="{$ADMIN_PATH}dispensaries/do_edit"  enctype="multipart/form-data"> 
 						  <input type="hidden" name="id" value="{$id}" />
 							<table width="100%" id="tblwMce">
 								<tr>
@@ -59,7 +59,7 @@
 									<td width="10" class="bold ">:</td>
 									<td>
 									{if $picture!=''}
-									<img src="{$PATH_UPLOAD}dispenseries/{$picture}" style="border:5px solid #666666;width:200px;"/><br />
+									<img src="{$PATH_UPLOAD}dispensaries/{$picture}" style="border:5px solid #666666;width:200px;"/><br />
 									{/if}
 									<input type="hidden" name="picture" id="picture" value="{$picture}" />
 									<input style="width:178px;background:#ffffff;" type="file" size="25" id="uploadImg" name="uploadImg" /></td>

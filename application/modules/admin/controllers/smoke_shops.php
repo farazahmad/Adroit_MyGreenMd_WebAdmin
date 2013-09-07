@@ -12,7 +12,7 @@ class Smoke_shops extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -95,7 +95,7 @@ class Smoke_shops extends AdminController {
 	function delete($id){
 		$this->db->delete('smoke_shops', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
-		redirect('smoke_shops', 'refresh');
+		redirect('admin/smoke_shops', 'refresh');
 	}
         
     function highlight($id, $value){
@@ -106,7 +106,7 @@ class Smoke_shops extends AdminController {
         }
         $this->db->update('smoke_shops', array ('highlight' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
-        redirect('smoke_shops', 'refresh');
+        redirect('admin/smoke_shops', 'refresh');
     }
     
     function featured($id, $value){
@@ -117,7 +117,7 @@ class Smoke_shops extends AdminController {
         }
         $this->db->update('smoke_shops', array ('featured' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
-        redirect('smoke_shops', 'refresh');
+        redirect('admin/smoke_shops', 'refresh');
     }
 
 
@@ -159,7 +159,7 @@ class Smoke_shops extends AdminController {
 
         $this->db->insert('smoke_shops', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!");       
-        redirect('smoke_shops/', 'refresh');
+        redirect('admin/smoke_shops/', 'refresh');
     }
 
     function do_edit()
@@ -202,6 +202,6 @@ class Smoke_shops extends AdminController {
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('smoke_shops', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('smoke_shops/', 'refresh');
+        redirect('admin/smoke_shops/', 'refresh');
     }
 }

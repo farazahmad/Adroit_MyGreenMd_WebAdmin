@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 05, 2013 at 10:54 AM
+-- Generation Time: Sep 07, 2013 at 11:12 AM
 -- Server version: 5.1.49
 -- PHP Version: 5.3.26-1~dotdeb.0
 
@@ -53,16 +53,20 @@ CREATE TABLE IF NOT EXISTS `claims` (
   `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `is_approved` tinyint(1) NOT NULL,
+  `type_id` int(11) DEFAULT NULL,
+  `type_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `claims`
 --
 
-INSERT INTO `claims` (`id`, `name`, `username`, `email`, `date`, `is_approved`) VALUES
-(1, 'ari', 'ari', 'ari.p@kiranatama.com', '2013-09-03', 1);
+INSERT INTO `claims` (`id`, `name`, `username`, `email`, `date`, `phone`, `is_approved`, `type_id`, `type_name`) VALUES
+(1, 'ari', 'ari', 'ari.p@kiranatama.com', '2013-09-03', NULL, 1, NULL, NULL),
+(2, 'test', 'test', 'aribasc3om@test.com', '2013-09-07', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -78,15 +82,15 @@ CREATE TABLE IF NOT EXISTS `deals` (
   `description` text,
   `expiry` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `deals`
 --
 
 INSERT INTO `deals` (`id`, `type_id`, `type_name`, `name`, `description`, `expiry`) VALUES
-(1, NULL, NULL, 'Dispensry Name', 'test', '10:00'),
-(3, 1, 'dispensery', 'test', 'test', '10:00'),
+(6, 1, 'smoke_shop', 'deal smoke shop', 'deal smoke shopdeal smoke shopdeal smoke shop', '10:00'),
+(3, 1, 'dispensary', 'test', 'test', '10:00'),
 (4, 1, 'doctor', 'Deal for doctor', 'Deal for doctor', '10:00');
 
 -- --------------------------------------------------------
@@ -113,10 +117,10 @@ INSERT INTO `device_tokens` (`id`, `apple_id`, `device_token`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dispenseries`
+-- Table structure for table `dispensaries`
 --
 
-CREATE TABLE IF NOT EXISTS `dispenseries` (
+CREATE TABLE IF NOT EXISTS `dispensaries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -139,11 +143,11 @@ CREATE TABLE IF NOT EXISTS `dispenseries` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `dispenseries`
+-- Dumping data for table `dispensaries`
 --
 
-INSERT INTO `dispenseries` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`) VALUES
-(1, 'Dispensry Name', 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 'Bandung', 'Jawa', '0', 'aribascom@test.com', 'www.test.com', '<p>test</p>', '24/7', '10:00', '12:00', '093232', 'c4613b424492a921b78d3d720b6b9f50.jpg', 0, 3, 1, 0),
+INSERT INTO `dispensaries` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`) VALUES
+(1, 'Dispensry Name', 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 'Bandung', 'Jawa', '0', 'aribascom@test.com', 'www.test.com', '<p>test</p>', '24/7', '10:00', '12:00', '093232', 'c4613b424492a921b78d3d720b6b9f50.jpg', 2, 3, 1, 0),
 (2, 'Dispensry Name2', 'Lorem ipsum dolor sit amet', 'Bandung', 'Jawa', '40235', 'aribascom@tewwst.com', 'www.testd.com', '<p>Lorem ipsum dolor sit amet</p>', '24/7', '10:00', '12:00', '23432432', '07c531a92fc605a4b99c937ce7a965da.JPG', 0, 4, 0, 1);
 
 -- --------------------------------------------------------
@@ -172,14 +176,15 @@ CREATE TABLE IF NOT EXISTS `doctors` (
   `highlight` tinyint(1) DEFAULT '0',
   `featured` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `doctors`
 --
 
 INSERT INTO `doctors` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`) VALUES
-(1, 'Doctor 1', 'Lorem ipsum', 'Bandung', 'Jawa', '45654', 'aribascom@test.com', 'www.testd.com', '<p>test</p>', '24/7', '10:00', '12:00', '093232', 'fd808bc3db75544f96f8cf10efdd7bf2.jpg', 0, 4, 1, 0);
+(1, 'Doctor 1', 'Lorem ipsum', 'Bandung', 'Jawa', '45654', 'aribascom@test.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'fd808bc3db75544f96f8cf10efdd7bf2.jpg', 1, 3, 1, 0),
+(2, 'Doctor ari', 'jl margaasri no 68', 'Bandung', 'Jawa', '40235', 'aribascom@tewwst.com', 'www.testd.com', 'Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet', '24/7', '10:00', '12:00', '093232', '6ae81709698b81194f4909adbe083adb.jpg', 0, 3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -244,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`, `url`, `content`, `meta_keywords`, `meta_description`) VALUES
-(1, 'About Us', 'about_us', '<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>', 'About Us', 'About Us'),
+(1, 'About Us', 'about_us', '<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>\n<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>', 'About Us', 'About Us'),
 (2, 'Privacy Policy', 'privacy', '<p>Privacy Policy</p>', 'test', 'tets'),
 (3, 'Term an Conditions', 'terms', '<p>Term an Conditions</p>', 'test', 'test');
 
@@ -284,12 +289,16 @@ CREATE TABLE IF NOT EXISTS `push_notifications` (
   `message` text,
   `datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `push_notifications`
 --
 
+INSERT INTO `push_notifications` (`id`, `message`, `datetime`) VALUES
+(1, 'test', '2013-09-06 01:15:50'),
+(2, 'test', '2013-09-06 01:16:16'),
+(3, 'test', '2013-09-06 03:24:26');
 
 -- --------------------------------------------------------
 
@@ -306,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `username` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `reviews`
@@ -314,7 +323,8 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 
 INSERT INTO `reviews` (`id`, `type_id`, `type_name`, `name`, `description`, `username`, `date`) VALUES
 (1, NULL, NULL, 'Review 1', 'Review 1', 'ari', '2013-09-04'),
-(2, 1, 'smoke_shop', 'REview for smoke shop', 'REview for smoke shop', 'ari', '2013-09-04');
+(2, 1, 'smoke_shop', 'REview for smoke shop', 'REview for smoke shop', 'ari', '2013-09-04'),
+(3, 1, 'dispensary', 'review', 'review desc', 'ari', '2013-09-07');
 
 -- --------------------------------------------------------
 
@@ -355,28 +365,6 @@ CREATE TABLE IF NOT EXISTS `role_modules` (
 -- Dumping data for table `role_modules`
 --
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rooms`
---
-
-CREATE TABLE IF NOT EXISTS `rooms` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` text,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `rooms`
---
-
-INSERT INTO `rooms` (`id`, `name`, `description`, `active`) VALUES
-(1, 'Room 1', '<p>Room 1</p>', 0),
-(2, 'Room 2', '<p>Room 2</p>', 0);
 
 -- --------------------------------------------------------
 
@@ -456,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `smoke_shops` (
 --
 
 INSERT INTO `smoke_shops` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`) VALUES
-(1, 'Smoke Shop1', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'aribascom@gmail.com', 'www.testd.com', '<p>test</p>', '24/7', '10:00', '12:00', '093232', '1e3b256e199d9c805280eaca78a6cc54.jpg', 0, 2, 0, 0);
+(1, 'Smoke Shop1', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'aribascom@gmail.com', 'www.testd.com', '<p>test</p>', '24/7', '10:00', '12:00', '093232', '1e3b256e199d9c805280eaca78a6cc54.jpg', 1, 2, 0, 0);
 
 -- --------------------------------------------------------
 

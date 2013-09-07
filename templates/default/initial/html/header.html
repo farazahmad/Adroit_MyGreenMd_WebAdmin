@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-language" content="id" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="robots" content="noodp,noydir" />
+    <meta name="description" content="{$METADESC}" />
+	<meta name="keywords" content="{$METAKEY}" />
+	<title>My Green Md - {$WEBTITLE}</title>
+        {foreach item=icss from=$CSS}
+	<link href="{$icss}" type="text/css" rel="stylesheet" media="screen" />
+	{/foreach}
+	{$add_IEext}
+	<script language="javascript" type="text/javascript">
+		var IMG_PATH="{$PATH_UPLOAD}";
+		var IMG_URL="{$IMG_URL}";
+	</script>
+	{foreach item=js from=$add_JS}
+		{$js}
+	{/foreach}
+	<script language="javascript" type="text/javascript">
+		// <![CDATA[
+		{section name=ijs loop=$InlineJS}
+			{$InlineJS[ijs]}
+		{/section}
+		// ]]>
+	</script>
+    {literal}
+    <style>
+        body { font-family: Helvetica, "Helvetica Neue", Arial, sans-serif; }
+    </style>
+    {/literal}
+    <link rel="shortcut icon" href="{$IMG_PATH_UPLOAD}favicon.ico" />
+</head>
+<body>
+  {include file="menu.html"}

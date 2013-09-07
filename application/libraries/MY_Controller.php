@@ -39,6 +39,106 @@ class MY_Controller extends Controller
 
 }
 
+
+/**
+ * Extends the MY_Controller class
+ */
+class InitialController extends MY_Controller
+{
+    
+    var $curr_theme = 'default';
+    
+    function InitialController()
+    {
+        parent::MY_Controller();
+        
+        define('API_URL',  BASE_URL . 'api/');
+        
+        define('JS_PATH', BASE_URL . 'static/js/');
+        define('IMG_PATH_UPLOAD', BASE_URL . 'static/images/');
+        define('PATH_UPLOAD', ROOTPATH . 'static/images/');
+        define('MM_PATH', ROOTPATH . 'static/multimedia/');
+        define('EDITOR_PATH', ROOTPATH . 'static/editor/');
+        define('EDITOR_URL', BASE_URL . 'static/editor/');
+        
+        define('CSS_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/initial/css/');
+        define('IMG_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/initial/images/');
+		        
+		$this->smarty->assign('BASE_URL', BASE_URL);
+                $this->smarty->assign('API_URL', API_URL);
+		$this->smarty->assign('IMG_PATH', IMG_PATH);
+		$this->smarty->assign('IMG_PATH_UPLOAD', IMG_PATH_UPLOAD);
+		$this->smarty->assign("CSS_PATH",CSS_PATH);
+		
+        $this->smarty->template_dir = TPLPATH . $this->curr_theme."/initial/html/";
+        $this->smarty->compile_dir = TPLPATH . $this->curr_theme."/initial/tmp/";	
+	//general CSS
+	$this->smarty->append('CSS', CSS_PATH.'style.css');
+        $this->smarty->assign("MAIN_TPL_HEADER", 'header.html');
+        $this->smarty->assign("MAIN_TPL_FOOTER", 'footer.html');
+    }
+    
+    function _mail_config()
+    {
+	    $this->load->library('email');
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+        $config['charset'] = 'iso-8859-1';
+        $config['mailtype'] = 'text/html';
+        $this->email->initialize($config);
+    }
+
+}
+
+
+/**
+ * Extends the MY_Controller class
+ */
+class ApiController extends MY_Controller
+{
+    
+    var $curr_theme = 'default';
+    
+    function ApiController()
+    {
+        parent::MY_Controller();
+        
+        define('API_URL',  BASE_URL . 'api/');
+        
+        define('JS_PATH', BASE_URL . 'static/js/');
+        define('IMG_PATH_UPLOAD', BASE_URL . 'static/images/');
+        define('PATH_UPLOAD', ROOTPATH . 'static/images/');
+        define('MM_PATH', ROOTPATH . 'static/multimedia/');
+        define('EDITOR_PATH', ROOTPATH . 'static/editor/');
+        define('EDITOR_URL', BASE_URL . 'static/editor/');
+        
+        define('CSS_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/initial/css/');
+        define('IMG_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/initial/images/');
+		        
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->assign('API_URL', API_URL);
+        $this->smarty->assign('IMG_PATH', IMG_PATH);
+        $this->smarty->assign('IMG_PATH_UPLOAD', IMG_PATH_UPLOAD);
+        $this->smarty->assign("CSS_PATH",CSS_PATH);
+		
+        $this->smarty->template_dir = TPLPATH . $this->curr_theme."/initial/html/";
+        $this->smarty->compile_dir = TPLPATH . $this->curr_theme."/initial/tmp/";	
+        $this->smarty->assign("MAIN_TPL_HEADER", 'header.html');
+        $this->smarty->assign("MAIN_TPL_FOOTER", 'footer.html');
+    }
+    
+    function _mail_config()
+    {
+	$this->load->library('email');
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+        $config['charset'] = 'iso-8859-1';
+        $config['mailtype'] = 'text/html';
+        $this->email->initialize($config);
+    }
+
+}
+
 /**
  * Extends the MY_Controller class
  */
@@ -65,7 +165,7 @@ class AdminController extends MY_Controller
         
         //$this->curr_theme = $this->utility->get_current_themes();
         define('IMG_SRC', BASE_URL . TPLPATH . $this->curr_theme.'/admin/images/');
-        define('ADMIN_PATH',  BASE_URL);
+        define('ADMIN_PATH',  BASE_URL."admin/");
         
         define('JS_PATH', BASE_URL . 'static/js/');
         define('IMG_PATH_UPLOAD', BASE_URL . 'static/images/');
@@ -74,17 +174,17 @@ class AdminController extends MY_Controller
         define('CSS_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/admin/css/');
         define('IMG_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/admin/images/');
         define('IMG_ID_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/admin/images/');
-		$this->smarty->assign('BASE_URL', BASE_URL);
-		
-		$this->smarty->assign('IMG_PATH', IMG_PATH);		
-		$this->smarty->assign('IMG_PATH_UPLOAD', IMG_PATH_UPLOAD);
+        $this->smarty->assign('BASE_URL', BASE_URL);
+
+        $this->smarty->assign('IMG_PATH', IMG_PATH);		
+        $this->smarty->assign('IMG_PATH_UPLOAD', IMG_PATH_UPLOAD);
         $this->smarty->template_dir = TPLPATH . $this->curr_theme."/admin/html/";
         $this->smarty->compile_dir = TPLPATH . $this->curr_theme."/admin/tmp/";
 		
-		$BASE_URL=BASE_URL;
-		$JS_PATH=JS_PATH;
+        $BASE_URL=BASE_URL;
+        $JS_PATH=JS_PATH;
         $thisPage=$this->uri->segment(1);
-		$this_basePage=base_url().$this->uri->segment(1)."/";
+        $this_basePage=base_url().$this->uri->segment(1)."/";
 
         $this->smarty->assign("MAIN_TPL_HEADER", 'header.html');
         $this->smarty->assign("MAIN_TPL_NON_HEADER", 'non_header.html');
@@ -93,7 +193,7 @@ class AdminController extends MY_Controller
         $this->smarty->assign("role_full_name", $this->authentication->get_role_fullname());
         $this->smarty->append("CSS",CSS_PATH."base.css");
 		$this->smarty->assign("CSS_PATH",CSS_PATH);
-                if($this->uri->segment(1) == "member_statistics"){
+                if($this->uri->segment(1) == "api_statistics"){
                   $this->smarty->append("add_JS",$this->all_js->addJS("jquery_161"));                    
                 }else{
                   $this->smarty->append("add_JS",$this->all_js->addJS("jquery"));
@@ -160,16 +260,6 @@ END;
     function _mail_config()
     {
 	    $this->load->library('email');
-	    //$this->load->helper('email');
-
-	    //Mail-Config
-//        $config['protocol'] = 'smtp';
-        //$config['smtp_host'] = $this->smtp_host;
-        //$config['smtp_user'] = $this->smtp_user;
-        //$config['smtp_password'] = $this->smtp_pass;
-//        $config['smtp_host'] = SMTP_HOST;
-//        $config['smtp_user'] = SMTP_USER;
-//        $config['smtp_password'] = SMTP_PASS;
         $config['protocol'] = 'sendmail';
         $config['mailpath'] = '/usr/sbin/sendmail';
         $config['charset'] = 'iso-8859-1';

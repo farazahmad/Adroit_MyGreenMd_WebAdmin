@@ -53,7 +53,7 @@ END;
 <ul>
     <li ><a href="'.$BASE_PATH_admin.'dashboard.html" id="home" class="button_tab">Dashboard</a></li>';
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'tracks" id="tracks" class="button_box">Tracking</a></li>';   
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'dispenseries" id="dispenseries" class="button_box">Dispenseries</a></li>';   
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'dispensaries" id="dispensaries" class="button_box">Dispenseries</a></li>';   
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'doctors" id="doctors" class="button_box">Doctors</a></li>';   
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'smoke_shops" id="smoke_shops" class="button_box">Smoke Shops</a></li>';  
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'payments" id="payment" class="button_frontpage">Payment</a></li>';  

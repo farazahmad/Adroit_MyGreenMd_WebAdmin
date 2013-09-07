@@ -12,7 +12,7 @@ class Packages extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -91,7 +91,7 @@ class Packages extends AdminController {
 	function delete($id){
 		$this->db->delete('packages', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
-		redirect('packages', 'refresh');
+		redirect('admin/packages', 'refresh');
 	}
 
 
@@ -107,7 +107,7 @@ class Packages extends AdminController {
 
         $this->db->insert('packages', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!");       
-        redirect('packages/', 'refresh');
+        redirect('admin/packages/', 'refresh');
     }
 
     function do_edit()
@@ -123,6 +123,6 @@ class Packages extends AdminController {
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('packages', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('packages/', 'refresh');
+        redirect('admin/packages/', 'refresh');
     }
 }

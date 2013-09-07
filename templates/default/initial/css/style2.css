@@ -1,0 +1,94 @@
+
+/* transaction receipt */
+.area{
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+	width:500px;
+	height:371px;
+	border:1px solid #C7C7C7;
+  margin:0 auto;
+  margin-top: 15px;
+}
+.receipt_logo{
+	width: 30%;
+	padding: 15px 15px 0px 10px;
+	float: left;
+	background: white;
+}
+.area header{
+	border-bottom:1px solid #C7C7C7;
+	height:17%;
+}
+.area header h5{
+	padding: 27px 0px 0px 0px;
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+  color: #6B6B6B;
+}
+.area section{padding-top:10px;}
+.area section div{
+	padding-top:15px;
+	height:75px;
+}
+.area section .section_p p{
+	font-size: 12px;
+  margin:0;
+	font-weight: normal;
+	color:#6B6B6B;
+	padding: 5px 15px 0px 10px;
+	width:15%;
+	float:left;
+}
+.area section .section_q div{
+  font-size: 12px;
+  margin:0;
+	font-weight: normal;
+	color:#6B6B6B;
+	padding: 5px 15px 0px 10px; 
+  float:none;
+  height:45px;
+}
+.area section .section_q  p{
+  float:none !important;
+}
+.area section p{
+	font-size: 12px;
+  margin:0;
+	font-weight: normal;
+	color:#6B6B6B;
+	padding: 5px 15px 0px 10px; 
+  float:left;
+}
+.width-100{
+	width:98%!important;
+	padding: 5px 15px 0px 10px !important;
+}
+.width-40{width:40%!important;}
+.width-25{width:25%!important;}
+.area section span{
+	font-size: 12px;
+	float:left;
+	font-weight: normal;
+	color:#6B6B6B;
+	padding: 5px 0px 0px 10px;
+	width:70%;
+}
+.margin-top-30{margin-top:30px;height:auto!important;}
+.border-bottom{
+	border-bottom: 1px solid #C7C7C7;
+	height: auto!important;
+	padding: 11px 0px 26px 10px!important;
+}
+.area footer {
+	margin:4px 0px 0px 0px;
+	padding:0;
+	width:100%;
+	float:left;
+}
+.area footer p{
+	margin:0;
+	padding:0;
+  font-size:11px;
+	color:#00a00f;
+	text-align:center;
+}

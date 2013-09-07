@@ -12,7 +12,7 @@ class Claims extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -101,7 +101,7 @@ class Claims extends AdminController {
 	function delete($id){
 		$this->db->delete('claims', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
-		redirect('claims', 'refresh');
+		redirect('admin/admin/claims', 'refresh');
 	}
         
         
@@ -109,14 +109,14 @@ class Claims extends AdminController {
             $this->db->where('id', $id);
             $this->db->update('claims', array ('is_approved' => 1));
 	    $this->session->set_flashdata('confirmtxt',"Claim Approved!");
-	    redirect('claims', 'refresh');
+	    redirect('admin/claims', 'refresh');
 	}
 
         function reject($id){
             $this->db->where('id', $id);
             $this->db->update('claims', array ('is_approved' => 0));
 	    $this->session->set_flashdata('errortxt',"Claim Rejected!");
-	    redirect('claims', 'refresh');
+	    redirect('admin/claims', 'refresh');
 	}
 
     function do_add()
@@ -127,11 +127,12 @@ class Claims extends AdminController {
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
             'date' => $this->input->post('date'),
+            'phone' => $this->input->post('phone')
         );
 
         $this->db->insert('claims', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!");       
-        redirect('claims/', 'refresh');
+        redirect('admin/claims/', 'refresh');
     }
 
     function do_edit()
@@ -142,11 +143,12 @@ class Claims extends AdminController {
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
             'date' => $this->input->post('date'),
+            'phone' => $this->input->post('phone')
         );
 
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('claims', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('claims/', 'refresh');
+        redirect('admin/claims/', 'refresh');
     }
 }

@@ -12,7 +12,7 @@ class Doctors extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -95,7 +95,7 @@ class Doctors extends AdminController {
 	function delete($id){
 		$this->db->delete('doctors', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
-		redirect('doctors', 'refresh');
+		redirect('admin/doctors', 'refresh');
 	}
         
     function highlight($id, $value){
@@ -106,7 +106,7 @@ class Doctors extends AdminController {
         }
         $this->db->update('doctors', array ('highlight' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
-        redirect('doctors', 'refresh');
+        redirect('admin/doctors', 'refresh');
     }
     
     function featured($id, $value){
@@ -117,7 +117,7 @@ class Doctors extends AdminController {
         }
         $this->db->update('doctors', array ('featured' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
-        redirect('doctors', 'refresh');
+        redirect('admin/doctors', 'refresh');
     }
 
 
@@ -159,7 +159,7 @@ class Doctors extends AdminController {
 
         $this->db->insert('doctors', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!");       
-        redirect('doctors/', 'refresh');
+        redirect('admin/doctors/', 'refresh');
     }
 
     function do_edit()
@@ -202,6 +202,6 @@ class Doctors extends AdminController {
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('doctors', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('doctors/', 'refresh');
+        redirect('admin/doctors/', 'refresh');
     }
 }

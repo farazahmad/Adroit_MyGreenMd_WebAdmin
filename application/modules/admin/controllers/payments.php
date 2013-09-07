@@ -12,7 +12,7 @@ class Payments extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -120,6 +120,6 @@ class Payments extends AdminController {
            $this->session->set_flashdata('confirmtxt',$message);     
         }
     
-       redirect('payments/', 'refresh');
+       redirect('admin/payments/', 'refresh');
     }
 }

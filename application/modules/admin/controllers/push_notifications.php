@@ -12,7 +12,7 @@ class Push_notifications extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -72,7 +72,7 @@ class Push_notifications extends AdminController {
         $this->db->insert('push_notifications', $fields);
         $warning=$this->send_notif($message);
         $this->session->set_flashdata('confirmtxt', $warning);       
-        redirect('push_notifications/', 'refresh');
+        redirect('admin/push_notifications/', 'refresh');
     }
     
     function resend( $id )
@@ -82,7 +82,7 @@ class Push_notifications extends AdminController {
         $message = $data['message'];
         $warning=$this->send_notif($message);
         $this->session->set_flashdata('confirmtxt',$warning);       
-        redirect('push_notifications/', 'refresh');
+        redirect('admin/push_notifications/', 'refresh');
    }  
    
    function send_notif($message){

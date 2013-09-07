@@ -8,9 +8,9 @@
 					{$searchForm}	
 					<br/>
 					<div class="button_pages3 dash_title">
-						<div class="fleft">DISPENSERIES</div>
+						<div class="fleft">DISPENSARIES</div>
 						<div class="fright">
-						 <a class="buttonLink button_addL" href="{$ADMIN_PATH}dispenseries/add" >Add New Dispensry</a>	
+						 <a class="buttonLink button_addL" href="{$ADMIN_PATH}dispensaries/add" >Add New Dispensry</a>	
 						</div>
 						<div class="clearall"></div>
 					</div>
@@ -28,7 +28,7 @@
 							</tr>	
 							{foreach item=item from=$list}
 							<tr class="trtable2">
-                                                                <td><img src="{$PATH_UPLOAD}dispenseries/{$item.picture}" style="width:100px;"/></td>
+                                                                <td><img src="{$PATH_UPLOAD}dispensaries/{$item.picture}" style="width:100px;"/></td>
 								<td >
                                                                 Name: <b>{$item.name}</b><br/>
                                                                 Location: <b>{$item.address},{$item.city} {$item.state}</b><br/>
@@ -45,10 +45,10 @@
                                                                 <td ><input type="checkbox" onchange="javascript:highlight(this, '{$item.id}');" name="highlight" id="highlight" {if $item.highlight == 1}checked{/if}/>Highlight</td>
                                                                 <td ><input type="checkbox" onchange="javascript:featured(this, '{$item.id}');" name="featured" id="featured" {if $item.featured == 1}checked{/if}/>Featured</td>
 								<td >
-                                                                       <a href="{$ADMIN_PATH}reviews/dispensery/{$item.id}" class="Tlink">Reviews</a> &nbsp; | &nbsp; 
-                                                                       <a href="{$ADMIN_PATH}deals/dispensery/{$item.id}" class="Tlink">Deals</a> &nbsp; | &nbsp; 
-								       <a href="{$ADMIN_PATH}dispenseries/edit/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
-								       <a href="#" onclick="deleteconfirm('{$ADMIN_PATH}dispenseries/delete/{$item.id}');" class="Tlink">Delete</a>
+                                                                       <a href="{$ADMIN_PATH}reviews/dispensary/{$item.id}" class="Tlink">Reviews</a> &nbsp; | &nbsp; 
+                                                                       <a href="{$ADMIN_PATH}deals/dispensary/{$item.id}" class="Tlink">Deals</a> &nbsp; | &nbsp; 
+								       <a href="{$ADMIN_PATH}dispensaries/edit/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
+								       <a href="#" onclick="deleteconfirm('{$ADMIN_PATH}dispensaries/delete/{$item.id}');" class="Tlink">Delete</a>
 								</td>
 							</tr>
 							{/foreach}
@@ -74,12 +74,12 @@
 <script>
   function highlight(data, id){
       var path = '{/literal}{$ADMIN_PATH}{literal}';
-      window.location=path+'dispenseries/highlight/'+id+'/'+data.checked;
+      window.location=path+'dispensaries/highlight/'+id+'/'+data.checked;
   }
   
   function featured(data, id){
       var path = '{/literal}{$ADMIN_PATH}{literal}';
-      window.location=path+'dispenseries/featured/'+id+'/'+data.checked;
+      window.location=path+'dispensaries/featured/'+id+'/'+data.checked;
   }
 </script>
 {/literal}

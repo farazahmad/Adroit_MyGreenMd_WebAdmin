@@ -12,7 +12,7 @@ class Deals extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -91,7 +91,7 @@ class Deals extends AdminController {
 	function delete($id){
 		$this->db->delete('deals', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
-		redirect('deals', 'refresh');
+		redirect('admin/deals', 'refresh');
 	}
 
 
@@ -109,9 +109,9 @@ class Deals extends AdminController {
         $this->db->insert('deals', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!"); 
         if($this->input->post('type_name')!=''){
-            redirect('deals/'.$this->input->post('type_name').'/'.$this->input->post('type_id'), 'refresh');
+            redirect('admin/deals/'.$this->input->post('type_name').'/'.$this->input->post('type_id'), 'refresh');
         }else{
-          redirect('deals/', 'refresh');
+          redirect('admin/deals/', 'refresh');
         }
     }
 
@@ -127,25 +127,25 @@ class Deals extends AdminController {
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('deals', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('deals/', 'refresh');
+        redirect('admin/deals/', 'refresh');
     }
     
-    function dispensery($id)
+    function dispensary($id)
     {
         //search var session, make session with this var
 	$searchVar['session']="deals";
 	//use search sql method here and use {searchVar} for input
 	$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
 	$this->pagnav->addSearch($searchVar);
-	$getData=$this->pagnav->pagination("","","deals","","type_id=$id And type_name='dispensery'","",ADMIN_PATH."deals/page/","",$searchVar);			
+	$getData=$this->pagnav->pagination("","","deals","","type_id=$id And type_name='dispensary'","",ADMIN_PATH."deals/page/","",$searchVar);			
 	$this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
 	$this->smarty->assign('list', $rows);
 	$this->smarty->assign('data_show', $getData['num_row_total']);
-        $query = $this->db->get_where('dispenseries', array('id' => $id));
+        $query = $this->db->get_where('dispensaries', array('id' => $id));
 	$data = $query->row_array();
         $this->smarty->assign('deal_title', $data["name"]);
-        $this->smarty->assign('type_name', "dispensery");
+        $this->smarty->assign('type_name', "dispensary");
         $this->smarty->assign('type_id', $id);
         $this->smarty->display('deals/list.html');
     }
@@ -182,7 +182,7 @@ class Deals extends AdminController {
         $rows   = $getData['result'];
 	$this->smarty->assign('list', $rows);
 	$this->smarty->assign('data_show', $getData['num_row_total']);
-        $query = $this->db->get_where('smoke_stores', array('id' => $id));
+        $query = $this->db->get_where('smoke_shops', array('id' => $id));
 	$data = $query->row_array();
         $this->smarty->assign('deal_title', $data["name"]);
         $this->smarty->assign('type_name', "smoke_shop");

@@ -1,8 +1,8 @@
 <?php
 
-class Dispenseries extends AdminController {
+class Dispensaries extends AdminController {
 
-    function Dispenseries()
+    function Dispensaries()
     {
         parent::AdminController();
 		$this->load->model('pagnav');
@@ -12,7 +12,7 @@ class Dispenseries extends AdminController {
 		if($this->authentication->logged_in() == '1')
 		$this->smarty->assign('MAIN_MENU',$this->menu->showmenu());
 		if(!$this->authentication->logged_in())
-     		redirect('login/', 'refresh');
+     		redirect('admin/login/', 'refresh');
 
         $this->smarty->assign(array(
                 'BASE_URL' => BASE_URL,
@@ -30,7 +30,7 @@ class Dispenseries extends AdminController {
            $("input.star").rating();
         });					
         '); 
-        $this->smarty->assign('PAGETITLE' ,WEB_TITLE . ' ADMIN - Dispenseries');
+        $this->smarty->assign('PAGETITLE' ,WEB_TITLE . ' ADMIN - Dispensaries');
     }
 
     function index()
@@ -42,60 +42,60 @@ class Dispenseries extends AdminController {
 	function data_list()
     {
         //search var session, make session with this var
-		$searchVar['session']="dispenseries";
+		$searchVar['session']="dispensaries";
 		//use search sql method here and use {searchVar} for input
 		$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
 		$this->pagnav->addSearch($searchVar);
-		$getData=$this->pagnav->pagination("","","dispenseries","","","",ADMIN_PATH."dispenseries/page/","",$searchVar);		
+		$getData=$this->pagnav->pagination("","","dispensaries","","","",ADMIN_PATH."dispensaries/page/","",$searchVar);		
 		$this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
 		$this->smarty->assign('list', $rows);
 		$this->smarty->assign('data_show', $getData['num_row_total']);
-        $this->smarty->display('dispenseries/list.html');
+        $this->smarty->display('dispensaries/list.html');
 
     }
 	
 	function page($noPage="1")
     {
         //search var session, make session with this var
-		$searchVar['session']="dispenseries";
+		$searchVar['session']="dispensaries";
 		//use search sql method here and use {searchVar} for input
 		$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
 		$this->pagnav->addSearch($searchVar);
-		$getData=$this->pagnav->pagination($noPage,"","dispenseries","","","",ADMIN_PATH."dispenseries/page/","",$searchVar);			
+		$getData=$this->pagnav->pagination($noPage,"","dispensaries","","","",ADMIN_PATH."dispensaries/page/","",$searchVar);			
 		$this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
 		$this->smarty->assign('list', $rows);
 		$this->smarty->assign('data_show', $getData['num_row_total']);
-        $this->smarty->display('dispenseries/list.html');
+        $this->smarty->display('dispensaries/list.html');
     }
 	
  	function add()
     {
-	$this->all_js->formvalidator(ADMIN_PATH.'dispenseries/do_add');
-        $this->smarty->display('dispenseries/add.html');
+	$this->all_js->formvalidator(ADMIN_PATH.'dispensaries/do_add');
+        $this->smarty->display('dispensaries/add.html');
     }
 
    function edit( $id )
    {
-        $query = $this->db->get_where('dispenseries', array('id' => $id));
+        $query = $this->db->get_where('dispensaries', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
-		$this->all_js->formvalidator(ADMIN_PATH.'dispenseries/do_edit');  
-        $this->smarty->display('dispenseries/edit.html');
+		$this->all_js->formvalidator(ADMIN_PATH.'dispensaries/do_edit');  
+        $this->smarty->display('dispensaries/edit.html');
    }    
 	
     function view( $id  )
     {
-        $query  = $this->db->get_where('dispenseries', array('id ' => $id ));
+        $query  = $this->db->get_where('dispensaries', array('id ' => $id ));
 		$this->smarty->assign('item',$query->row_array());
-        $this->smarty->display('dispenseries/view.html');
+        $this->smarty->display('dispensaries/view.html');
     }	
 			
 	function delete($id){
-		$this->db->delete('dispenseries', array('id' => $id));
+		$this->db->delete('dispensaries', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
-		redirect('dispenseries', 'refresh');
+		redirect('admin/dispensaries', 'refresh');
 	}
         
     function highlight($id, $value){
@@ -104,9 +104,9 @@ class Dispenseries extends AdminController {
         if($value == "true"){
          $data =1;   
         }
-        $this->db->update('dispenseries', array ('highlight' => $data));
+        $this->db->update('dispensaries', array ('highlight' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
-        redirect('dispenseries', 'refresh');
+        redirect('admin/dispensaries', 'refresh');
     }
     
     function featured($id, $value){
@@ -115,9 +115,9 @@ class Dispenseries extends AdminController {
         if($value == "true"){
          $data =1;   
         }
-        $this->db->update('dispenseries', array ('featured' => $data));
+        $this->db->update('dispensaries', array ('featured' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
-        redirect('dispenseries', 'refresh');
+        redirect('admin/dispensaries', 'refresh');
     }
 
 
@@ -125,7 +125,7 @@ class Dispenseries extends AdminController {
     {
         $filename='';
         if(!empty($_FILES['uploadImg']['name'])){
-            $config['upload_path'] = PATH_UPLOAD."dispenseries/";
+            $config['upload_path'] = PATH_UPLOAD."dispensaries/";
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['remove_spaces'] = TRUE;
             $config['encrypt_name'] = TRUE;
@@ -157,9 +157,9 @@ class Dispenseries extends AdminController {
             'picture'     => $filename
         );
 
-        $this->db->insert('dispenseries', $fields);
+        $this->db->insert('dispensaries', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!");       
-        redirect('dispenseries/', 'refresh');
+        redirect('admin/dispensaries/', 'refresh');
     }
 
     function do_edit()
@@ -200,8 +200,8 @@ class Dispenseries extends AdminController {
         );
 
         $this->db->where('id', $this->input->post('id'));
-        $this->db->update('dispenseries', $fields);
+        $this->db->update('dispensaries', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('dispenseries/', 'refresh');
+        redirect('admin/dispensaries/', 'refresh');
     }
 }

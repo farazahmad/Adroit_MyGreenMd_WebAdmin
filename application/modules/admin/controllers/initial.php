@@ -27,14 +27,14 @@ class Initial extends AdminController
 	function index()
 	{
         if($this->authentication->logged_in() == '1')
-            redirect('login', 'refresh');
+            redirect('admin/login', 'refresh');
             
         $this->dashboard();
 	}
 	function dashboard()
 	{
          if(!$this->authentication->logged_in())
-            redirect('login', 'refresh');
+            redirect('admin/login', 'refresh');
 
         //$this->_check_menu('home');
 		//$this->menu->check('home');		
@@ -45,7 +45,7 @@ class Initial extends AdminController
     function login()
     {
         if($this->authentication->logged_in() == '1'){
-            redirect('home', 'refresh');
+            redirect('admin/home', 'refresh');
 		}
 		$BASE_URL=BASE_URL;
         $user = $this->input->post('username');
@@ -54,7 +54,7 @@ class Initial extends AdminController
 				
         if($this->authentication->login($user, $password))
         {
-            //redirect('home', 'refresh');
+            //redirect('admin/home', 'refresh');
 			echo "success"; die();			
         }
         else
@@ -92,7 +92,7 @@ class Initial extends AdminController
 						var str = $("#flogin").serialize();	
 						$.ajax({
 						   type: "POST",
-						   url: "{$BASE_URL}login.html",
+						   url: "{$BASE_URL}admin/login.html",
 						   data: str,
 						   success: function(msg){							
 						     if(msg=='success'){
@@ -122,7 +122,7 @@ END;
     function home()
     {
         if(!$this->authentication->logged_in())
-            redirect('login', 'refresh');
+            redirect('admin/login', 'refresh');
 
         //$this->_check_menu('home');
 		//$this->menu->check('home');		
@@ -134,7 +134,7 @@ END;
     function logout()
     {
         $this->authentication->logout();
-		redirect('login', 'refresh');
+		redirect('admin/login', 'refresh');
     }
     
     function settings()
@@ -154,7 +154,7 @@ END;
         $this->db->where('id', 1);
         $this->db->update('settings', $this->input->post('data'));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
-        redirect('settings', 'refresh');
+        redirect('admin/settings', 'refresh');
     }
     
     function setlang($page,$lang="")
