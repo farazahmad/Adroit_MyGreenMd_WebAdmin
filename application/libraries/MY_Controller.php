@@ -69,7 +69,7 @@ class InitialController extends MY_Controller
 		$this->smarty->assign('IMG_PATH', IMG_PATH);
 		$this->smarty->assign('IMG_PATH_UPLOAD', IMG_PATH_UPLOAD);
 		$this->smarty->assign("CSS_PATH",CSS_PATH);
-		
+		$this->smarty->append("add_JS",$this->all_js->addJS("jquery"));
         $this->smarty->template_dir = TPLPATH . $this->curr_theme."/initial/html/";
         $this->smarty->compile_dir = TPLPATH . $this->curr_theme."/initial/tmp/";	
 	//general CSS

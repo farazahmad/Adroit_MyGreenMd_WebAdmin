@@ -362,3 +362,4 @@ ol li .send {
 .package .block .header{text-align:center;font-weight:bold;font-size:14pt;padding:10px;height:60px;background-color:#CCCCCC;color:#666666;}
 .package .block .detail{padding:5px;}
 .download-link{background-color:#999999;font-weight:bold;color:#f0f0f0;font-size:12pt;padding:5px;text-decoration:none;}
+.recaptcha{font:normal 10px Arial, Helvetica, sans-serif;}

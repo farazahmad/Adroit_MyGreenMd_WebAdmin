@@ -16,6 +16,7 @@ class Initial extends InitialController {
    function index(){
       $this->smarty->assign('WEBTITLE' , "Home");	
       $this->smarty->assign('active_menu' , "home");	
+      $this->smarty->assign('date' , date("d-m-Y"));	
       $this->smarty->display('pages/index.html');
    }
    
@@ -30,14 +31,23 @@ class Initial extends InitialController {
    }
    
    function contact(){
-      $this->smarty->assign('WEBTITLE' , "Advertising");
+      $this->smarty->assign('WEBTITLE' , "Contact");
       $this->smarty->assign('active_menu' , "contact");
       
       $data_post = $this->input->post('data');
-        $this->smarty->assign('data_post',$data_post);
-        $do_send = $this->input->post('save');
+      $this->smarty->assign('data_post',$data_post);
+      $do_send = $this->input->post('save');
 
-        if(!empty($do_send)){
+      $this->load->plugin('recaptcha');
+      $private_key = "6LcqLecSAAAAAMs5zrxq6QvKxl_W1wmA190vo5NT";
+      $publickey = "6LcqLecSAAAAAEXMcOTWoBhNfvshZ1-y5xovHPem";
+      if(!empty($do_send)){
+         $resp = recaptcha_check_answer($private_key,
+                                $_SERVER["REMOTE_ADDR"],
+                                $_POST["recaptcha_challenge_field"],
+                                $_POST["recaptcha_response_field"]);
+
+          if ($resp->is_valid) {
                 $data_contact = array (	
                         'name' => $data_post['name'],
                         'email' => $data_post['email'],
@@ -51,7 +61,11 @@ class Initial extends InitialController {
                 {
                         $this->smarty->assign('status_submit',"failed");
                 }
-        }
+          }else{
+           $this->smarty->assign('status_submit',"failed_captcha");
+          }
+      }
+      $this->smarty->assign('recaptcha',recaptcha_get_html($publickey));
       $this->smarty->display('pages/contact.html');
    }
       
