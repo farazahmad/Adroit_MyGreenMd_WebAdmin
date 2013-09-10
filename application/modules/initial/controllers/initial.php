@@ -16,7 +16,6 @@ class Initial extends InitialController {
    function index(){
       $this->smarty->assign('WEBTITLE' , "Home");	
       $this->smarty->assign('active_menu' , "home");	
-      $this->smarty->assign('date' , date("d-m-Y"));	
       $this->smarty->display('pages/index.html');
    }
    

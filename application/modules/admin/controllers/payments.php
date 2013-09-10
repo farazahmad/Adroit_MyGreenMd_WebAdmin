@@ -106,6 +106,7 @@ class Payments extends AdminController {
         if($status_id != 1){
            $this->session->set_flashdata('errortxt',$message);    
         }else{
+            date_default_timezone_set('America/Denver');
             // save the object
             $fields = array (
                 'cc_number'  => $cc_number,

@@ -63,6 +63,7 @@ class Push_notifications extends AdminController {
     {
         $warning = "";
         $message = $this->input->post('message');
+        date_default_timezone_set('America/Denver');
         // save the object
         $fields = array (
             'message'  => $message,
