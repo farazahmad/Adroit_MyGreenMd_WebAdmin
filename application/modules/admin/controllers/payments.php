@@ -29,6 +29,7 @@ class Payments extends AdminController {
 
     function index()
     {
+        date_default_timezone_set('America/Denver');
         $years = array();
         $year = date("Y");
         $in = 0;
