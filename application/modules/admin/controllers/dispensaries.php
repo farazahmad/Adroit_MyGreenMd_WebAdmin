@@ -166,7 +166,7 @@ class Dispensaries extends AdminController {
     {
         $filename =$this->input->post('picture');
     	if(!empty($_FILES['uploadImg']['name'])){
-                $config['upload_path'] = PATH_UPLOAD."events/";
+                $config['upload_path'] = PATH_UPLOAD."dispensaries/";
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['remove_spaces'] = TRUE;
                 $config['encrypt_name'] = TRUE;

@@ -166,7 +166,7 @@ class Doctors extends AdminController {
     {
         $filename =$this->input->post('picture');
     	if(!empty($_FILES['uploadImg']['name'])){
-                $config['upload_path'] = PATH_UPLOAD."events/";
+                $config['upload_path'] = PATH_UPLOAD."doctors/";
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['remove_spaces'] = TRUE;
                 $config['encrypt_name'] = TRUE;
