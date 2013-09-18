@@ -1,14 +1,14 @@
 {include file="$MAIN_TPL_HEADER"}
 <div class="article">
-  <h2><span>Contact</span></h2>
+  <h2><span>Contact Us</span></h2>
   <div class="clr"></div>
   <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet </p>
 </div>
 <div class="article">
-  <h2><span>Send us</span> mail</h2>
+  <h2><span>Send email to Admin</span></h2>
   <div class="clr"></div>
   {if $status_submit == "success"}
-    <div class="notif_green" id="ssc_msg" style="margin:0;">Thank you, your data has been saved.</div>
+    <div class="notif_green" id="ssc_msg" style="margin:0;color:#003311;">Thank you, your data has been saved.</div>
   {/if}
   {if $status_submit == "failed_captcha"}
     <div class="notif_red" id="err_msg" style="margin:0;color:red;font-weight:bold;">Security code doesn't match</div>

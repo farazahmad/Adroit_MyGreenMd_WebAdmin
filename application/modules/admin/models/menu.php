@@ -53,10 +53,9 @@ END;
 <ul>
     <li ><a href="'.$BASE_PATH_admin.'dashboard.html" id="home" class="button_tab">Dashboard</a></li>';
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'tracks" id="tracks" class="button_box">Tracking</a></li>';   
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'dispensaries" id="dispensaries" class="button_box">Dispenseries</a></li>';   
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'dispensaries" id="dispensaries" class="button_box">Dispensaries</a></li>';   
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'doctors" id="doctors" class="button_box">Doctors</a></li>';   
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'smoke_shops" id="smoke_shops" class="button_box">Smoke Shops</a></li>';  
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'payments" id="payment" class="button_frontpage">Payment</a></li>';  
     $MENU.='<li ><a href="'.$BASE_PATH_admin.'push_notifications" id="push_notifications" class="button_frontpage">Push Notifications</a></li>'; 
     $MENU.='<li ><a id="module" class="button_box">Master Data</a><ul>';
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'claims" id="claims" class="button_box">Manage Claims</a></li>'; 

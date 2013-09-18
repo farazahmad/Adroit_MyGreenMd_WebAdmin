@@ -15,7 +15,7 @@
 						  <input type="hidden" name="id" value="{$id}" />
 							<table width="100%" id="tblwMce">
 								<tr>
-									<td width="100" class="bold ">Name</td>
+									<td width="100" class="bold ">Business Name</td>
 									<td width="10" class="bold ">:</td>
 									<td><input type="text" name="name" id="name" value="{$name}" size="30" class="is_required"/></td>
 								</tr>
@@ -55,11 +55,11 @@
 									<td><input type="text" name="phone" id="phone" value="{$phone}" size="30" /></td>
 								</tr>
                                                                 <tr>
-									<td width="100" class="bold ">Picture</td>
+									<td width="100" class="bold ">Image</td>
 									<td width="10" class="bold ">:</td>
 									<td>
 									{if $picture!=''}
-									<img src="{$PATH_UPLOAD}doctors/{$picture}" style="border:5px solid #666666;width:200px;"/><br />
+									<img src="{$PATH_UPLOAD}business/{$picture}" style="border:5px solid #666666;width:200px;"/><br />
 									{/if}
 									<input type="hidden" name="picture" id="picture" value="{$picture}" />
 									<input style="width:178px;background:#ffffff;" type="file" size="25" id="uploadImg" name="uploadImg" /></td>
@@ -100,6 +100,30 @@
                                                                           <input name="rating" type="radio" class="star" value="5"/>
 									</td>
 								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Latitude</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="latitude" id="latitude" value="{$latitude}" size="40"/></td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Longitude</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="longitude" id="longitude" value="{$longitude}" size="40"/></td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Hours/Days of Operation</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="days_operation" id="days_operation" value="{$days_operation}" size="15" /></td>
+								</tr>
+                                                                <tr>
+                                                                    <td width="100" class="bold ">Business Categories</td>
+                                                                    <td width="10" class="bold ">:</td>
+                                                                    <td>
+                                                                        <input type="checkbox" name="is_dispensary" id="is_dispensary" value="1" {if $is_dispensary == '1'}checked{/if}/>&nbsp;Dispensary&nbsp;
+                                                                        <input type="checkbox" name="is_doctor" id="is_doctor" value="1" {if $is_doctor == '1'}checked{/if}/>&nbsp;Doctor&nbsp;
+                                                                        <input type="checkbox" name="is_smoke_shop" id="is_smoke_shop" value="1" {if $is_smoke_shop == '1'}checked{/if}/>&nbsp;Smoke Shop&nbsp;
+                                                                    </td>
+                                                                </tr>
 								<tr>
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>

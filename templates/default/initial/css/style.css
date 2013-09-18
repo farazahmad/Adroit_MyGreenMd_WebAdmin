@@ -359,7 +359,210 @@ ol li .send {
     background-color:#f0f0f0;
     margin-right:10px;
 }
-.package .block .header{text-align:center;font-weight:bold;font-size:14pt;padding:10px;height:60px;background-color:#CCCCCC;color:#666666;}
-.package .block .detail{padding:5px;}
+.package .block .header{text-align:center;font-weight:bold;font-size:14pt;padding:10px;height:60px;background-color:#62bee3;color:#666666;}
+.package .block .detail{padding:5px;min-height:150px;}
 .download-link{background-color:#999999;font-weight:bold;color:#f0f0f0;font-size:12pt;padding:5px;text-decoration:none;}
 .recaptcha{font:normal 10px Arial, Helvetica, sans-serif;}
+.signupbtn{text-align:center;margin-top:10px;}
+.signupbtn a{font-weight:bold;font-size:10pt;width:80px;background-color:#62bee3;color:#FFFFFF;padding:10px;text-decoration:none;}
+
+.menu_member {
+	float:left;
+	margin-left:20px;
+	height:56px;
+	background:repeat-x center top;
+}
+.menu_member ul {
+	list-style:none;
+}
+.menu_member ul li {
+	margin:0 8px 0 0;
+	padding:0;
+	float:left;
+}
+.menu_member ul li a {
+    font-weight:bold;
+	display:block;
+	margin:0;
+	text-decoration:none;
+	font-size:12px;
+        padding:10px;
+	border-left:1px solid #ede4df;
+	border-right:1px solid #ede4df;
+}
+.menu_member ul li.active a, .menu_member ul li a:hover {
+    color:#333333;
+}
+
+.member_area{margin:20px;font-size:14pt;font-weight:bold;text-decoration:underline;}
+
+
+
+#PageContent{color:#444444;  }
+#PageContent_main{color:#FFF;min-height:380px;}
+#foot{background:#252525; text-align:right; padding:10px; color:#FFFFFF; font-size:10px;}
+#foot3{ height:15px;}
+#foot1{background:#FFFFFF; height:7px;}
+#foot2{background:#252525; height:2px; border-bottom:1px solid #ffffff;}
+#head2{background:#FFFFFF; height:3px; border-bottom:2px solid #999999;}
+/*loading*/
+#loading_on {
+	width:250px; min-height:30px;
+	background: url(../images/ajax-loader5.gif) no-repeat center 10px;
+	padding:45px 10px 10px 10px;	
+	display:none;
+}
+.loading_off {
+	width:250px; min-height:30px;
+	padding:45px 10px 10px 10px;	
+	display:none;
+}
+
+#username,#password{width:200px;}
+#login_area .login_button {
+	padding:0px 20px 20px 10px; text-align:right;
+}
+#login_area .table_content_left {
+	padding: 10px 0 0 20px; width:80px;
+}
+#login_area .table_content_right {
+	padding: 10px 20px 0 2px
+}
+.title_message{
+	color:red; padding:3px; border:solid 1px #d8d8d8; background-color:#F0FFF2; 
+	text-align:left;
+	padding:10px; font-size:12px;
+}
+.title_message2{
+	background: url(../images/ajax-loader5.gif) no-repeat 10px 5px;padding:10px 10px 10px 40px;
+	color:red; border:solid 1px #d8d8d8; background-color:#FFFFFF; 
+	text-align:left;
+	font-size:12px;
+}
+#main_content_login {
+	width: 350px;
+	text-align: left;
+	background: #fff;
+	padding:5px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+#main_content {
+	width: 95%;
+	min-height: 350px;
+	text-align: left;
+	background: #fff;
+	padding:20px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+#main_content td{
+	vertical-align:top;
+	text-align:left;
+	padding:5px;
+}
+#main_content .center{text-align:center;}
+#main_content .right{text-align:right;}
+#main_content .left{text-align:left;}
+#tblwMce td{
+	padding:5px;
+}
+#tblwMce .pad0px td{padding:0px;}
+.headerLogo{padding:10px 10px 10px 20px;}
+.paddingUPLogin{padding-top:50px;}
+.dash_preview{ width:215px;margin:0px 0px 11px 11px;float:left;}
+.dash_content_login{padding:4px 5px; text-align:left;min-height:150px;border:1px solid #d8d8d8;}
+.dash_content_login:hover{background-color:#DFF3FF}
+.dash_title{padding:8px 10px 5px 30px; text-align:left; font-weight:bold;background-color:#252525;color:#fff}
+.dash_titleR{padding:8px 10px 5px 0px; text-align:left; font-weight:bold;background-color:#252525;color:#fff}
+.dash_title select{
+	border:0px solid #CCCCCC;
+	height:16px;
+	padding:0px;
+	font-size:11px;
+	margin:0px;
+}
+.dash_title_head{
+	background-color:#252525;
+	width:100%;
+}
+.dash_content{padding:4px 5px; text-align:left;min-height:120px;border:1px solid #d8d8d8;}
+.dash_content:hover{background-color:#DFF3FF}
+.dash_content div{min-height:15px; padding:2px 5px;}
+.dash_content div:hover{background-color:#FFF;}
+.dash_content_a {padding:8px 10px 5px 30px; text-align:left; font-weight:bold; height:25px; background-color:transparent;color:#252525;}
+.dash_content_color{padding:20px; }
+.dash_content_color form div.CCleft{width:45%;float:left; }
+.dash_content_color form div.CCright{width:40%;float:right; }
+
+.bold{font-weight:bold;vertical-align:top;}
+.hideit{display:none;}
+.fleft{float:left;}
+.fright{float:right;}
+.clearall{clear:both;}
+.txtred{color:red; }
+.txtgreen{color:green; }
+.valid{border-bottom:1px solid green !important;}
+.invalid{border-bottom:1px solid #800 !important;}
+
+.w150px{width:150px;}
+.w100px{width:100px;}
+.w10px{width:10px;}
+.errortxt{
+display:none;
+padding:5px 5px 5px 25px;
+color:#FF0000;
+border:1px solid #FF0000;
+background:#FEADB7 url(../images/icons/exclamation.png) no-repeat scroll 4px 4px;
+width:400px;
+font-weight:bold;
+}
+.confirmtxt{
+display:none;
+padding:5px 5px 5px 25px;
+color:#126D00;
+border:1px solid #126D00;
+background:#D0F6C1 url(../images/icons/accept.png) no-repeat scroll 4px 4px;
+width:400px;
+font-weight:bold;
+}
+.webdate{padding:20px;font-weight:bold;}
+.layout_template{
+	width:100px;
+	opacity:0.5;
+}
+.tmpt_selected{
+	width:150px;
+	opacity:1;
+}
+.pointer{cursor:pointer;}
+.errortxt2{
+display:none;
+padding:5px 5px 5px 25px;
+color:#FF0000;
+border:1px solid #FF0000;
+background:#FEADB7 url(../images/icons/exclamation.png) no-repeat scroll 4px 4px;
+width:400px;
+font-weight:bold;
+}
+.confirmtxt2{
+display:none;
+padding:5px 5px 5px 25px;
+color:#126D00;
+border:1px solid #126D00;
+background:#D0F6C1 url(../images/icons/accept.png) no-repeat scroll 4px 4px;
+width:400px;
+font-weight:bold;
+}
+
+.button-opt{  border: 1px solid #CCCCCC;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 250px;
+    background-color:#f0f0f0;
+    cursor:pointer;
+}

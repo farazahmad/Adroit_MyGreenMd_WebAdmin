@@ -57,6 +57,8 @@ $route['api'] = "api/initial";
 $route['api/(:any)'] = "api/initial/$1";
 $route['admin/(:any).html'] = "admin/$1";
 $route['admin/(:any)'] = "admin/$1";
+$route['member'] = "member/initial";
+$route['member/(:any)'] = "member/initial/$1";
 
 $route['(:any).html'] = "initial/$1";
 $route['(:any)'] = "initial/$1";

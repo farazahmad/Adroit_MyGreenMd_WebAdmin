@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 07, 2013 at 01:22 PM
+-- Generation Time: Sep 18, 2013 at 02:01 PM
 -- Server version: 5.1.49
 -- PHP Version: 5.3.26-1~dotdeb.0
 
@@ -44,6 +44,50 @@ INSERT INTO `block_ip` (`ip_id`, `ip_address`, `date_time`, `log`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `business`
+--
+
+CREATE TABLE IF NOT EXISTS `business` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zip_code` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `description` text,
+  `timing` varchar(255) DEFAULT NULL,
+  `open_time` varchar(255) DEFAULT NULL,
+  `close_time` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `picture` varchar(255) DEFAULT NULL,
+  `counter` int(11) DEFAULT '0',
+  `rating` int(1) DEFAULT NULL,
+  `highlight` tinyint(1) DEFAULT '0',
+  `featured` tinyint(1) DEFAULT '0',
+  `is_dispensary` int(1) DEFAULT '0',
+  `is_doctor` int(1) DEFAULT '0',
+  `is_smoke_shop` int(1) DEFAULT '0',
+  `latitude` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `days_operation` int(11) DEFAULT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `business`
+--
+
+INSERT INTO `business` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`, `is_dispensary`, `is_doctor`, `is_smoke_shop`, `latitude`, `longitude`, `days_operation`, `member_id`) VALUES
+(1, 'test', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'aribascom@tewwst.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', '76f6c79d5ca30dca5ede6a0a20b15134.jpg', 0, 0, 0, 0, 1, 0, 1, '345325234', '2342342', 10, NULL),
+(2, 'Doctor1', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'ari.p@fdfdsf.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'f7c5314512fc3af2e429e7504a80dc0a.jpg', 0, 3, 1, 0, 0, 1, 0, '345325234', '2342342', 10, NULL),
+(3, 'Business Arip', 'test', 'Bandung', 'Jawa', '40235', 'ari.p@fdfdsf.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'e589d37b4d060d030b86c3a7f0961206.JPG', 0, 3, 0, 0, 1, 1, 1, '345325234', '2342342', 10, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `claims`
 --
 
@@ -58,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `claims` (
   `type_id` int(11) DEFAULT NULL,
   `type_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `claims`
@@ -66,7 +110,8 @@ CREATE TABLE IF NOT EXISTS `claims` (
 
 INSERT INTO `claims` (`id`, `name`, `username`, `email`, `date`, `phone`, `is_approved`, `type_id`, `type_name`) VALUES
 (1, 'ari', 'ari', 'ari.p@kiranatama.com', '2013-09-03', NULL, 1, NULL, NULL),
-(2, 'test', 'test', 'aribasc3om@test.com', '2013-09-07', NULL, 0, NULL, NULL);
+(2, 'test', 'test', 'aribasc3om@test.com', '2013-09-07', NULL, 0, NULL, NULL),
+(3, 'Admin wilayah 1', 'admin', 'aribascom@teseeet.com', '2013-09-10', '08987', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `email`, `state`, `phone`, `message`) VALUES
-(1, 'ari', 'aribascom@tkhkg.bom', 'Bandung', '09843', 'test');
+(1, 'ari', 'aribascom@tkhkg.bom', 'tes', '34534', 'terst');
 
 -- --------------------------------------------------------
 
@@ -104,17 +149,19 @@ CREATE TABLE IF NOT EXISTS `deals` (
   `name` varchar(255) DEFAULT NULL,
   `description` text,
   `expiry` varchar(255) DEFAULT NULL,
+  `member_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `deals`
 --
 
-INSERT INTO `deals` (`id`, `type_id`, `type_name`, `name`, `description`, `expiry`) VALUES
-(6, 1, 'smoke_shop', 'deal smoke shop', 'deal smoke shopdeal smoke shopdeal smoke shop', '10:00'),
-(3, 1, 'dispensary', 'test', 'test', '10:00'),
-(4, 1, 'doctor', 'Deal for doctor', 'Deal for doctor', '10:00');
+INSERT INTO `deals` (`id`, `type_id`, `type_name`, `name`, `description`, `expiry`, `member_id`) VALUES
+(6, 1, 'smoke_shop', 'deal smoke shop', 'deal smoke shopdeal smoke shopdeal smoke shop', '10:00', NULL),
+(3, 1, 'dispensary', 'test', 'test', '10:00', NULL),
+(4, 1, 'doctor', 'Deal for doctor', 'Deal for doctor', '10:00', NULL),
+(8, 0, '', 'Deal user', 'Deal user', '10:00', 1);
 
 -- --------------------------------------------------------
 
@@ -140,74 +187,25 @@ INSERT INTO `device_tokens` (`id`, `apple_id`, `device_token`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dispensaries`
+-- Table structure for table `members`
 --
 
-CREATE TABLE IF NOT EXISTS `dispensaries` (
+CREATE TABLE IF NOT EXISTS `members` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `state` varchar(255) DEFAULT NULL,
-  `zip_code` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `website` varchar(255) DEFAULT NULL,
-  `description` text,
-  `timing` varchar(255) DEFAULT NULL,
-  `open_time` varchar(255) DEFAULT NULL,
-  `close_time` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `picture` varchar(255) DEFAULT NULL,
-  `counter` int(11) DEFAULT '0',
-  `rating` int(1) DEFAULT NULL,
-  `highlight` tinyint(1) DEFAULT '0',
-  `featured` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `dispensaries`
---
-
-INSERT INTO `dispensaries` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`) VALUES
-(1, 'Dispensry Name', 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 'Bandung', 'Jawa', '0', 'aribascom@test.com', 'www.test.com', '<p>test</p>', '24/7', '10:00', '12:00', '093232', 'c4613b424492a921b78d3d720b6b9f50.jpg', 2, 3, 1, 0),
-(2, 'Dispensry Name2', 'Lorem ipsum dolor sit amet', 'Bandung', 'Jawa', '40235', 'aribascom@tewwst.com', 'www.testd.com', '<p>Lorem ipsum dolor sit amet</p>', '24/7', '10:00', '12:00', '23432432', '07c531a92fc605a4b99c937ce7a965da.JPG', 0, 4, 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `doctors`
---
-
-CREATE TABLE IF NOT EXISTS `doctors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `state` varchar(255) DEFAULT NULL,
-  `zip_code` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `website` varchar(255) DEFAULT NULL,
-  `description` text,
-  `timing` varchar(255) DEFAULT NULL,
-  `open_time` varchar(255) DEFAULT NULL,
-  `close_time` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `picture` varchar(255) DEFAULT NULL,
-  `counter` int(11) DEFAULT '0',
-  `rating` int(1) DEFAULT NULL,
-  `highlight` tinyint(1) DEFAULT '0',
-  `featured` tinyint(1) DEFAULT '0',
+  `password` varchar(255) DEFAULT NULL,
+  `package_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `doctors`
+-- Dumping data for table `members`
 --
 
-INSERT INTO `doctors` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`) VALUES
-(1, 'Doctor 1', 'Lorem ipsum', 'Bandung', 'Jawa', '45654', 'aribascom@test.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'fd808bc3db75544f96f8cf10efdd7bf2.jpg', 1, 3, 1, 0),
-(2, 'Doctor ari', 'jl margaasri no 68', 'Bandung', 'Jawa', '40235', 'aribascom@tewwst.com', 'www.testd.com', 'Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet', '24/7', '10:00', '12:00', '093232', '6ae81709698b81194f4909adbe083adb.jpg', 0, 3, 0, 0);
+INSERT INTO `members` (`id`, `username`, `email`, `address`, `password`, `package_id`) VALUES
+(1, 'arip', 'arip@test.com', 'jl bla bla bla no 16', 'e10adc3949ba59abbe56e057f20f883e', 1);
 
 -- --------------------------------------------------------
 
@@ -246,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `packages` (
 --
 
 INSERT INTO `packages` (`id`, `name`, `description`, `duration`, `price`) VALUES
-(1, 'Bronze Package', '<p>LLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametorem ipsum dolor sit amet</p>', '1 month', 0),
+(1, 'Bronze Package', '<p>LLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametorem ipsum dolor sit amet</p>', '1 month', 35),
 (2, 'Silver Package', 'Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes .\r\n', '1 month', 10),
 (3, 'Gold Package', 'Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes .\r\n', '1 month', 45),
 (4, 'Diamond Package', 'Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes here.Package Details goes .\r\n', '1 month', 50);
@@ -272,9 +270,9 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`, `url`, `content`, `meta_keywords`, `meta_description`) VALUES
-(1, 'About Us', 'about_us', '<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>\n<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>', 'About Us', 'About Us'),
+(1, 'About Us', 'about_us', '<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>\n<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>\n<p>&nbsp;</p>\n<p>test</p>', 'About Us', 'About Us'),
 (2, 'Privacy Policy', 'privacy', '<p>Privacy Policy</p>', 'test', 'tets'),
-(3, 'Term an Conditions', 'terms', '<p>Term an Conditions</p>', 'test', 'test');
+(3, 'Terms an Conditions', 'terms', '<p>Terms an Conditions</p>', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -291,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `amount` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `payments`
@@ -299,7 +297,8 @@ CREATE TABLE IF NOT EXISTS `payments` (
 
 INSERT INTO `payments` (`id`, `cc_number`, `expiry_month`, `expiry_year`, `pin`, `amount`, `created_at`) VALUES
 (1, '4007000000027', '01', 2025, 324, 200, '2013-09-05 09:44:12'),
-(2, '370000000000002', '01', 2022, 324, 200, '2013-09-05 09:52:18');
+(2, '370000000000002', '01', 2022, 324, 200, '2013-09-05 09:52:18'),
+(3, '370000000000002', '11', 2013, 1231, 10, '2013-09-18 09:17:03');
 
 -- --------------------------------------------------------
 
@@ -433,41 +432,6 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 INSERT INTO `settings` (`id`, `company_name`, `company_address`, `company_email`, `application_name`) VALUES
 (1, 'ADROIT - MY GREEN MD', '', 'admin@mygreenmd.com', 'ADROIT - MY GREEN MD');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `smoke_shops`
---
-
-CREATE TABLE IF NOT EXISTS `smoke_shops` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `state` varchar(255) DEFAULT NULL,
-  `zip_code` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `website` varchar(255) DEFAULT NULL,
-  `description` text,
-  `timing` varchar(255) DEFAULT NULL,
-  `open_time` varchar(255) DEFAULT NULL,
-  `close_time` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `picture` varchar(255) DEFAULT NULL,
-  `counter` int(11) DEFAULT '0',
-  `rating` int(1) DEFAULT NULL,
-  `highlight` tinyint(1) DEFAULT '0',
-  `featured` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `smoke_shops`
---
-
-INSERT INTO `smoke_shops` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`) VALUES
-(1, 'Smoke Shop1', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'aribascom@gmail.com', 'www.testd.com', '<p>test</p>', '24/7', '10:00', '12:00', '093232', '1e3b256e199d9c805280eaca78a6cc54.jpg', 1, 2, 0, 0);
 
 -- --------------------------------------------------------
 

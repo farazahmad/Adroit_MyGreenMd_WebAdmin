@@ -1,0 +1,109 @@
+{include file="$MAIN_TPL_HEADER"}
+{include file="menu_member.html"} 
+
+<div class="article">
+    <h2>Manage Package</h2>
+           <div id="PageContent_main">
+			<div id="PageContent">					
+				<div id="main_content">
+					<div class="button_pages3 dash_title"> 
+						<div class="fleft">Change Package</div>
+						<div class="fright">
+						</div>
+						<div class="clearall"></div>
+					</div>
+						<div class="dash_content_color">
+                                                    Please complete the payment to upgrade you package to:<br/>
+                                                    <b>Package Name</b>: {$data.name}<br/>
+                                                    <b>Description</b>: {$data.description}<br/><br/>
+                                                    
+						<form name="new_web_content" id="form" enctype="multipart/form-data" method="POST" action="{$MEMBER_PATH}do_change_packages">            
+                                                    <input type="hidden" name="package_id" value="{$data.id}" />
+							<table width="100%" id="tblwMce">
+								<tr>
+									<td width="100" class="bold ">Credit Card Number</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="cc_number" id="cc_number" value="{$cc_number}" size="30" class="is_required"/></td>
+								</tr>
+								<tr>
+									<td class="bold ">Expiry Date</td>
+									<td class="bold ">:</td>
+									<td class="bold pad0px">
+                                                                            <select name="expiry_month">
+                                                                                <option value="01">01</option>
+                                                                                <option value="02">02</option>
+                                                                                <option value="03">03</option>
+                                                                                <option value="04">04</option>
+                                                                                <option value="05">05</option>
+                                                                                <option value="06">06</option>
+                                                                                <option value="07">07</option>
+                                                                                <option value="08">08</option>
+                                                                                <option value="09">09</option>
+                                                                                <option value="10">10</option>
+                                                                                <option value="11">11</option>
+                                                                                <option value="12">12</option>
+                                                                            </select>
+                                                                            &nbsp;
+                                                                            <select name="expiry_year">
+                                                                              {foreach item=arry from=$years}
+                                                                                <option value="{$arry}">{$arry}</option>
+                                                                              {/foreach}
+                                                                            </select>
+									</td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">PIN</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="pin" id="pin" value="{$pin}" size="10" class="is_required"/></td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Amount($)</td>
+									<td width="10" class="bold ">:</td>
+									<td>$ {$data.price} / {$data.duration}</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td >
+										<div class="errortxt bold"></div>
+										<div class="confirmtxt bold"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>
+									 <input type="hidden" name="save" value="Save" />
+									 <input class="buttonForm button_save" type="button" name="save_now" id="save" value="Save">
+									</td>
+								</tr>
+							</table>
+						</form>
+                                    </div>
+			</div>
+			</div>
+			<div class="clearall"></div>
+	</div>	
+    <div class="clear"></div>
+</div>
+{include file="$MAIN_TPL_FOOTER"}
+{literal}
+<script>
+  function highlight(data, id){
+      var path = '{/literal}{$MEMBER_PATH}{literal}';
+      window.location=path+'highlight_business/'+id+'/'+data.checked;
+  }
+  
+  function featured(data, id){
+      var path = '{/literal}{$MEMBER_PATH}{literal}';
+      window.location=path+'featured_business/'+id+'/'+data.checked;
+  }
+  
+  function deleteconfirm(link){
+      var answer = confirm("Are you sure want to delete this item?")
+	if (answer){
+		window.location = "http://"+link;
+	}
+  }
+</script>
+{/literal}

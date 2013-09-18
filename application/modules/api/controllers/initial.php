@@ -21,10 +21,11 @@ class Initial extends ApiController {
     $page = ($this->input->post('page') == '')? 0 : $this->input->post('page');
     $per_page = ($this->input->post('per_page') == '')? 10 : $this->input->post('per_page');
     $keyword = $this->input->post('search');
+    $conditions = "WHERE is_dispensary=1 ";
     if($keyword){
-      $conditions = "WHERE `name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%'";
+      $conditions .= " AND (`name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%')";
     }
-    $query_dispensaries = $this->db->query("SELECT * FROM `dispensaries` {$conditions} ORDER BY id LIMIT {$page},{$per_page}");
+    $query_dispensaries = $this->db->query("SELECT * FROM `business` {$conditions} ORDER BY id LIMIT {$page},{$per_page}");
     $dispensaries = $query_dispensaries->result_array();   
     $total_record = $query_dispensaries->num_rows();
     $body = array();
@@ -44,9 +45,12 @@ class Initial extends ApiController {
         $detail['open_time'] = $data["open_time"];
         $detail['close_time'] = $data["close_time"];
         $detail['phone'] = $data["phone"];
-        $detail['picture'] = BASE_URL.'static/images/doctors/'.$data["picture"];
+        $detail['picture'] = BASE_URL.'static/images/business/'.$data["picture"];
         $detail['counter'] = $data["counter"];
         $detail['rating'] = $data["rating"];
+        $detail['latitude'] = $data["latitude"];
+        $detail['longitude'] = $data["longitude"];
+        $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
         $body['dispensaries'][]= $detail;
@@ -69,11 +73,12 @@ class Initial extends ApiController {
     $page = ($this->input->post('page') == '')? 0 : $this->input->post('page');
     $per_page = ($this->input->post('per_page') == '')? 10 : $this->input->post('per_page');
     $keyword = $this->input->post('search');
+    $conditions = "WHERE is_doctor=1 ";
     if($keyword){
-      $conditions = "WHERE `name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%'";
+      $conditions .= " AND (`name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%')";
     }
     
-    $query_doctors = $this->db->query("SELECT * FROM `doctors` {$conditions} ORDER BY id LIMIT {$page},{$per_page}");
+    $query_doctors = $this->db->query("SELECT * FROM `business` {$conditions} ORDER BY id LIMIT {$page},{$per_page}");
     $doctors = $query_doctors->result_array();    
     $total_record = $query_doctors->num_rows();
     $body = array();
@@ -93,9 +98,12 @@ class Initial extends ApiController {
         $detail['open_time'] = $data["open_time"];
         $detail['close_time'] = $data["close_time"];
         $detail['phone'] = $data["phone"];
-        $detail['picture'] = BASE_URL.'static/images/doctors/'.$data["picture"];
+        $detail['picture'] = BASE_URL.'static/images/business/'.$data["picture"];
         $detail['counter'] = $data["counter"];
         $detail['rating'] = $data["rating"];
+        $detail['latitude'] = $data["latitude"];
+        $detail['longitude'] = $data["longitude"];
+        $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
         $body['doctors'][]= $detail;
@@ -116,11 +124,12 @@ class Initial extends ApiController {
     $page = ($this->input->post('page') == '')? 0 : $this->input->post('page');
     $per_page = ($this->input->post('per_page') == '')? 10 : $this->input->post('per_page');
     $keyword = $this->input->post('search');
+    $conditions = "WHERE is_smoke_shop=1 ";
     if($keyword){
-      $conditions = "WHERE `name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%'";
+      $conditions .= " AND (`name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%')";
     }
     
-    $query_smoke_shops = $this->db->query("SELECT * FROM `smoke_shops` {$conditions} ORDER BY id LIMIT {$page},{$per_page}");
+    $query_smoke_shops = $this->db->query("SELECT * FROM `business` {$conditions} ORDER BY id LIMIT {$page},{$per_page}");
     $smoke_shops = $query_smoke_shops->result_array();      
     $total_record = $query_smoke_shops->num_rows();
     $body = array();
@@ -140,9 +149,12 @@ class Initial extends ApiController {
         $detail['open_time'] = $data["open_time"];
         $detail['close_time'] = $data["close_time"];
         $detail['phone'] = $data["phone"];
-        $detail['picture'] = BASE_URL.'static/images/doctors/'.$data["picture"];
+        $detail['picture'] = BASE_URL.'static/images/business/'.$data["picture"];
         $detail['counter'] = $data["counter"];
         $detail['rating'] = $data["rating"];
+        $detail['latitude'] = $data["latitude"];
+        $detail['longitude'] = $data["longitude"];
+        $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
         $body['smoke_shops'][]= $detail;
@@ -179,14 +191,7 @@ class Initial extends ApiController {
     foreach($deals as $data){
         $detail = array();
         $deal_for = "";
-        $table = "dispensaries";
-        switch($data["name"]){
-            case 'smoke_shop': $table ="smoke_shops";break;
-            case 'dispensary': $table ="dispensaries";break;
-            case 'doctor': $table ="doctors";break;
-        }
-        
-        $query = $this->db->get_where($table, array('id' => $data["type_id"]));
+        $query = $this->db->get_where("business", array('id' => $data["type_id"]));
         $data_query = $query->row_array();
         $deal_for = $data_query["name"];
         
@@ -208,7 +213,7 @@ class Initial extends ApiController {
     $id = $this->input->post('id');
     $detail = array();
     if($id){
-       $query = $this->db->get_where("dispensaries", array('id' => $id));
+       $query = $this->db->get_where("business", array('id' => $id));
         $data = $query->row_array();
         $detail['id'] = $data["id"];
         $detail['name'] = $data["name"];
@@ -223,13 +228,16 @@ class Initial extends ApiController {
         $detail['open_time'] = $data["open_time"];
         $detail['close_time'] = $data["close_time"];
         $detail['phone'] = $data["phone"];
-        $detail['picture'] = BASE_URL.'static/images/dispensaries/'.$data["picture"];
+        $detail['picture'] = BASE_URL.'static/images/business/'.$data["picture"];
         $detail['counter'] = $data["counter"];
         $detail['rating'] = $data["rating"];
+        $detail['latitude'] = $data["latitude"];
+        $detail['longitude'] = $data["longitude"];
+        $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
         $success = true;
-        $this->db->query("UPDATE `dispensaries` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
+        $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
         $message  = "Please fill all mandatory fields "; 
     }
@@ -244,7 +252,7 @@ class Initial extends ApiController {
     $id = $this->input->post('id');
     $detail = array();
     if($id){
-       $query = $this->db->get_where("doctors", array('id' => $id));
+       $query = $this->db->get_where("business", array('id' => $id));
         $data = $query->row_array();
         $detail['id'] = $data["id"];
         $detail['name'] = $data["name"];
@@ -259,13 +267,16 @@ class Initial extends ApiController {
         $detail['open_time'] = $data["open_time"];
         $detail['close_time'] = $data["close_time"];
         $detail['phone'] = $data["phone"];
-        $detail['picture'] = BASE_URL.'static/images/doctors/'.$data["picture"];
+        $detail['picture'] = BASE_URL.'static/images/business/'.$data["picture"];
         $detail['counter'] = $data["counter"];
         $detail['rating'] = $data["rating"];
+        $detail['latitude'] = $data["latitude"];
+        $detail['longitude'] = $data["longitude"];
+        $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
         $success = true;
-        $this->db->query("UPDATE `doctors` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
+        $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
         $message  = "Please fill all mandatory fields "; 
     }
@@ -280,7 +291,7 @@ class Initial extends ApiController {
     $id = $this->input->post('id');
     $detail = array();
     if($id){
-       $query = $this->db->get_where("smoke_shops", array('id' => $id));
+       $query = $this->db->get_where("business", array('id' => $id));
         $data = $query->row_array();
         $detail['id'] = $data["id"];
         $detail['name'] = $data["name"];
@@ -295,13 +306,16 @@ class Initial extends ApiController {
         $detail['open_time'] = $data["open_time"];
         $detail['close_time'] = $data["close_time"];
         $detail['phone'] = $data["phone"];
-        $detail['picture'] = BASE_URL.'static/images/smoke_shops/'.$data["picture"];
+        $detail['picture'] = BASE_URL.'static/images/business/'.$data["picture"];
         $detail['counter'] = $data["counter"];
         $detail['rating'] = $data["rating"];
+        $detail['latitude'] = $data["latitude"];
+        $detail['longitude'] = $data["longitude"];
+        $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
         $success = true;
-        $this->db->query("UPDATE `smoke_shops` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
+        $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
         $message  = "Please fill all mandatory fields "; 
     }

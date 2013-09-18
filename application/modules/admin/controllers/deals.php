@@ -142,7 +142,7 @@ class Deals extends AdminController {
         $rows   = $getData['result'];
 	$this->smarty->assign('list', $rows);
 	$this->smarty->assign('data_show', $getData['num_row_total']);
-        $query = $this->db->get_where('dispensaries', array('id' => $id));
+        $query = $this->db->get_where('business', array('id' => $id));
 	$data = $query->row_array();
         $this->smarty->assign('deal_title', $data["name"]);
         $this->smarty->assign('type_name', "dispensary");
@@ -162,7 +162,7 @@ class Deals extends AdminController {
         $rows   = $getData['result'];
 	$this->smarty->assign('list', $rows);
 	$this->smarty->assign('data_show', $getData['num_row_total']);
-        $query = $this->db->get_where('doctors', array('id' => $id));
+        $query = $this->db->get_where('business', array('id' => $id));
 	$data = $query->row_array();
         $this->smarty->assign('deal_title', $data["name"]);
         $this->smarty->assign('type_name', "doctor");
@@ -182,7 +182,7 @@ class Deals extends AdminController {
         $rows   = $getData['result'];
 	$this->smarty->assign('list', $rows);
 	$this->smarty->assign('data_show', $getData['num_row_total']);
-        $query = $this->db->get_where('smoke_shops', array('id' => $id));
+        $query = $this->db->get_where('business', array('id' => $id));
 	$data = $query->row_array();
         $this->smarty->assign('deal_title', $data["name"]);
         $this->smarty->assign('type_name', "smoke_shop");

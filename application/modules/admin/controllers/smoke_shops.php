@@ -46,7 +46,7 @@ class Smoke_shops extends AdminController {
 		//use search sql method here and use {searchVar} for input
 		$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
 		$this->pagnav->addSearch($searchVar);
-		$getData=$this->pagnav->pagination("","","smoke_shops","","","",ADMIN_PATH."smoke_shops/page/","",$searchVar);		
+		$getData=$this->pagnav->pagination("","","business","","is_smoke_shop=1","",ADMIN_PATH."smoke_shops/page/","",$searchVar);		
 		$this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
 		$this->smarty->assign('list', $rows);
@@ -62,7 +62,7 @@ class Smoke_shops extends AdminController {
 		//use search sql method here and use {searchVar} for input
 		$searchVar['query']="name LIKE '%{searchVar}%' OR description LIKE '%{searchVar}%'";
 		$this->pagnav->addSearch($searchVar);
-		$getData=$this->pagnav->pagination($noPage,"","smoke_shops","","","",ADMIN_PATH."smoke_shops/page/","",$searchVar);			
+		$getData=$this->pagnav->pagination($noPage,"","business","","is_smoke_shop=1","",ADMIN_PATH."smoke_shops/page/","",$searchVar);			
 		$this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
 		$this->smarty->assign('list', $rows);
@@ -78,7 +78,7 @@ class Smoke_shops extends AdminController {
 
    function edit( $id )
    {
-        $query = $this->db->get_where('smoke_shops', array('id' => $id));
+        $query = $this->db->get_where('business', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
 		$this->all_js->formvalidator(ADMIN_PATH.'smoke_shops/do_edit');  
@@ -87,13 +87,13 @@ class Smoke_shops extends AdminController {
 	
     function view( $id  )
     {
-        $query  = $this->db->get_where('smoke_shops', array('id ' => $id ));
+        $query  = $this->db->get_where('business', array('id ' => $id ));
 		$this->smarty->assign('item',$query->row_array());
         $this->smarty->display('smoke_shops/view.html');
     }	
 			
 	function delete($id){
-		$this->db->delete('smoke_shops', array('id' => $id));
+		$this->db->delete('business', array('id' => $id));
 		$this->session->set_flashdata('errortxt',"data has been deleted!");
 		redirect('admin/smoke_shops', 'refresh');
 	}
@@ -104,7 +104,7 @@ class Smoke_shops extends AdminController {
         if($value == "true"){
          $data =1;   
         }
-        $this->db->update('smoke_shops', array ('highlight' => $data));
+        $this->db->update('business', array ('highlight' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
         redirect('admin/smoke_shops', 'refresh');
     }
@@ -115,7 +115,7 @@ class Smoke_shops extends AdminController {
         if($value == "true"){
          $data =1;   
         }
-        $this->db->update('smoke_shops', array ('featured' => $data));
+        $this->db->update('business', array ('featured' => $data));
         $this->session->set_flashdata('confirmtxt',"data has been updated!");
         redirect('admin/smoke_shops', 'refresh');
     }
@@ -125,7 +125,7 @@ class Smoke_shops extends AdminController {
     {
         $filename='';
         if(!empty($_FILES['uploadImg']['name'])){
-            $config['upload_path'] = PATH_UPLOAD."smoke_shops/";
+            $config['upload_path'] = PATH_UPLOAD."business/";
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['remove_spaces'] = TRUE;
             $config['encrypt_name'] = TRUE;
@@ -154,10 +154,16 @@ class Smoke_shops extends AdminController {
             'close_time' => $this->input->post('close_time'),
             'phone' => $this->input->post('phone'),
             'rating' => $this->input->post('rating'),
+            'is_dispensary' => $this->input->post('is_dispensary'),
+            'is_doctor' => $this->input->post('is_doctor'),
+            'is_smoke_shop' => $this->input->post('is_smoke_shop'),
+            'latitude' => $this->input->post('latitude'),
+            'longitude' => $this->input->post('longitude'),
+            'days_operation' => $this->input->post('days_operation'),
             'picture'     => $filename
         );
 
-        $this->db->insert('smoke_shops', $fields);
+        $this->db->insert('business', $fields);
         $this->session->set_flashdata('confirmtxt',"new data has been added!");       
         redirect('admin/smoke_shops/', 'refresh');
     }
@@ -166,7 +172,7 @@ class Smoke_shops extends AdminController {
     {
         $filename =$this->input->post('picture');
     	if(!empty($_FILES['uploadImg']['name'])){
-                $config['upload_path'] = PATH_UPLOAD."smoke_shops/";
+                $config['upload_path'] = PATH_UPLOAD."business/";
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['remove_spaces'] = TRUE;
                 $config['encrypt_name'] = TRUE;
@@ -176,7 +182,7 @@ class Smoke_shops extends AdminController {
                         $add_error=$this->upload->display_errors();
                 }else
                 {
-                        @unlink(PATH_UPLOAD."events/".$filename);
+                        @unlink(PATH_UPLOAD."business/".$filename);
                         $dataUpload=$this->upload->data();
                         $filename=$dataUpload["file_name"];
                 }
@@ -196,11 +202,17 @@ class Smoke_shops extends AdminController {
             'close_time' => $this->input->post('close_time'),
             'phone' => $this->input->post('phone'),
             'rating' => $this->input->post('rating'),
+            'is_dispensary' => $this->input->post('is_dispensary'),
+            'is_doctor' => $this->input->post('is_doctor'),
+            'is_smoke_shop' => $this->input->post('is_smoke_shop'),
+            'latitude' => $this->input->post('latitude'),
+            'longitude' => $this->input->post('longitude'),
+            'days_operation' => $this->input->post('days_operation'),
             'picture'     => $filename
         );
 
         $this->db->where('id', $this->input->post('id'));
-        $this->db->update('smoke_shops', $fields);
+        $this->db->update('business', $fields);
         $this->session->set_flashdata('confirmtxt',"data has been updated!");       
         redirect('admin/smoke_shops/', 'refresh');
     }

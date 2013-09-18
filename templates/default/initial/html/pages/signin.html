@@ -1,0 +1,36 @@
+{include file="$MAIN_TPL_HEADER"}
+<div class="article">
+  <h2>LOGIN</h2>
+  <div class="clr"></div>
+  <div class="notif_red" id="err_msg" style="margin:0;display:none;color:red;font-weight:bold;">Please Fill All required fields</div>
+  <form action="{$current_url}" method="post" id="ContactForm" name="ContactForm">
+    <ol>
+      <li>
+        <label for="name">Username</label>
+        <input name="data[username]" id="username" type="text" />
+      </li>
+      <li>
+        <label for="password">Password</label>
+        <input name="data[password]" id="password" type="password" />
+      </li>
+      <li>
+        <input id="save" name="save" type="hidden" value="save" />
+        <input type="button" name="imageField" id="imageField" class="send" value="Login" onclick="check_field();" />
+        <div class="clr"></div>
+      </li>
+    </ol>
+  </form>
+</div>
+{include file="$MAIN_TPL_FOOTER"}
+{literal}
+<script type="text/javascript">
+  function check_field(){
+    if($("#username").val() != '' && $("#password").val() != ''){
+      $("#ContactForm").submit();
+    }else{
+      $("#ssc_msg").hide();
+      $("#err_msg").fadeIn();
+    }
+  }
+</script>
+{/literal}

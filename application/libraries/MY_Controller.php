@@ -32,8 +32,8 @@ class MY_Controller extends Controller
         $this->curr_user_id = $this->authentication->get_user_id();
         $this->curr_roles   = $this->authentication->get_user_roles();
 		
-        @define('WEB_TITLE', "Adroit - My Green Md");
-        @define('WEB_LOGO', "Adroit - My Green Md");
+        @define('WEB_TITLE', "Adroit - MyGreenMD");
+        @define('WEB_LOGO', "Adroit - MyGreenMD");
 		@define('BASE_URL', $this->config->item('base_url'));
     }
 
@@ -74,6 +74,7 @@ class InitialController extends MY_Controller
         $this->smarty->compile_dir = TPLPATH . $this->curr_theme."/initial/tmp/";	
 	//general CSS
 	$this->smarty->append('CSS', CSS_PATH.'style.css');
+        $this->smarty->append('CSS', CSS_PATH.'base.css');
         $this->smarty->assign("MAIN_TPL_HEADER", 'header.html');
         $this->smarty->assign("MAIN_TPL_FOOTER", 'footer.html');
     }
@@ -104,6 +105,7 @@ class ApiController extends MY_Controller
         parent::MY_Controller();
         
         define('API_URL',  BASE_URL . 'api/');
+        define('MEMBER_PATH',  BASE_URL."member/");
         
         define('JS_PATH', BASE_URL . 'static/js/');
         define('IMG_PATH_UPLOAD', BASE_URL . 'static/images/');
@@ -123,6 +125,57 @@ class ApiController extends MY_Controller
 		
         $this->smarty->template_dir = TPLPATH . $this->curr_theme."/initial/html/";
         $this->smarty->compile_dir = TPLPATH . $this->curr_theme."/initial/tmp/";	
+        $this->smarty->assign("MAIN_TPL_HEADER", 'header.html');
+        $this->smarty->assign("MAIN_TPL_FOOTER", 'footer.html');
+    }
+    
+    function _mail_config()
+    {
+	$this->load->library('email');
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+        $config['charset'] = 'iso-8859-1';
+        $config['mailtype'] = 'text/html';
+        $this->email->initialize($config);
+    }
+
+}
+
+/**
+ * Extends the MY_Controller class
+ */
+class MemberController extends MY_Controller
+{
+    
+    var $curr_theme = 'default';
+    
+    function MemberController()
+    {
+        parent::MY_Controller();
+        
+        define('API_URL',  BASE_URL . 'api/');
+        define('MEMBER_PATH',  BASE_URL."member/");
+        
+        define('JS_PATH', BASE_URL . 'static/js/');
+        define('IMG_PATH_UPLOAD', BASE_URL . 'static/images/');
+        define('PATH_UPLOAD', ROOTPATH . 'static/images/');
+        define('MM_PATH', ROOTPATH . 'static/multimedia/');
+        define('EDITOR_PATH', ROOTPATH . 'static/editor/');
+        define('EDITOR_URL', BASE_URL . 'static/editor/');
+        
+        define('CSS_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/initial/css/');
+        define('IMG_PATH', BASE_URL . TPLPATH . $this->curr_theme.'/initial/images/');
+		        
+		$this->smarty->assign('BASE_URL', BASE_URL);
+                $this->smarty->assign('API_URL', API_URL);
+		$this->smarty->assign('IMG_PATH', IMG_PATH);
+		$this->smarty->assign('IMG_PATH_UPLOAD', IMG_PATH_UPLOAD);
+		$this->smarty->assign("CSS_PATH",CSS_PATH);
+		$this->smarty->append("add_JS",$this->all_js->addJS("jquery"));
+        $this->smarty->template_dir = TPLPATH . $this->curr_theme."/initial/html/";
+        $this->smarty->compile_dir = TPLPATH . $this->curr_theme."/initial/tmp/";	
+	//general CSS
+	$this->smarty->append('CSS', CSS_PATH.'style.css');
         $this->smarty->assign("MAIN_TPL_HEADER", 'header.html');
         $this->smarty->assign("MAIN_TPL_FOOTER", 'footer.html');
     }
