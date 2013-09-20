@@ -191,9 +191,12 @@ class Initial extends ApiController {
     foreach($deals as $data){
         $detail = array();
         $deal_for = "";
-        $query = $this->db->get_where("business", array('id' => $data["type_id"]));
-        $data_query = $query->row_array();
-        $deal_for = $data_query["name"];
+        $data_query = $this->db->get_where("business", array('id' => $data["type_id"]));
+        $deal_for = "";
+        if($data_query->num_rows() > 0){
+           $data_query = $data_query->row_array();
+           $deal_for = $data_query["name"];
+        }
         
         $detail['deal_for'] = $deal_for;
         $detail['name'] = $data["name"];
