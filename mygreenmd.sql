@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 18, 2013 at 02:01 PM
+-- Generation Time: Sep 21, 2013 at 12:05 AM
 -- Server version: 5.1.49
 -- PHP Version: 5.3.26-1~dotdeb.0
 
@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `business` (
   `longitude` varchar(255) DEFAULT NULL,
   `days_operation` int(11) DEFAULT NULL,
   `member_id` int(11) DEFAULT NULL,
+  `is_hide` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -80,10 +81,10 @@ CREATE TABLE IF NOT EXISTS `business` (
 -- Dumping data for table `business`
 --
 
-INSERT INTO `business` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`, `is_dispensary`, `is_doctor`, `is_smoke_shop`, `latitude`, `longitude`, `days_operation`, `member_id`) VALUES
-(1, 'test', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'aribascom@tewwst.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', '76f6c79d5ca30dca5ede6a0a20b15134.jpg', 0, 0, 0, 0, 1, 0, 1, '345325234', '2342342', 10, NULL),
-(2, 'Doctor1', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'ari.p@fdfdsf.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'f7c5314512fc3af2e429e7504a80dc0a.jpg', 0, 3, 1, 0, 0, 1, 0, '345325234', '2342342', 10, NULL),
-(3, 'Business Arip', 'test', 'Bandung', 'Jawa', '40235', 'ari.p@fdfdsf.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'e589d37b4d060d030b86c3a7f0961206.JPG', 0, 3, 0, 0, 1, 1, 1, '345325234', '2342342', 10, 1);
+INSERT INTO `business` (`id`, `name`, `address`, `city`, `state`, `zip_code`, `email`, `website`, `description`, `timing`, `open_time`, `close_time`, `phone`, `picture`, `counter`, `rating`, `highlight`, `featured`, `is_dispensary`, `is_doctor`, `is_smoke_shop`, `latitude`, `longitude`, `days_operation`, `member_id`, `is_hide`) VALUES
+(1, 'test', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'aribascom@tewwst.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', '76f6c79d5ca30dca5ede6a0a20b15134.jpg', 0, 0, 0, 0, 1, 0, 1, '345325234', '2342342', 10, NULL, 0),
+(2, 'Doctor1', 'Lorem ipsum', 'Bandung', 'Jawa', '40235', 'ari.p@fdfdsf.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'f7c5314512fc3af2e429e7504a80dc0a.jpg', 0, 3, 1, 0, 0, 1, 0, '345325234', '2342342', 10, NULL, 0),
+(3, 'Business Arip1', 'test', 'Bandung', 'Jawa', '40235', 'ari.p@fdfdsf.com', 'www.testd.com', 'test', '24/7', '10:00', '12:00', '093232', 'e589d37b4d060d030b86c3a7f0961206.JPG', 0, 0, 0, 0, 1, 1, 1, '345325234', '2342342', 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -150,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `deals` (
   `description` text,
   `expiry` varchar(255) DEFAULT NULL,
   `member_id` int(11) DEFAULT NULL,
+  `is_hide` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
@@ -157,11 +159,11 @@ CREATE TABLE IF NOT EXISTS `deals` (
 -- Dumping data for table `deals`
 --
 
-INSERT INTO `deals` (`id`, `type_id`, `type_name`, `name`, `description`, `expiry`, `member_id`) VALUES
-(6, 1, 'smoke_shop', 'deal smoke shop', 'deal smoke shopdeal smoke shopdeal smoke shop', '10:00', NULL),
-(3, 1, 'dispensary', 'test', 'test', '10:00', NULL),
-(4, 1, 'doctor', 'Deal for doctor', 'Deal for doctor', '10:00', NULL),
-(8, 0, '', 'Deal user', 'Deal user', '10:00', 1);
+INSERT INTO `deals` (`id`, `type_id`, `type_name`, `name`, `description`, `expiry`, `member_id`, `is_hide`) VALUES
+(6, 1, 'smoke_shop', 'deal smoke shop', 'deal smoke shopdeal smoke shopdeal smoke shop', '10:00', NULL, 0),
+(3, 1, 'dispensary', 'test', 'test', '10:00', NULL, 0),
+(4, 1, 'doctor', 'Deal for doctor', 'Deal for doctor', '10:00', NULL, 0),
+(8, 0, '', 'Deal user', 'Deal user', '10:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -272,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
 INSERT INTO `pages` (`id`, `title`, `url`, `content`, `meta_keywords`, `meta_description`) VALUES
 (1, 'About Us', 'about_us', '<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>\n<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametv</p>\n<p>&nbsp;</p>\n<p>test</p>', 'About Us', 'About Us'),
 (2, 'Privacy Policy', 'privacy', '<p>Privacy Policy</p>', 'test', 'tets'),
-(3, 'Terms an Conditions', 'terms', '<p>Terms an Conditions</p>', 'test', 'test');
+(3, 'Terms & Conditions', 'terms', '<p>Terms & Conditions</p>', 'test', 'test');
 
 -- --------------------------------------------------------
 

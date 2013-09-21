@@ -62,11 +62,19 @@ class Initial extends MemberController {
 		$this->all_js->formvalidator(MEMBER_PATH.'do_edit_business');  
         $this->smarty->display('members/business/edit.html');
    }    
-			
-    function delete_business($id){
-            $this->db->delete('business', array('id' => $id));
-            $this->session->set_flashdata('errortxt',"data has been deleted!");
-            redirect(MEMBER_PATH.'business', 'refresh');
+
+   function hide_business($id){
+        $this->db->where('id', $id);
+        $this->db->update('business', array('is_hide' => 1));
+        $this->session->set_flashdata('errortxt',"data has been hide!");
+        redirect(MEMBER_PATH.'business', 'refresh');
+    }
+    
+    function show_business($id){
+        $this->db->where('id', $id);
+        $this->db->update('business', array('is_hide' => 0));
+        $this->session->set_flashdata('errortxt',"data has been shown!");
+        redirect(MEMBER_PATH.'business', 'refresh');
     }
         
     function highlight_business($id, $value){
@@ -223,10 +231,18 @@ class Initial extends MemberController {
         $this->smarty->display('members/deals/edit.html');
    }    
 			
-    function delete_deals($id){
-            $this->db->delete('deals', array('id' => $id));
-            $this->session->set_flashdata('errortxt',"data has been deleted!");
-            redirect(MEMBER_PATH.'deals', 'refresh');
+    function hide_deals($id){
+        $this->db->where('id', $id);
+        $this->db->update('deals', array('is_hide' => 1));
+        $this->session->set_flashdata('errortxt',"data has been hide!");
+        redirect(MEMBER_PATH.'deals', 'refresh');
+    }
+    
+    function show_deals($id){
+        $this->db->where('id', $id);
+        $this->db->update('deals', array('is_hide' => 0));
+        $this->session->set_flashdata('errortxt',"data has been shown!");
+        redirect(MEMBER_PATH.'deals', 'refresh');
     }
         
     function do_add_deals()

@@ -21,7 +21,7 @@ class Initial extends ApiController {
     $page = ($this->input->post('page') == '')? 0 : $this->input->post('page');
     $per_page = ($this->input->post('per_page') == '')? 10 : $this->input->post('per_page');
     $keyword = $this->input->post('search');
-    $conditions = "WHERE is_dispensary=1 ";
+    $conditions = "WHERE is_dispensary=1 And is_hide=0 ";
     if($keyword){
       $conditions .= " AND (`name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%')";
     }
@@ -73,7 +73,7 @@ class Initial extends ApiController {
     $page = ($this->input->post('page') == '')? 0 : $this->input->post('page');
     $per_page = ($this->input->post('per_page') == '')? 10 : $this->input->post('per_page');
     $keyword = $this->input->post('search');
-    $conditions = "WHERE is_doctor=1 ";
+    $conditions = "WHERE is_doctor=1 And is_hide=0 ";
     if($keyword){
       $conditions .= " AND (`name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%')";
     }
@@ -124,7 +124,7 @@ class Initial extends ApiController {
     $page = ($this->input->post('page') == '')? 0 : $this->input->post('page');
     $per_page = ($this->input->post('per_page') == '')? 10 : $this->input->post('per_page');
     $keyword = $this->input->post('search');
-    $conditions = "WHERE is_smoke_shop=1 ";
+    $conditions = "WHERE is_smoke_shop=1 And is_hide=0 ";
     if($keyword){
       $conditions .= " AND (`name`='%$keyword%' OR address='%$keyword%' OR city='%$keyword%' OR state='%$keyword%' OR zip_code='%$keyword%' OR email='%$keyword%' OR website='%$keyword%' OR description='%$keyword%')";
     }
@@ -202,6 +202,7 @@ class Initial extends ApiController {
         $detail['name'] = $data["name"];
         $detail['description'] = $data["description"];
         $detail['expiry'] = $data["expiry"];
+        $detail['hide'] = (($data["is_hide"] == 1)? "true" : "false");
         $body['deals'][]= $detail;
     }
     $body['page']= $page;

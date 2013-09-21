@@ -23,6 +23,7 @@
 								<td width="100" ><u>Name</u></td>
                                                                 <td><u>Description</u></td>
                                                                 <td width="100" ><u>Expiry on</u></td>
+                                                                <td width="100" ><u>Hide</u></td>
 								<td width="100"><u>Option</u></td>
 							</tr>	
 							{foreach item=item from=$list}
@@ -30,9 +31,16 @@
 								<td >{$item.name}</td>
                                                                 <td >{$item.description}</td>
                                                                 <td >{$item.expiry}</td>
+                                                                <td >
+                                                                    {if $item.is_hide == "1"}True{else}False{/if}
+                                                                </td>
 								<td >
 									<a href="{$MEMBER_PATH}edit_deals/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
-									<a href="#" onclick="deleteconfirm('{$MEMBER_PATH}delete_deals/{$item.id}');" class="Tlink">Delete</a>
+                                                                       {if $item.is_hide == "1"}
+                                                                       <a href="{$MEMBER_PATH}show_deals/{$item.id}" class="Tlink">Show</a>
+                                                                       {else}
+                                                                          <a href="#" onclick="javascript:hideconfirm('{$MEMBER_PATH}hide_deals/{$item.id}');" class="Tlink">Hide</a>                                                                          
+                                                                       {/if}
 								</td>
 							</tr>
 							{/foreach}
@@ -56,8 +64,8 @@
 {include file="$MAIN_TPL_FOOTER"}
 {literal}
 <script>
-  function deleteconfirm(link){
-      var answer = confirm("Are you sure want to delete this item?")
+  function hideconfirm(link){
+      var answer = confirm("Are you sure want to hide this item?")
 	if (answer){
 		window.location = link;
 	}

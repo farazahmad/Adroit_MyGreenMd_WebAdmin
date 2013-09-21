@@ -75,7 +75,7 @@ class Initial extends InitialController {
    
    function signup($package_id=""){
       $this->smarty->assign('WEBTITLE' , "Sign Up");
-      $this->smarty->assign('active_menu' , "signup");
+      $this->smarty->assign('active_menu' , "advertising");
       date_default_timezone_set('America/Denver');
         $years = array();
         $year = date("Y");
@@ -179,7 +179,16 @@ class Initial extends InitialController {
                     'package_id' => $package_id
                 );
                 if($this->db->insert('members', $data_contact)){ 
-                        $this->smarty->assign('status_submit',"success");
+                   $username = $data_post["username"];
+                   $password = $data_post["password"];
+                    $query_user = $this->db->query("SELECT * FROM `members` WHERE username ='$username' And password = md5('$password')");
+                    if($query_user->num_rows() > 0){
+                       $login_user = $query_user->first_row();
+                       $this->session->set_userdata(array("member_id" => $login_user->id, "member_username" => $login_user->username));
+                       redirect("member");
+                    }else{
+                       $this->smarty->assign('status_submit',"failed");
+                    }
                 }else
                 {
                         $this->smarty->assign('status_submit',"failed");
@@ -215,6 +224,7 @@ class Initial extends InitialController {
    }
    
    function signin(){
+       $this->smarty->assign('active_menu' , "signin");
     	$data_post = $this->input->post('data');
         $this->smarty->assign('data_post',$data_post);
         $do_send = $this->input->post('save');
@@ -231,7 +241,7 @@ class Initial extends InitialController {
                $this->smarty->assign('status_submit',"failed");
             }
         }
-    	$this->smarty->assign('WEBTITLE' , "Login");
+    	$this->smarty->assign('WEBTITLE' , "Sign In");
     	$this->smarty->display('pages/signin.html');
     }
     

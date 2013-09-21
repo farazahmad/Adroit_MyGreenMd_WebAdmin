@@ -366,6 +366,9 @@ ol li .send {
 .signupbtn{text-align:center;margin-top:10px;}
 .signupbtn a{font-weight:bold;font-size:10pt;width:80px;background-color:#62bee3;color:#FFFFFF;padding:10px;text-decoration:none;}
 
+.bluebtn{margin-top:10px;}
+.bluebtn a{font-weight:bold;font-size:10pt;width:80px;background-color:#62bee3;color:#FFFFFF;padding:10px;text-decoration:none;}
+
 .menu_member {
 	float:left;
 	margin-left:20px;

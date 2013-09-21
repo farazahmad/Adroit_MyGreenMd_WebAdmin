@@ -27,6 +27,7 @@
                                                                 <td width="100" ><u>View/Count</u></td>
                                                                 <td width="100" ><u>Highlight</u></td>
                                                                 <td width="100" ><u>Featured</u></td>
+                                                                <td width="100" ><u>Hide</u></td>
 								<td width="150" ><u>Option</u></td>
 							</tr>	
 							{foreach item=item from=$list}
@@ -47,9 +48,16 @@
                                                                 <td >{$item.counter}</td>
                                                                 <td ><input type="checkbox" onchange="javascript:highlight(this, '{$item.id}');" name="highlight" id="highlight" {if $item.highlight == 1}checked{/if}/>Highlight</td>
                                                                 <td ><input type="checkbox" onchange="javascript:featured(this, '{$item.id}');" name="featured" id="featured" {if $item.featured == 1}checked{/if}/>Featured</td>
+                                                                <td >
+                                                                    {if $item.is_hide == "1"}True{else}False{/if}
+                                                                </td>
 								<td >
 								       <a href="{$MEMBER_PATH}edit_business/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
-								       <a href="#" onclick="javascript:deleteconfirm('{$MEMBER_PATH}delete_business/{$item.id}');" class="Tlink">Delete</a>
+                                                                       {if $item.is_hide == "1"}
+                                                                          <a href="{$MEMBER_PATH}show_business/{$item.id}" class="Tlink">Show</a>
+                                                                       {else}
+                                                                          <a href="#" onclick="javascript:hideconfirm('{$MEMBER_PATH}hide_business/{$item.id}');" class="Tlink">Hide</a>                                                                          
+                                                                       {/if}
 								</td>
 							</tr>
 							{/foreach}
@@ -83,8 +91,8 @@
       window.location=path+'featured_business/'+id+'/'+data.checked;
   }
   
-  function deleteconfirm(link){
-      var answer = confirm("Are you sure want to delete this item?")
+  function hideconfirm(link){
+      var answer = confirm("Are you sure want to hide this item?")
 	if (answer){
 		window.location = link;
 	}

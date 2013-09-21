@@ -1,8 +1,11 @@
 {include file="$MAIN_TPL_HEADER"}
 <div class="article">
-  <h2>LOGIN</h2>
+  <h2>Sign In</h2>
   <div class="clr"></div>
   <div class="notif_red" id="err_msg" style="margin:0;display:none;color:red;font-weight:bold;">Please Fill All required fields</div>
+  {if $status_submit == 'failed'}
+  <div class="notif_red" id="err_msg" style="margin:0;color:red;font-weight:bold;">Invalid username and password</div>
+  {/if}
   <form action="{$current_url}" method="post" id="ContactForm" name="ContactForm">
     <ol>
       <li>
@@ -15,8 +18,13 @@
       </li>
       <li>
         <input id="save" name="save" type="hidden" value="save" />
-        <input type="button" name="imageField" id="imageField" class="send" value="Login" onclick="check_field();" />
+        <br/>
+        <div class="bluebtn"><a href="#" name="signin" onclick="check_field();">Sign In</a></div>
         <div class="clr"></div>
+      </li>
+      <li>
+           <br/>don't have an account? <br/>
+          <div class="bluebtn"><a href="{$BASE_URL}advertising" name="signup">Resiter your Business</a></div>
       </li>
     </ol>
   </form>
