@@ -170,13 +170,13 @@ class Initial extends ApiController {
   }
   
   function deals(){
-    #parameter (type_deal[all,smoke_shop,dispensary,doctor], type_deal_id, page, per_page, search)
+    #parameter (business_type[all,smoke_shop,dispensary,doctor], business_id, page, per_page, search)
       
     $conditions = "";
     $page = ($this->input->post('page') == '')? 0 : $this->input->post('page');
     $per_page = ($this->input->post('per_page') == '')? 10 : $this->input->post('per_page');
-    $type_deal = $this->input->post('type_deal');
-    $type_id = $this->input->post('type_deal_id');
+    $type_deal = $this->input->post('business_type');
+    $type_id = $this->input->post('business_id');
     #all smoke_shop dispensary doctor
     if($type_deal == 'smoke_shop' || $type_deal == 'dispensary' || $type_deal == 'doctor'){
       $conditions = "WHERE `type_name` = '{$type_deal}'";
@@ -213,7 +213,7 @@ class Initial extends ApiController {
   function dispensary_detail(){
     $message  = "";
     $success = false;
-    $id = $this->input->post('id');
+    $id = $this->input->post('business_id');
     $detail = array();
     if($id){
        $query = $this->db->get_where("business", array('id' => $id));
@@ -252,7 +252,7 @@ class Initial extends ApiController {
   function doctor_detail(){
     $message  = "";
     $success = false;
-    $id = $this->input->post('id');
+    $id = $this->input->post('business_id');
     $detail = array();
     if($id){
        $query = $this->db->get_where("business", array('id' => $id));
@@ -291,7 +291,7 @@ class Initial extends ApiController {
   function smoke_shop_detail(){
     $message  = "";
     $success = false;
-    $id = $this->input->post('id');
+    $id = $this->input->post('business_id');
     $detail = array();
     if($id){
        $query = $this->db->get_where("business", array('id' => $id));
@@ -330,17 +330,20 @@ class Initial extends ApiController {
   function review(){
     $message  = "";
     $success = false;
-    #type_id 	type_name[smoke_shop,dispensary,doctor] 	name 	description 	username 	date
+    #business_id 	business_type[smoke_shop,dispensary,doctor] 	review_title 	review_detail 	user_name 
     // save the object
-    if($this->input->post('type_name') != '' && $this->input->post('type_id') !='' && $this->input->post('description') !=''){
-      if($this->input->post('type_name') == 'smoke_shop' || $this->input->post('type_name') == 'dispensary' || $this->input->post('type_name') == 'doctor'){
+    $type_name = $this->input->post('business_type');
+    $type_id = $this->input->post('business_id');
+    if($type_name != '' && $type_id !='' && $this->input->post('description') !=''){
+      if($type_name == 'smoke_shop' || $type_name == 'dispensary' || $type_name == 'doctor'){
+          date_default_timezone_set('America/Denver');
           $fields = array (
-            'type_name'  => $this->input->post('type_name'),
-            'type_id'  => $this->input->post('type_id'),
-            'name'  => $this->input->post('name'),
-            'description' => $this->input->post('description'),
-            'username' => $this->input->post('username'),
-            'date' => $this->input->post('date')
+            'type_name'  => $type_name,
+            'type_id'  => $type_id,
+            'name'  => $this->input->post('review_title'),
+            'description' => $this->input->post('review_detail'),
+            'username' => $this->input->post('user_name'),
+            'date' => date("Y-m-d")
           );
           $this->db->insert('reviews', $fields);
           $success = true;
@@ -357,20 +360,26 @@ class Initial extends ApiController {
   }
   
   function claim(){
+     
     $message  = "";
     $success = false;
-    #type_id 	type_name[smoke_shop,dispensary,doctor] 	name 	username 	email 	date
+    #business_id 	business_type[smoke_shop,dispensary,doctor] 	first_name last_name 	email 	phone_number
     // save the object
-    if($this->input->post('type_name') != '' && $this->input->post('type_id') !='' && $this->input->post('name') !=''){
-      if($this->input->post('type_name') == 'smoke_shop' || $this->input->post('type_name') == 'dispensary' || $this->input->post('type_name') == 'doctor'){
+    $type_name = $this->input->post('business_type');
+    $type_id = $this->input->post('business_id');
+    $user_name = $this->input->post('first_name')." ".$this->input->post('last_name');
+    if($type_name != '' && $type_id!='' && $this->input->post('name') !=''){
+      if($type_name == 'smoke_shop' || $type_name == 'dispensary' || $type_name == 'doctor'){
+          date_default_timezone_set('America/Denver');
           // save the object
             $fields = array (
-                'type_name'  => $this->input->post('type_name'),
-                'type_id'  => $this->input->post('type_id'),
-                'name'  => $this->input->post('name'),
-                'username' => $this->input->post('username'),
+                'type_name'  => $type_name,
+                'type_id'  => $type_id,
+                'name'  => $this->input->post('business_name'),
+                'username' => $user_name,
                 'email' => $this->input->post('email'),
-                'date' => $this->input->post('date'),
+                'phone' => $this->input->post('phone_number'),
+                'date' => date("Y-m-d")
             );
 
             $this->db->insert('claims', $fields);
@@ -387,19 +396,44 @@ class Initial extends ApiController {
     echo json_encode($body);
   }
   
+  function rate(){
+    $message  = "";
+    $success = false;
+    #business_id 	business_type[smoke_shop,dispensary,doctor] 	rating (1,2,3,4,5)
+    // save the object
+    $type_name = $this->input->post('business_type');
+    $type_id = $this->input->post('business_id');
+    if($type_name != '' && $type_id !='' && $this->input->post('rating') != ''){
+      if($type_name == 'smoke_shop' || $type_name == 'dispensary' || $type_name == 'doctor'){
+          $this->db->where('id', $type_id);
+          $this->db->update('business', array ('rating' => $this->input->post('rating')));
+          $success = true;
+          $message  = "Rate successfully added";
+      }else{
+         $message  = "Type Rate not found"; 
+      }
+    }else{
+        $message  = "Please fill all mandatory fields "; 
+    }
+    $body['success']= $success;
+    $body['message']= $message;
+    echo json_encode($body);
+  }
+  
   function tracking(){
     $message  = "";
     $success = false;
     #section 	activity_type 	datetime 	ip_address 	username
     // save the object
-    if($this->input->post('section') != '' && $this->input->post('activity_type') !='' && $this->input->post('datetime') !=''){
-          // save the object
+    if($this->input->post('section') != '' && $this->input->post('activity_type') !=''){
+          date_default_timezone_set('America/Denver');
+            // save the object
             $fields = array (
                 'section'  => $this->input->post('section'),
                 'activity_type'  => $this->input->post('activity_type'),
-                'datetime'  => $this->input->post('datetime'),
+                'datetime'  => date("Y-m-d h:i:s"),
                 'ip_address' => $this->input->post('ip_address'),
-                'username' => $this->input->post('username')
+                'username' => $this->input->post('user_name')
             );
 
             $this->db->insert('tracks', $fields);
