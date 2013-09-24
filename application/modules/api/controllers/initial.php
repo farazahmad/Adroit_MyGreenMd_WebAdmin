@@ -335,7 +335,7 @@ class Initial extends ApiController {
     // save the object
     $type_name = $this->input->post('business_type');
     $type_id = $this->input->post('business_id');
-    if($type_name != '' && $type_id !='' && $this->input->post('description') !=''){
+    if($type_name != '' && $type_id !='' && $this->input->post('review_detail') !=''){
       if($type_name == 'smoke_shop' || $type_name == 'dispensary' || $type_name == 'doctor'){
           date_default_timezone_set('America/Denver');
           $fields = array (
@@ -369,7 +369,7 @@ class Initial extends ApiController {
     $type_name = $this->input->post('business_type');
     $type_id = $this->input->post('business_id');
     $user_name = $this->input->post('first_name')." ".$this->input->post('last_name');
-    if($type_name != '' && $type_id!='' && $this->input->post('name') !=''){
+    if($type_name != '' && $type_id!='' && $this->input->post('business_name') !=''){
       if($type_name == 'smoke_shop' || $type_name == 'dispensary' || $type_name == 'doctor'){
           date_default_timezone_set('America/Denver');
           // save the object
