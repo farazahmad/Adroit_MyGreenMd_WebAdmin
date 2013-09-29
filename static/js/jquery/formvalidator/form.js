@@ -141,6 +141,7 @@ jQuery.iFormValidate = {
 		//if($inputs.filter(".vcaptcha").hasClass("invalid")){isValid=false;}
 		if($inputs.filter(".vname").hasClass("invalid")){isValid=false;}
 		if($inputs.filter(".vusername").hasClass("invalid")){isValid=false;}
+                if($inputs.filter(".vwebsite").hasClass("invalid")){isValid=false;}
 					
 		return isValid;
 	},
@@ -204,7 +205,10 @@ jQuery.iFormValidate = {
 			//alert($val+' - '+$('#captchax').val());			
 			if($val.length<6){isValid = false;}	
 			if(strtolower($val)!=strtolower($('#password').val())){isValid = false;}
-			
+		}else if($(this).hasClass('vwebsite')){
+		//Check for website
+			var Regex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+			if(!Regex.test($val)){isValid = false;}
 		//Check for not empty empty
 		}else if($(this).hasClass('vchecked')){
 			//alert($(this).attr("checked"));

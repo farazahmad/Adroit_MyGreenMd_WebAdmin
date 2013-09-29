@@ -78,7 +78,7 @@
       </li>
       <li>
         <input id="save" name="save" type="hidden" value="save" />
-        <input type="button" name="imageField" id="imageField" class="send" value="Register" onclick="check_field();" />
+        <div class="bluebtn"><a href="#" name="signin" onclick="check_field();">Register</a></div>
         <div class="clr"></div>
       </li>
     </ol>
@@ -89,11 +89,21 @@
 <script type="text/javascript">
   function check_field(){
     if($("#name").val() != '' && $("#email").val() != '' && $("#confirm_password").val() != '' && $("#password").val() != '' && $("#cc_number").val() != '' && $("#expiry_month").val() != '' && $("#expiry_year").val() != '' && $("#pin").val() != ''){
-      $("#ContactForm").submit();
+      if(validateEmail($("#email").val())){
+        $("#ContactForm").submit();
+      }else{
+        alert("Invalid Email Format.");
+      }
     }else{
       $("#ssc_msg").hide();
       $("#err_msg").fadeIn();
     }
+  }
+  
+  function validateEmail(email)
+  {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
   }
 </script>
 {/literal}

@@ -30,7 +30,7 @@
       </li>
       <li>
         <label for="website">Phone (required)</label>
-        <input id="phone" name="data[phone]" class="text" />
+        <input id="phone" name="data[phone]" class="text" onkeypress="return isNumber(event)"/>
       </li>
       <li>
         <label for="message">Your Message (required)</label>
@@ -56,11 +56,30 @@
 <script type="text/javascript">
   function check_field(){
     if($("#name").val() != '' && $("#email").val() != '' && $("#message").val() != '' && $("#phone").val() != ''){
-      $("#ContactForm").submit();
+        if(validateEmail($("#email").val())){
+            $("#ContactForm").submit();
+        }else{
+            alert("Invalid Email Format.");
+        }
     }else{
       $("#ssc_msg").hide();
       $("#err_msg").fadeIn();
     }
   }
+  
+  function validateEmail(email)
+  {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+  
+  function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
 </script>
 {/literal}

@@ -14,14 +14,14 @@
 						<form name="new_web_content" id="form" enctype="multipart/form-data" method="POST" action="{$ADMIN_PATH}smoke_shops/do_add">            
 							<table width="100%" id="tblwMce">
 								<tr>
-									<td width="100" class="bold ">Business Name</td>
+									<td width="100" class="bold ">Business Name (*)</td>
 									<td width="10" class="bold ">:</td>
 									<td><input type="text" name="name" id="name" value="{$name}" size="30" class="is_required"/></td>
 								</tr>
                                                                 <tr>
 									<td width="100" class="bold ">Address</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="address" id="address" value="{$address}" size="60" class="is_required"/></td>
+									<td><input type="text" name="address" id="address" value="{$address}" size="60" /></td>
 								</tr>
                                                                 <tr>
 									<td width="100" class="bold ">City</td>
@@ -39,19 +39,19 @@
 									<td><input type="text" name="zip_code" id="zip_code" value="{$zip_code}" size="30" /></td>
 								</tr>
                                                                 <tr>
-									<td width="100" class="bold ">Email</td>
+									<td width="100" class="bold ">Email (*)</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="email" id="email" value="{$email}" size="30" /></td>
+									<td><input type="text" name="email" id="email" value="{$email}" size="30" class="is_required vemail" /></td>
 								</tr>
                                                                 <tr>
 									<td width="100" class="bold ">Website</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="website" id="website" value="{$website}" size="30" /></td>
+									<td><input type="text" name="website" id="website" value="{$website}" size="30"  class="vwebsite" />&nbsp;eg: http://example.com</td>
 								</tr>
                                                                 <tr>
 									<td width="100" class="bold ">Phone</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="phone" id="phone" value="{$phone}" size="30" /></td>
+									<td><input type="text" name="phone" id="phone" value="{$phone}" size="30" onkeypress="return isNumber(event)" /></td>
 								</tr>
                                                                 <tr>
 									<td width="100" class="bold ">Image</td>
@@ -61,7 +61,7 @@
 									</td>
 								</tr>
                                                                 <tr>
-									<td width="100" class="bold ">Timing</td>
+									<td width="100" class="bold ">Timing (*)</td>
 									<td width="10" class="bold ">:</td>
 									<td>
                                                                             <select name="timing">
@@ -71,11 +71,11 @@
                                                                         </td>
 								</tr>
                                                                 <tr>
-									<td width="100" class="bold ">Open & Close Time</td>
+									<td width="100" class="bold ">Open & Close Time (*)</td>
 									<td width="10" class="bold ">:</td>
 									<td>
-                                                                            From&nbsp;<input type="text" name="open_time" id="open_time" value="{$open_time}" size="10" />&nbsp;to&nbsp;
-                                                                            <input type="text" name="close_time" id="close_time" value="{$close_time}" size="10" /> &nbsp;eg: 10:00
+                                                                            From&nbsp;<input type="text" name="open_time" id="open_time" value="{$open_time}" size="10" class="is_required" />&nbsp;to&nbsp;
+                                                                            <input type="text" name="close_time" id="close_time" value="{$close_time}" size="10" class="is_required" /> &nbsp;eg: 10:00
                                                                         </td>
 								</tr>
                                                                 <tr>
@@ -97,14 +97,14 @@
 									</td>
 								</tr>
                                                                 <tr>
-									<td width="100" class="bold ">Latitude</td>
+									<td width="100" class="bold ">Latitude (*)</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="latitude" id="latitude" value="{$latitude}" size="40"/></td>
+									<td><input type="text" name="latitude" id="latitude" value="{$latitude}" size="40" class="is_required" onkeypress="return isNumber(event)"/></td>
 								</tr>
                                                                 <tr>
-									<td width="100" class="bold ">Longitude</td>
+									<td width="100" class="bold ">Longitude (*)</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="longitude" id="longitude" value="{$longitude}" size="40"/></td>
+									<td><input type="text" name="longitude" id="longitude" value="{$longitude}" size="40" class="is_required" onkeypress="return isNumber(event)"/></td>
 								</tr>
                                                                 <tr>
 									<td width="100" class="bold ">Hours/Days of Operation</td>
@@ -112,7 +112,7 @@
 									<td><input type="text" name="days_operation" id="days_operation" value="{$days_operation}" size="15" /></td>
 								</tr>
                                                                 <tr>
-                                                                    <td width="100" class="bold ">Business Categories</td>
+                                                                    <td width="100" class="bold ">Business Categories (*)</td>
                                                                     <td width="10" class="bold ">:</td>
                                                                     <td>
                                                                         <input type="checkbox" name="is_dispensary" id="is_dispensary" value="1" {if $is_dispensary == '1'}checked{/if}/>&nbsp;Dispensary&nbsp;
@@ -134,6 +134,7 @@
 									<td>
 									 <input type="hidden" name="save" value="Save" />
 									 <input class="buttonForm button_save" type="button" name="save_now" id="save" value="Save">
+                                                                         <input class="buttonForm button_reset" type="button" name="cancel" id="cancel" value="Cancel" onclick="window.location='{$ADMIN_PATH}smoke_shops'"/>
 									</td>
 								</tr>
 							</table>
@@ -146,3 +147,17 @@
 		<div id="foot3"></div>			
 	</div>
 {include file="$MAIN_TPL_FOOTER"}
+{literal}
+<script type="text/javascript">  
+  function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        if(charCode!= 45){
+            return false;
+        }
+    }
+    return true;
+}
+</script>
+{/literal}

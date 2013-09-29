@@ -26,6 +26,7 @@ class Initial extends MemberController {
     });					
     '); 
     $this->smarty->assign('WEBTITLE' , "MEMBER AREA");
+    $this->smarty->assign('active_menu' , "member");	
   }
 
   function index() {
@@ -33,6 +34,7 @@ class Initial extends MemberController {
   }
   
   function business() {
+    $this->smarty->assign('active_tab' , "business");	
     //search var session, make session with this var
     $searchVar['session']="business";
     $member_id=$this->session->userdata('member_id');
@@ -50,12 +52,14 @@ class Initial extends MemberController {
   
  	function add_business()
     {
+        $this->smarty->assign('active_tab' , "business");
 	$this->all_js->formvalidator(MEMBER_PATH.'do_add_business');
         $this->smarty->display('members/business/add.html');
     }
 
    function edit_business( $id )
    {
+       $this->smarty->assign('active_tab' , "business");
         $query = $this->db->get_where('business', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
@@ -71,6 +75,7 @@ class Initial extends MemberController {
     }
     
     function show_business($id){
+        $this->smarty->assign('active_tab' , "business");
         $this->db->where('id', $id);
         $this->db->update('business', array('is_hide' => 0));
         $this->session->set_flashdata('errortxt',"data has been shown!");
@@ -200,6 +205,7 @@ class Initial extends MemberController {
     
     
   function deals() {
+    $this->smarty->assign('active_tab' , "deals");
     //search var session, make session with this var
     $searchVar['session']="member_deals";
     //use search sql method here and use {searchVar} for input
@@ -218,12 +224,14 @@ class Initial extends MemberController {
   
  	function add_deals()
     {
+        $this->smarty->assign('active_tab' , "deals");
 	$this->all_js->formvalidator(MEMBER_PATH.'do_add_deals');
         $this->smarty->display('members/deals/add.html');
     }
 
    function edit_deals( $id )
    {
+        $this->smarty->assign('active_tab' , "deals");
         $query = $this->db->get_where('deals', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
@@ -239,6 +247,7 @@ class Initial extends MemberController {
     }
     
     function show_deals($id){
+        $this->smarty->assign('active_tab' , "deals");
         $this->db->where('id', $id);
         $this->db->update('deals', array('is_hide' => 0));
         $this->session->set_flashdata('errortxt',"data has been shown!");
@@ -280,6 +289,7 @@ class Initial extends MemberController {
     
     
     function packages() {
+    $this->smarty->assign('active_tab' , "packages");
     $member_id = $this->session->userdata('member_id');
     $query = $this->db->get_where('members', array('id' => $member_id));
     $data=$query->row_array();

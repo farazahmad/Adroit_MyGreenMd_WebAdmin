@@ -13,6 +13,7 @@ class Menu extends MY_Model {
     }
     
 	function showmenu(){
+                $active_menu = $this->uri->segment(2);
 		$BASE_PATH_admin=ADMIN_PATH;
 		$this->smarty->append("add_JS",$this->all_js->addJS("boxy"));
 		$this->smarty->append("add_JS2",$this->all_js->addJS("jmenu_admin"));
@@ -51,24 +52,24 @@ END;
 		$MENU.='
 <div id="jmenu" class="jquerycssmenu">
 <ul>
-    <li ><a href="'.$BASE_PATH_admin.'dashboard.html" id="home" class="button_tab">Dashboard</a></li>';
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'tracks" id="tracks" class="button_box">Tracking</a></li>';   
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'dispensaries" id="dispensaries" class="button_box">Dispensaries</a></li>';   
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'doctors" id="doctors" class="button_box">Doctors</a></li>';   
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'smoke_shops" id="smoke_shops" class="button_box">Smoke Shops</a></li>';  
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'push_notifications" id="push_notifications" class="button_frontpage">Push Notifications</a></li>'; 
-    $MENU.='<li ><a id="module" class="button_box">Master Data</a><ul>';
+    <li ><a href="'.$BASE_PATH_admin.'dashboard" id="home" class="button_tab '.(($active_menu == 'dashboard')? 'active_btn' : '').'">Dashboard</a></li>';
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'tracks" id="tracks" class="button_box '.(($active_menu == 'tracks')? 'active_btn' : '').'">Tracking</a></li>';   
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'dispensaries" id="dispensaries" class="button_box '.(($active_menu == 'dispensaries')? 'active_btn' : '').'">Dispensaries</a></li>';   
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'doctors" id="doctors" class="button_box '.(($active_menu == 'doctors')? 'active_btn' : '').'">Doctors</a></li>';   
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'smoke_shops" id="smoke_shops" class="button_box '.(($active_menu == 'smoke_shops')? 'active_btn' : '').'">Smoke Shops</a></li>';  
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'push_notifications" id="push_notifications" class="button_frontpage '.(($active_menu == 'push_notifications')? 'active_btn' : '').'">Push Notifications</a></li>'; 
+    $MENU.='<li ><a id="module" class="button_box '.(($active_menu == 'claims' || $active_menu == 'packages' || $active_menu == 'deals' || $active_menu == 'reviews' )? 'active_btn' : '').'">Master Data</a><ul>';
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'claims" id="claims" class="button_box">Manage Claims</a></li>'; 
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'packages" id="packages" class="button_box">Packages</a></li>'; 
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'deals" id="deals" class="button_box">Deals</a></li>';  
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'reviews" id="reviews" class="button_box">Reviews</a></li>';  
     $MENU.='</ul></li>';
-    $MENU.='<li ><a id="module" class="button_box">Pages</a><ul>';
+    $MENU.='<li ><a id="module" class="button_box '.(($active_menu == 'pages')? 'active_btn' : '').'">Pages</a><ul>';
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'pages/about_us" id="about_us" class="button_frontpage">About Us</a></li>'; 
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'pages/privacy" id="privacy" class="button_frontpage">Privacy & Policy</a></li>'; 
       $MENU.='<li ><a href="'.$BASE_PATH_admin.'pages/terms" id="terms" class="button_frontpage">Terms & Conditions</a></li>'; 
     $MENU.='</ul></li>';
-    $MENU.='<li ><a href="'.$BASE_PATH_admin.'account/password.html" id="module" class="button_lockedit">Change Password</a></li>';
+    $MENU.='<li ><a href="'.$BASE_PATH_admin.'account/password.html" id="module" class="button_lockedit '.(($active_menu == 'account')? 'active_btn' : '').'">Change Password</a></li>';
     $MENU.='<li><a href="'.$BASE_PATH_admin.'logout" id="logout" class="button_logout">Logout</a></li>';
 $MENU.='</ul>
 <br style="clear: left" />
