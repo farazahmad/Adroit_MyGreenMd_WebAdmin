@@ -68,11 +68,46 @@
 									<td width="100" class="bold ">Timing (*)</td>
 									<td width="10" class="bold ">:</td>
 									<td>
-                                                                            <select name="timing">
+                                                                            <select name="timing" onchange="showhide_custom(this.value);">
                                                                                 <option value="24/7">7 days a week</option>
                                                                                 <option value="custom">Custom</option>
                                                                             </select>
                                                                         </td>
+								</tr>
+                                                                <tr class="custom">
+									<td width="100" class="bold ">Sunday</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="custom_timing_sun" class="time" value="{$custom_timing_sun}" size="10"/></td>
+								</tr>
+                                                                <tr class="custom">
+									<td width="100" class="bold ">Monday</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="custom_timing_mon" class="time" value="{$custom_timing_mon}" size="10"/></td>
+								</tr>
+                                                                <tr class="custom">
+									<td width="100" class="bold ">Tuesday</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="custom_timing_tue" class="time" value="{$custom_timing_sun}" size="10"/></td>
+								</tr>
+                                                                <tr class="custom">
+									<td width="100" class="bold ">Wednesday</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="custom_timing_wed" class="time" value="{$custom_timing_wed}" size="10"/></td>
+								</tr>
+                                                                <tr class="custom">
+									<td width="100" class="bold ">Thursday</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="custom_timing_thu" class="time" value="{$custom_timing_thu}" size="10"/></td>
+								</tr>
+                                                                <tr class="custom">
+									<td width="100" class="bold ">Friday</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="custom_timing_fri" class="time" value="{$custom_timing_fri}" size="10"/></td>
+								</tr>
+                                                                <tr class="custom">
+									<td width="100" class="bold ">Saturday</td>
+									<td width="10" class="bold ">:</td>
+									<td><input type="text" name="custom_timing_sat" class="time" value="{$custom_timing_sat}" size="10"/></td>
 								</tr>
                                                                 <tr>
 									<td width="100" class="bold ">Open & Close Time (*)</td>
@@ -163,5 +198,12 @@
     }
     return true;
 }
+  function showhide_custom(x){
+     if(x == 'custom'){
+         $(".custom").show();
+     }else{
+         $(".custom").hide();
+     }
+  }
 </script>
 {/literal}

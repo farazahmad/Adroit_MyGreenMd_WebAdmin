@@ -31,12 +31,12 @@ html, .main {
 h1 {
 	margin:0;
 	padding:32px 0 32px 40px;
-	color:#63c3e8;
+	color:#3e9159;
 	font:normal 48px/1.2em Arial, Helvetica, sans-serif;
 	letter-spacing:-3px;
 }
 h1 a, h1 a:hover {
-	color:#63c3e8;
+	color:#3e9159;
 	text-decoration:none;
 }
 h1 small {
@@ -61,7 +61,7 @@ p.spec {
 	border-bottom:1px solid #efefef;
 }
 a {
-	color:#62bee3;
+	color:#3e9159;
 	text-decoration:underline;
 }
 a.rm {
@@ -175,7 +175,7 @@ ul.sb_menu li a, ul.ex_menu li a {
 	padding-left:12px;
 }
 ul.sb_menu li a:hover, ul.ex_menu li a:hover {
-	color:#62bee3;
+	color:#3e9159;
 	font-weight:bold;
 }
 ul.sb_menu li a:hover {
@@ -193,8 +193,8 @@ ul.ex_menu li a:hover {
 .content p.pages span, .content p.pages a:hover {
 	padding:5px 10px;
 	color:#fff;
-	background-color:#62bee3;
-	border:1px solid #62bee3;
+	background-color:#3e9159;
+	border:1px solid #3e9159;
 }
 .content p.pages a {
 	padding:5px 10px;
@@ -234,7 +234,7 @@ ul.ex_menu li a:hover {
 	margin:0;
 	padding:2px 4px;
 	background-color:#fff;
-	color:#62bee3;
+	color:#3e9159;
 	text-decoration:none;
 }
 .fbg ul li a {
@@ -288,7 +288,7 @@ ul.ex_menu li a:hover {
 	float:right;
 }
 .footer a {
-	color:#62bee3;
+	color:#3e9159;
 }
 ol {
 	list-style:none;
@@ -359,15 +359,15 @@ ol li .send {
     background-color:#f0f0f0;
     margin-right:10px;
 }
-.package .block .header{text-align:center;font-weight:bold;font-size:14pt;padding:10px;height:60px;background-color:#62bee3;color:#666666;}
+.package .block .header{text-align:center;font-weight:bold;font-size:14pt;padding:10px;height:60px;background-color:#3e9159;color:#CCCCCC;}
 .package .block .detail{padding:5px;min-height:150px;}
 .download-link{background-color:#999999;font-weight:bold;color:#f0f0f0;font-size:12pt;padding:5px;text-decoration:none;}
 .recaptcha{font:normal 10px Arial, Helvetica, sans-serif;}
 .signupbtn{text-align:center;margin-top:10px;}
-.signupbtn a{font-weight:bold;font-size:10pt;width:80px;background-color:#62bee3;color:#FFFFFF;padding:10px;text-decoration:none;}
+.signupbtn a{font-weight:bold;font-size:10pt;width:80px;background-color:#3e9159;color:#FFFFFF;padding:10px;text-decoration:none;}
 
 .bluebtn{margin-top:10px;}
-.bluebtn a{font-weight:bold;font-size:10pt;width:80px;background-color:#62bee3;color:#FFFFFF;padding:10px;text-decoration:none;}
+.bluebtn a{font-weight:bold;font-size:10pt;width:80px;background-color:#3e9159;color:#FFFFFF;padding:10px;text-decoration:none;}
 
 .menu_member {
 	float:left;
@@ -569,3 +569,5 @@ font-weight:bold;
     background-color:#f0f0f0;
     cursor:pointer;
 }
+
+.custom{display:none;}

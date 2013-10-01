@@ -73,6 +73,19 @@ class Smoke_shops extends AdminController {
  	function add()
     {
 	$this->all_js->formvalidator(ADMIN_PATH.'smoke_shops/do_add');
+        $this->smarty->append("add_JS",$this->all_js->addJS("timepicker"));
+        $this->smarty->append("InlineJS", '
+        $(document).ready(function(){
+           $(".time").timepicker(
+                            {
+                            "step": "30",
+                            "minTime": "0:00am",
+                            "maxTime": "23:59",
+                            "timeFormat": "H:i",
+                            }
+                    );	
+        });					
+        ');
         $this->smarty->display('smoke_shops/add.html');
     }
 
@@ -81,6 +94,20 @@ class Smoke_shops extends AdminController {
         $query = $this->db->get_where('business', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
+                $this->smarty->append("add_JS",$this->all_js->addJS("timepicker"));
+        $this->smarty->append("InlineJS", '
+        $(document).ready(function(){
+           $(".time").timepicker(
+                            {
+                            "step": "30",
+                            "minTime": "0:00am",
+                            "maxTime": "23:59",
+                            "timeFormat": "H:i",
+                            }
+                    );	
+            showhide_custom("'.$data["timing"].'");
+        });					
+        ');
 		$this->all_js->formvalidator(ADMIN_PATH.'smoke_shops/do_edit');  
         $this->smarty->display('smoke_shops/edit.html');
    }    
@@ -160,6 +187,13 @@ class Smoke_shops extends AdminController {
             'latitude' => $this->input->post('latitude'),
             'longitude' => $this->input->post('longitude'),
             'days_operation' => $this->input->post('days_operation'),
+            'custom_timing_sun' => $this->input->post('custom_timing_sun'),
+            'custom_timing_mon' => $this->input->post('custom_timing_mon'),
+            'custom_timing_tue' => $this->input->post('custom_timing_tue'),
+            'custom_timing_wed' => $this->input->post('custom_timing_wed'),
+            'custom_timing_thu' => $this->input->post('custom_timing_thu'),
+            'custom_timing_fri' => $this->input->post('custom_timing_fri'),
+            'custom_timing_sat' => $this->input->post('custom_timing_sat'),
             'picture'     => $filename
         );
 
@@ -208,6 +242,13 @@ class Smoke_shops extends AdminController {
             'latitude' => $this->input->post('latitude'),
             'longitude' => $this->input->post('longitude'),
             'days_operation' => $this->input->post('days_operation'),
+            'custom_timing_sun' => $this->input->post('custom_timing_sun'),
+            'custom_timing_mon' => $this->input->post('custom_timing_mon'),
+            'custom_timing_tue' => $this->input->post('custom_timing_tue'),
+            'custom_timing_wed' => $this->input->post('custom_timing_wed'),
+            'custom_timing_thu' => $this->input->post('custom_timing_thu'),
+            'custom_timing_fri' => $this->input->post('custom_timing_fri'),
+            'custom_timing_sat' => $this->input->post('custom_timing_sat'),
             'picture'     => $filename
         );
 

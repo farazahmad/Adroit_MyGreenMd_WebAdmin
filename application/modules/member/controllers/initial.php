@@ -20,11 +20,20 @@ class Initial extends MemberController {
       redirect('signin', 'refresh');
     }
     $this->smarty->append("add_JS",$this->all_js->addJS("rating"));
+    $this->smarty->append("add_JS",$this->all_js->addJS("timepicker"));
     $this->smarty->append("InlineJS", '
     $(document).ready(function(){
        $("input.star").rating();
+       $(".time").timepicker(
+			{
+			"step": "30",
+			"minTime": "0:00am",
+			"maxTime": "23:59",
+			"timeFormat": "H:i",
+			}
+		);	
     });					
-    '); 
+    ');
     $this->smarty->assign('WEBTITLE' , "MEMBER AREA");
     $this->smarty->assign('active_menu' , "member");	
   }
@@ -63,6 +72,11 @@ class Initial extends MemberController {
         $query = $this->db->get_where('business', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
+                $this->smarty->append("InlineJS", '
+        $(document).ready(function(){
+            showhide_custom("'.$data["timing"].'");
+        });					
+        ');
 		$this->all_js->formvalidator(MEMBER_PATH.'do_edit_business');  
         $this->smarty->display('members/business/edit.html');
    }    
@@ -145,6 +159,13 @@ class Initial extends MemberController {
             'longitude' => $this->input->post('longitude'),
             'days_operation' => $this->input->post('days_operation'),
             'member_id' => $this->session->userdata('member_id'),
+            'custom_timing_sun' => $this->input->post('custom_timing_sun'),
+            'custom_timing_mon' => $this->input->post('custom_timing_mon'),
+            'custom_timing_tue' => $this->input->post('custom_timing_tue'),
+            'custom_timing_wed' => $this->input->post('custom_timing_wed'),
+            'custom_timing_thu' => $this->input->post('custom_timing_thu'),
+            'custom_timing_fri' => $this->input->post('custom_timing_fri'),
+            'custom_timing_sat' => $this->input->post('custom_timing_sat'),
             'picture'     => $filename
         );
 
@@ -194,6 +215,13 @@ class Initial extends MemberController {
             'longitude' => $this->input->post('longitude'),
             'days_operation' => $this->input->post('days_operation'),
             'member_id' => $this->session->userdata('member_id'),
+            'custom_timing_sun' => $this->input->post('custom_timing_sun'),
+            'custom_timing_mon' => $this->input->post('custom_timing_mon'),
+            'custom_timing_tue' => $this->input->post('custom_timing_tue'),
+            'custom_timing_wed' => $this->input->post('custom_timing_wed'),
+            'custom_timing_thu' => $this->input->post('custom_timing_thu'),
+            'custom_timing_fri' => $this->input->post('custom_timing_fri'),
+            'custom_timing_sat' => $this->input->post('custom_timing_sat'),
             'picture'     => $filename
         );
 
@@ -415,4 +443,25 @@ class Initial extends MemberController {
         }      
         redirect(MEMBER_PATH.'packages', 'refresh');
     }
+    
+    function get_business() {
+    $type_name = isset($_POST['type_name']) ? $_POST['type_name'] : "";
+    if($type_name == 'dispensary'){
+      $condition = "WHERE is_dispensary=1";
+    }
+    if($type_name == 'doctor'){
+      $condition = "WHERE is_doctor=1";
+    }
+    if($type_name == 'smoke_shop'){
+      $condition = "WHERE is_smoke_shop=1";
+    }
+    $sql = "SELECT * FROM business $condition";
+    $query = $this->db->query($sql);
+    header("Content-type: application/json");
+    $jsonData = array();
+    foreach ($query->result_array() as $row) {
+      array_push($jsonData, array('id'=>$row['id'], 'name'=>$row['name']));
+    }
+    echo json_encode($jsonData);
+  }
 }

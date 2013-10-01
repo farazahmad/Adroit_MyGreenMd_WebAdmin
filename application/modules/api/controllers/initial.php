@@ -53,6 +53,13 @@ class Initial extends ApiController {
         $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
+        $detail['custom_timing_sun'] = $data["custom_timing_sun"];
+        $detail['custom_timing_mon'] = $data["custom_timing_mon"];
+        $detail['custom_timing_tue'] = $data["custom_timing_tue"];
+        $detail['custom_timing_wed'] = $data["custom_timing_wed"];
+        $detail['custom_timing_thu'] = $data["custom_timing_thu"];
+        $detail['custom_timing_fri'] = $data["custom_timing_fri"];
+        $detail['custom_timing_sat'] = $data["custom_timing_sat"];
         $body['dispensaries'][]= $detail;
     }
     $body['page']= $page;
@@ -106,6 +113,13 @@ class Initial extends ApiController {
         $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
+        $detail['custom_timing_sun'] = $data["custom_timing_sun"];
+        $detail['custom_timing_mon'] = $data["custom_timing_mon"];
+        $detail['custom_timing_tue'] = $data["custom_timing_tue"];
+        $detail['custom_timing_wed'] = $data["custom_timing_wed"];
+        $detail['custom_timing_thu'] = $data["custom_timing_thu"];
+        $detail['custom_timing_fri'] = $data["custom_timing_fri"];
+        $detail['custom_timing_sat'] = $data["custom_timing_sat"];
         $body['doctors'][]= $detail;
     }
     $body['page']= $page;
@@ -157,6 +171,13 @@ class Initial extends ApiController {
         $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
+        $detail['custom_timing_sun'] = $data["custom_timing_sun"];
+        $detail['custom_timing_mon'] = $data["custom_timing_mon"];
+        $detail['custom_timing_tue'] = $data["custom_timing_tue"];
+        $detail['custom_timing_wed'] = $data["custom_timing_wed"];
+        $detail['custom_timing_thu'] = $data["custom_timing_thu"];
+        $detail['custom_timing_fri'] = $data["custom_timing_fri"];
+        $detail['custom_timing_sat'] = $data["custom_timing_sat"];
         $body['smoke_shops'][]= $detail;
     }
     $body['page']= $page;
@@ -240,6 +261,13 @@ class Initial extends ApiController {
         $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
+        $detail['custom_timing_sun'] = $data["custom_timing_sun"];
+        $detail['custom_timing_mon'] = $data["custom_timing_mon"];
+        $detail['custom_timing_tue'] = $data["custom_timing_tue"];
+        $detail['custom_timing_wed'] = $data["custom_timing_wed"];
+        $detail['custom_timing_thu'] = $data["custom_timing_thu"];
+        $detail['custom_timing_fri'] = $data["custom_timing_fri"];
+        $detail['custom_timing_sat'] = $data["custom_timing_sat"];
         $success = true;
         $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
@@ -279,6 +307,13 @@ class Initial extends ApiController {
         $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
+        $detail['custom_timing_sun'] = $data["custom_timing_sun"];
+        $detail['custom_timing_mon'] = $data["custom_timing_mon"];
+        $detail['custom_timing_tue'] = $data["custom_timing_tue"];
+        $detail['custom_timing_wed'] = $data["custom_timing_wed"];
+        $detail['custom_timing_thu'] = $data["custom_timing_thu"];
+        $detail['custom_timing_fri'] = $data["custom_timing_fri"];
+        $detail['custom_timing_sat'] = $data["custom_timing_sat"];
         $success = true;
         $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
@@ -318,6 +353,13 @@ class Initial extends ApiController {
         $detail['days_operation'] = $data["days_operation"];
         $detail['highlight'] = $data["highlight"];
         $detail['featured'] = $data["featured"];
+        $detail['custom_timing_sun'] = $data["custom_timing_sun"];
+        $detail['custom_timing_mon'] = $data["custom_timing_mon"];
+        $detail['custom_timing_tue'] = $data["custom_timing_tue"];
+        $detail['custom_timing_wed'] = $data["custom_timing_wed"];
+        $detail['custom_timing_thu'] = $data["custom_timing_thu"];
+        $detail['custom_timing_fri'] = $data["custom_timing_fri"];
+        $detail['custom_timing_sat'] = $data["custom_timing_sat"];
         $success = true;
         $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
@@ -424,17 +466,20 @@ class Initial extends ApiController {
   function tracking(){
     $message  = "";
     $success = false;
-    #section 	activity_type 	datetime 	ip_address 	username
+    #section 	activity_type 	username 	item_name 	item_id device_id count
     // save the object
-    if($this->input->post('section') != '' && $this->input->post('activity_type') !=''){
+    if($this->input->post('section') != ''){
           date_default_timezone_set('America/Denver');
             // save the object
             $fields = array (
                 'section'  => $this->input->post('section'),
                 'activity_type'  => $this->input->post('activity_type'),
                 'datetime'  => date("Y-m-d h:i:s"),
-                'ip_address' => $this->input->post('ip_address'),
-                'username' => $this->input->post('user_name')
+                'user_name' => $this->input->post('username'),
+                'item_name' => $this->input->post('item_name'),
+                'item_id' => $this->input->post('item_id'),
+                'device_id' => $this->input->post('device_id'),
+                'count' => $this->input->post('count')
             );
 
             $this->db->insert('tracks', $fields);

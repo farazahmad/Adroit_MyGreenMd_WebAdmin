@@ -68,6 +68,19 @@ class Deals extends AdminController {
     {
          $this->smarty->assign('type_name', $type_name);
          $this->smarty->assign('type_id', $type_id);
+         $this->smarty->append("add_JS",$this->all_js->addJS("timepicker"));
+        $this->smarty->append("InlineJS", '
+        $(document).ready(function(){
+           $("#time").timepicker(
+                            {
+                            "step": "30",
+                            "minTime": "0:00am",
+                            "maxTime": "23:59",
+                            "timeFormat": "H:i",
+                            }
+                    );
+        });					
+        ');
 	 $this->all_js->formvalidator(ADMIN_PATH.'deals/do_add');
          $this->smarty->display('deals/add.html');
     }
@@ -77,6 +90,19 @@ class Deals extends AdminController {
         $query = $this->db->get_where('deals', array('id' => $id));
 		$this->smarty->assign($query->row_array());
 		$data=$query->row_array();
+                 $this->smarty->append("add_JS",$this->all_js->addJS("timepicker"));
+        $this->smarty->append("InlineJS", '
+        $(document).ready(function(){
+           $("#time").timepicker(
+                            {
+                            "step": "30",
+                            "minTime": "0:00am",
+                            "maxTime": "23:59",
+                            "timeFormat": "H:i",
+                            }
+                    );	
+        });					
+        ');
 		$this->all_js->formvalidator(ADMIN_PATH.'deals/do_edit');  
         $this->smarty->display('deals/edit.html');
    }    
@@ -189,4 +215,25 @@ class Deals extends AdminController {
         $this->smarty->assign('type_id', $id);
         $this->smarty->display('deals/list.html');
     }
+    
+   function get_business() {
+    $type_name = isset($_POST['type_name']) ? $_POST['type_name'] : "";
+    if($type_name == 'dispensary'){
+      $condition = "WHERE is_dispensary=1";
+    }
+    if($type_name == 'doctor'){
+      $condition = "WHERE is_doctor=1";
+    }
+    if($type_name == 'smoke_shop'){
+      $condition = "WHERE is_smoke_shop=1";
+    }
+    $sql = "SELECT * FROM business $condition";
+    $query = $this->db->query($sql);
+    header("Content-type: application/json");
+    $jsonData = array();
+    foreach ($query->result_array() as $row) {
+      array_push($jsonData, array('id'=>$row['id'], 'name'=>$row['name']));
+    }
+    echo json_encode($jsonData);
+  }
 }

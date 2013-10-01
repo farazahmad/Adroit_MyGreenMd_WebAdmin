@@ -11,10 +11,40 @@
 						<div class="clearall"></div>
 					</div>
 						<div class="dash_content_color">
-						<form name="new_web_content" id="form" enctype="multipart/form-data" method="POST" action="{$ADMIN_PATH}deals/do_add">            
-                                                    <input type="hidden" name="type_name" value="{$type_name}" />
-                                                    <input type="hidden" name="type_id" value="{$type_id}" />
+						<form name="new_web_content" id="form" method="POST" action="{$ADMIN_PATH}deals/do_add">            
 							<table width="100%" id="tblwMce">
+                                                            <tr>
+									<td width="100" class="bold ">Category (*)</td>
+									<td width="10" class="bold ">:</td>
+									<td>
+                                                                            <input type="radio" name="type_name" value="dispensary" {if $type_name== 'dispensary'}checked{/if} onchange="get_business(this.value)"/>&nbsp;Dispensary&nbsp;
+                                                                            <input type="radio" name="type_name" value="smoke_shop"  {if $type_name== 'smoke_shop'}checked{/if} onchange="get_business(this.value)"/>&nbsp;Smoke Shop&nbsp;
+                                                                            <input type="radio" name="type_name" value="doctor"  {if $type_name== 'doctor'}checked{/if} onchange="get_business(this.value)"/>&nbsp;Doctor&nbsp;
+                                                                        </td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Business (*)</td>
+									<td width="10" class="bold ">:</td>
+									<td>
+                                                                            <div id="wrp_type_id"><select name='type_id'><option value="">-- Select Category--</option></select></div>
+                                                                        </td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Category</td>
+									<td width="10" class="bold ">:</td>
+									<td>
+                                                                            <input type="radio" name="type_name" value="dispensary" onchange="get_business(this.value)"/>&nbsp;Dispensary&nbsp;
+                                                                            <input type="radio" name="type_name" value="smoke_shop"  onchange="get_business(this.value)"/>&nbsp;Smoke Shop&nbsp;
+                                                                            <input type="radio" name="type_name" value="doctor"  onchange="get_business(this.value)"/>&nbsp;Doctor&nbsp;
+                                                                        </td>
+								</tr>
+                                                                <tr>
+									<td width="100" class="bold ">Business</td>
+									<td width="10" class="bold ">:</td>
+									<td>
+                                                                            <div id="wrp_type_id"><select name='type_id'><option value="">-- Select Category--</option></select></div>
+                                                                        </td>
+								</tr>
 								<tr>
 									<td width="100" class="bold ">Name</td>
 									<td width="10" class="bold ">:</td>
@@ -30,7 +60,7 @@
                                                                 <tr>
 									<td width="100" class="bold ">Expiry</td>
 									<td width="10" class="bold ">:</td>
-									<td><input type="text" name="expiry" id="expiry" value="{$expiry}" size="20"/>&nbsp;eg: 10:00PM</td>
+									<td><input type="text" name="expiry" id="time" value="{$expiry}" size="10"/>&nbsp;eg: 10:00</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
@@ -58,3 +88,35 @@
 		<div id="foot3"></div>			
 	</div>
 {include file="$MAIN_TPL_FOOTER"}
+<script>
+{literal}
+$(document).ready(function(){     
+     var type_name= "{/literal}{$type_name}{literal}";
+     if(type_name){get_business(type_name);}
+ });
+ 
+ 
+ function get_business(type_name){
+  var base_url = "{/literal}{$ADMIN_PATH}{literal}";
+  var type_id= "{/literal}{$type_id}{literal}";
+  $.ajax({
+      type: "POST",
+      url: base_url+'deals/get_business',
+      data: "type_name="+ type_name,
+      success: function(data, status) {
+        var selection = "<select name='type_id'>";
+        $.each(data,function(i,el)
+        {
+          if(type_id == el.id){
+            selection += "<option value='"+el.id+"' selected>"+el.name+"</option>";
+          }else{
+            selection += "<option value='"+el.id+"'>"+el.name+"</option>";
+          }
+        });
+        selection += '</select>';
+        $("#wrp_type_id").html(selection);
+      }
+  });
+}
+{/literal}
+</script>

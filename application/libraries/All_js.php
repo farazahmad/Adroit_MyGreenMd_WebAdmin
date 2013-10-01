@@ -198,6 +198,13 @@ END;
 END;
 		}
                 
+                if($val=="timepicker"){
+		$datajs= <<<END
+		<script type="text/javascript" src="{$BASE_JS_PATH}jquery/timepicker/jquery.timepicker.js"></script> \n
+		<link rel="stylesheet" href="{$BASE_JS_PATH}jquery/timepicker/jquery.timepicker.css" type="text/css" />	\n	
+END;
+		}
+                
 		if($val=="highcharts"){
 		$datajs= <<<END
 		<script type="text/javascript" src="{$BASE_JS_PATH}highcharts/highcharts.js"></script> \n

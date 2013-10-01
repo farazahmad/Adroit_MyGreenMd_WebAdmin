@@ -38,7 +38,7 @@ class Tracks extends AdminController {
         //search var session, make session with this var
 		$searchVar['session']="tracks";
 		//use search sql method here and use {searchVar} for input
-		$searchVar['query']="section LIKE '%{searchVar}%' OR activity_type LIKE '%{searchVar}%' OR ip_address LIKE '%{searchVar}%' OR username  LIKE '%{searchVar}%'";
+		$searchVar['query']="section LIKE '%{searchVar}%' OR activity_type LIKE '%{searchVar}%'";
 		$this->pagnav->addSearch($searchVar);
 		$getData=$this->pagnav->pagination("","","tracks","","","",ADMIN_PATH."tracks/page/","",$searchVar);		
 		$this->smarty->assign("pagination", $getData['paging']);
@@ -54,7 +54,7 @@ class Tracks extends AdminController {
         //search var session, make session with this var
 		$searchVar['session']="tracks";
 		//use search sql method here and use {searchVar} for input
-		$searchVar['query']="section LIKE '%{searchVar}%' OR activity_type LIKE '%{searchVar}%' OR ip_address LIKE '%{searchVar}%' OR username  LIKE '%{searchVar}%'";
+		$searchVar['query']="section LIKE '%{searchVar}%' OR activity_type LIKE '%{searchVar}%'";
 		$this->pagnav->addSearch($searchVar);
 		$getData=$this->pagnav->pagination($noPage,"","tracks","","","",ADMIN_PATH."tracks/page/","",$searchVar);			
 		$this->smarty->assign("pagination", $getData['paging']);

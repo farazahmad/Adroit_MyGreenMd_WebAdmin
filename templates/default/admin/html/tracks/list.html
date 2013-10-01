@@ -18,16 +18,22 @@
 								<td width="100" >Section</td>
                                                                 <td width="100">Activity Type</td>
                                                                 <td width="100" >Date & Time</td>
-								<td width="100">Ip Address</td>
+								<td width="100">Item Name</td>
+                                                                <td width="100">Item Id</td>
+                                                                <td width="100">Device Id</td>
                                                                 <td width="100">User Name</td>
+                                                                <td width="100">Count</td>
 							</tr>	
 							{foreach item=item from=$list}
 							<tr class="trtable2">
 								<td >{$item.section}</td>
                                                                 <td >{$item.activity_type}</td>
                                                                 <td >{$item.datetime}</td>
-                                                                <td >{$item.ip_address}</td>
-                                                                <td >{$item.username}</td>
+                                                                <td >{$item.item_name}</td>
+                                                                <td >{$item.item_id}</td>
+                                                                <td >{$item.device_id}</td>
+                                                                <td >{$item.user_name}</td>
+                                                                <td >{$item.count}</td>
 							</tr>
 							{/foreach}
 							</table>
