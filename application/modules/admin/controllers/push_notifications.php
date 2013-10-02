@@ -56,7 +56,7 @@ class Push_notifications extends AdminController {
         $rows   = $getData['result'];
         $this->smarty->assign('list', $rows);
         $this->smarty->assign('data_show', $getData['num_row_total']);
-        $this->smarty->display('packages/index.html');
+        $this->smarty->display('push_notifications/index.html');
     }
 
     function do_push()
