@@ -64,14 +64,18 @@ class Push_notifications extends AdminController {
         $warning = "";
         $message = $this->input->post('message');
         date_default_timezone_set('America/Denver');
-        // save the object
-        $fields = array (
-            'message'  => $message,
-            'datetime' => date("Y-m-d h:i:s")
-        );
+        if($message !=''){
+            // save the object
+            $fields = array (
+                'message'  => $message,
+                'datetime' => date("Y-m-d h:i:s")
+            );
 
-        $this->db->insert('push_notifications', $fields);
-        $warning=$this->send_notif($message);
+            $this->db->insert('push_notifications', $fields);
+            $warning=$this->send_notif($message);
+        }else{
+            $warning = "Please fill message";
+        }
         $this->session->set_flashdata('confirmtxt', $warning);       
         redirect('admin/push_notifications/', 'refresh');
     }
