@@ -73,10 +73,12 @@ class Push_notifications extends AdminController {
 
             $this->db->insert('push_notifications', $fields);
             $warning=$this->send_notif($message);
+            $this->session->set_flashdata('confirmtxt', $warning);    
         }else{
             $warning = "Please fill message";
+            $this->session->set_flashdata('errortxt', $warning);    
         }
-        $this->session->set_flashdata('confirmtxt', $warning);       
+           
         redirect('admin/push_notifications/', 'refresh');
     }
     

@@ -235,7 +235,7 @@ class Initial extends MemberController {
   function deals() {
     $this->smarty->assign('active_tab' , "deals");
     //search var session, make session with this var
-    $searchVar['session']="member_deals";
+    $searchVar['session']="deals";
     //use search sql method here and use {searchVar} for input
     $member_id=$this->session->userdata('member_id');
     //use search sql method here and use {searchVar} for input
