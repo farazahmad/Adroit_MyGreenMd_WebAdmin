@@ -32,8 +32,8 @@ class MY_Controller extends Controller
         $this->curr_user_id = $this->authentication->get_user_id();
         $this->curr_roles   = $this->authentication->get_user_roles();
 		
-        @define('WEB_TITLE', "Adroit - MyGreenMD");
-        @define('WEB_LOGO', "Adroit - MyGreenMD");
+        @define('WEB_TITLE', "MyGreenMD");
+        @define('WEB_LOGO', "MyGreenMD");
 		@define('BASE_URL', $this->config->item('base_url'));
     }
 

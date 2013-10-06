@@ -20,20 +20,16 @@
 						{if $data_show >= 1}
 							<table width="100%" cellpadding="0" cellspacing="0" >
 							<tr class="trtable">
-								<td width="100" ><u>Name</u></td>
-                                                                <td><u>Description</u></td>
-                                                                <td width="100" ><u>Expiry on</u></td>
-                                                                <td width="100" ><u>Hide</u></td>
-								<td width="100"><u>Option</u></td>
+								<td width="100" class="head-list" ><u>Name</u></td>
+                                                                <td class="head-list"><u>Description</u></td>
+                                                                <td width="100" class="head-list" ><u>Expiry on</u></td>
+								<td width="100" class="head-list"><u>Option</u></td>
 							</tr>	
 							{foreach item=item from=$list}
 							<tr class="trtable2">
 								<td >{$item.name}</td>
                                                                 <td >{$item.description}</td>
                                                                 <td >{$item.expiry}</td>
-                                                                <td >
-                                                                    {if $item.is_hide == "1"}True{else}False{/if}
-                                                                </td>
 								<td >
 									<a href="{$MEMBER_PATH}edit_deals/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
                                                                        {if $item.is_hide == "1"}

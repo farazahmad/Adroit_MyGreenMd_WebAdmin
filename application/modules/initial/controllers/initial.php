@@ -248,7 +248,7 @@ class Initial extends InitialController {
     function signout(){
       $this->session->unset_userdata("member_id");
       $this->session->unset_userdata("member_username");
-      redirect(BASE_URL, 'refresh');
+      redirect(BASE_URL."/signin", 'refresh');
     }
       
    function content($page_url){

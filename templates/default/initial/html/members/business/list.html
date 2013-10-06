@@ -22,13 +22,12 @@
 							<tr class="trtable">
                                                                 <td width="100" >&nbsp;</td>
                                                                 <td width="350">&nbsp;</td>
-                                                                <td width="100" ><u>Timing</u></td>
-                                                                <td width="100" ><u>Phone</u></td>
-                                                                <td width="100" ><u>View/Count</u></td>
-                                                                <td width="100" ><u>Highlight</u></td>
-                                                                <td width="100" ><u>Featured</u></td>
-                                                                <td width="100" ><u>Hide</u></td>
-								<td width="150" ><u>Option</u></td>
+                                                                <td width="100" class="head-list" ><u>Timing</u></td>
+                                                                <td width="100" class="head-list" ><u>Phone</u></td>
+                                                                <td width="100" class="head-list" ><u>View/Count</u></td>
+                                                                <td width="100" class="head-list" ><u>Highlight</u></td>
+                                                                <td width="100" class="head-list" ><u>Featured</u></td>
+								<td width="150" class="head-list" ><u>Option</u></td>
 							</tr>	
 							{foreach item=item from=$list}
 							<tr class="trtable2">
@@ -48,9 +47,6 @@
                                                                 <td >{$item.counter}</td>
                                                                 <td ><input type="checkbox" onchange="javascript:highlight(this, '{$item.id}');" name="highlight" id="highlight" {if $item.highlight == 1}checked{/if}/>Highlight</td>
                                                                 <td ><input type="checkbox" onchange="javascript:featured(this, '{$item.id}');" name="featured" id="featured" {if $item.featured == 1}checked{/if}/>Featured</td>
-                                                                <td >
-                                                                    {if $item.is_hide == "1"}True{else}False{/if}
-                                                                </td>
 								<td >
 								       <a href="{$MEMBER_PATH}edit_business/{$item.id}" class="Tlink">Edit</a> &nbsp; | &nbsp; 
                                                                        {if $item.is_hide == "1"}

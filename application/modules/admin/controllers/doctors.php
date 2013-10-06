@@ -194,6 +194,13 @@ class Doctors extends AdminController {
             'custom_timing_thu' => $this->input->post('custom_timing_thu'),
             'custom_timing_fri' => $this->input->post('custom_timing_fri'),
             'custom_timing_sat' => $this->input->post('custom_timing_sat'),
+            'custom_timing_sun_end' => $this->input->post('custom_timing_sun_end'),
+            'custom_timing_mon_end' => $this->input->post('custom_timing_mon_end'),
+            'custom_timing_tue_end' => $this->input->post('custom_timing_tue_end'),
+            'custom_timing_wed_end' => $this->input->post('custom_timing_wed_end'),
+            'custom_timing_thu_end' => $this->input->post('custom_timing_thu_end'),
+            'custom_timing_fri_end' => $this->input->post('custom_timing_fri_end'),
+            'custom_timing_sat_end' => $this->input->post('custom_timing_sat_end'),
             'picture'     => $filename
         );
 
@@ -249,6 +256,13 @@ class Doctors extends AdminController {
             'custom_timing_thu' => $this->input->post('custom_timing_thu'),
             'custom_timing_fri' => $this->input->post('custom_timing_fri'),
             'custom_timing_sat' => $this->input->post('custom_timing_sat'),
+            'custom_timing_sun_end' => $this->input->post('custom_timing_sun_end'),
+            'custom_timing_mon_end' => $this->input->post('custom_timing_mon_end'),
+            'custom_timing_tue_end' => $this->input->post('custom_timing_tue_end'),
+            'custom_timing_wed_end' => $this->input->post('custom_timing_wed_end'),
+            'custom_timing_thu_end' => $this->input->post('custom_timing_thu_end'),
+            'custom_timing_fri_end' => $this->input->post('custom_timing_fri_end'),
+            'custom_timing_sat_end' => $this->input->post('custom_timing_sat_end'),
             'picture'     => $filename
         );
 

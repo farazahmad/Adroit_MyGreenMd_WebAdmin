@@ -60,6 +60,14 @@ class Initial extends ApiController {
         $detail['custom_timing_thu'] = $data["custom_timing_thu"];
         $detail['custom_timing_fri'] = $data["custom_timing_fri"];
         $detail['custom_timing_sat'] = $data["custom_timing_sat"];
+        
+        $detail['custom_timing_sun_end'] = $data["custom_timing_sun_end"];
+        $detail['custom_timing_mon_end'] = $data["custom_timing_mon_end"];
+        $detail['custom_timing_tue_end'] = $data["custom_timing_tue_end"];
+        $detail['custom_timing_wed_end'] = $data["custom_timing_wed_end"];
+        $detail['custom_timing_thu_end'] = $data["custom_timing_thu_end"];
+        $detail['custom_timing_fri_end'] = $data["custom_timing_fri_end"];
+        $detail['custom_timing_sat_end'] = $data["custom_timing_sat_end"];
         $body['dispensaries'][]= $detail;
     }
     $body['page']= $page;
@@ -120,6 +128,13 @@ class Initial extends ApiController {
         $detail['custom_timing_thu'] = $data["custom_timing_thu"];
         $detail['custom_timing_fri'] = $data["custom_timing_fri"];
         $detail['custom_timing_sat'] = $data["custom_timing_sat"];
+        $detail['custom_timing_sun_end'] = $data["custom_timing_sun_end"];
+        $detail['custom_timing_mon_end'] = $data["custom_timing_mon_end"];
+        $detail['custom_timing_tue_end'] = $data["custom_timing_tue_end"];
+        $detail['custom_timing_wed_end'] = $data["custom_timing_wed_end"];
+        $detail['custom_timing_thu_end'] = $data["custom_timing_thu_end"];
+        $detail['custom_timing_fri_end'] = $data["custom_timing_fri_end"];
+        $detail['custom_timing_sat_end'] = $data["custom_timing_sat_end"];
         $body['doctors'][]= $detail;
     }
     $body['page']= $page;
@@ -178,6 +193,13 @@ class Initial extends ApiController {
         $detail['custom_timing_thu'] = $data["custom_timing_thu"];
         $detail['custom_timing_fri'] = $data["custom_timing_fri"];
         $detail['custom_timing_sat'] = $data["custom_timing_sat"];
+        $detail['custom_timing_sun_end'] = $data["custom_timing_sun_end"];
+        $detail['custom_timing_mon_end'] = $data["custom_timing_mon_end"];
+        $detail['custom_timing_tue_end'] = $data["custom_timing_tue_end"];
+        $detail['custom_timing_wed_end'] = $data["custom_timing_wed_end"];
+        $detail['custom_timing_thu_end'] = $data["custom_timing_thu_end"];
+        $detail['custom_timing_fri_end'] = $data["custom_timing_fri_end"];
+        $detail['custom_timing_sat_end'] = $data["custom_timing_sat_end"];
         $body['smoke_shops'][]= $detail;
     }
     $body['page']= $page;
@@ -268,6 +290,13 @@ class Initial extends ApiController {
         $detail['custom_timing_thu'] = $data["custom_timing_thu"];
         $detail['custom_timing_fri'] = $data["custom_timing_fri"];
         $detail['custom_timing_sat'] = $data["custom_timing_sat"];
+        $detail['custom_timing_sun_end'] = $data["custom_timing_sun_end"];
+        $detail['custom_timing_mon_end'] = $data["custom_timing_mon_end"];
+        $detail['custom_timing_tue_end'] = $data["custom_timing_tue_end"];
+        $detail['custom_timing_wed_end'] = $data["custom_timing_wed_end"];
+        $detail['custom_timing_thu_end'] = $data["custom_timing_thu_end"];
+        $detail['custom_timing_fri_end'] = $data["custom_timing_fri_end"];
+        $detail['custom_timing_sat_end'] = $data["custom_timing_sat_end"];
         $success = true;
         $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
@@ -314,6 +343,13 @@ class Initial extends ApiController {
         $detail['custom_timing_thu'] = $data["custom_timing_thu"];
         $detail['custom_timing_fri'] = $data["custom_timing_fri"];
         $detail['custom_timing_sat'] = $data["custom_timing_sat"];
+        $detail['custom_timing_sun_end'] = $data["custom_timing_sun_end"];
+        $detail['custom_timing_mon_end'] = $data["custom_timing_mon_end"];
+        $detail['custom_timing_tue_end'] = $data["custom_timing_tue_end"];
+        $detail['custom_timing_wed_end'] = $data["custom_timing_wed_end"];
+        $detail['custom_timing_thu_end'] = $data["custom_timing_thu_end"];
+        $detail['custom_timing_fri_end'] = $data["custom_timing_fri_end"];
+        $detail['custom_timing_sat_end'] = $data["custom_timing_sat_end"];
         $success = true;
         $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{
@@ -360,6 +396,13 @@ class Initial extends ApiController {
         $detail['custom_timing_thu'] = $data["custom_timing_thu"];
         $detail['custom_timing_fri'] = $data["custom_timing_fri"];
         $detail['custom_timing_sat'] = $data["custom_timing_sat"];
+        $detail['custom_timing_sun_end'] = $data["custom_timing_sun_end"];
+        $detail['custom_timing_mon_end'] = $data["custom_timing_mon_end"];
+        $detail['custom_timing_tue_end'] = $data["custom_timing_tue_end"];
+        $detail['custom_timing_wed_end'] = $data["custom_timing_wed_end"];
+        $detail['custom_timing_thu_end'] = $data["custom_timing_thu_end"];
+        $detail['custom_timing_fri_end'] = $data["custom_timing_fri_end"];
+        $detail['custom_timing_sat_end'] = $data["custom_timing_sat_end"];
         $success = true;
         $this->db->query("UPDATE `business` SET `counter` = `counter` + 1 WHERE `id` ={$id}");
     }else{

@@ -41,14 +41,20 @@ class Account extends AdminController
 
     function change_password()
     {
+        $query = $this->db->get_where('users', array('password' => md5($this->input->post('old_password')), 'user_id' => $this->session->userdata('user_id_admin')));
+	$data = $query->row_array();
+        if($data){
          $fields = array (
-            'password'         => md5($this->input->post('new_password'))
+            'password'  => md5($this->input->post('new_password'))
         );
 				
-		$this->db->where(array('user_id' => $this->session->userdata('user_id')));
+	$this->db->where(array('user_id' => $this->session->userdata('user_id_admin')));
         $this->db->update('users', $fields);
         //$this->smarty->display('pages/congratulation.html');
-		$this->session->set_flashdata('confirmtxt',"password has been changed!");       
+	$this->session->set_flashdata('confirmtxt',"password has been changed!");       
+        }else{
+            $this->session->set_flashdata('errortxt', "old password doesn't correct!");  
+        }
         redirect('admin/account/password', 'refresh'); 
     }
 }

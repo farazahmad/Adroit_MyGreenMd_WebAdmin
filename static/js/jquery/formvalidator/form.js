@@ -199,7 +199,7 @@ jQuery.iFormValidate = {
 			//alert($val+' - '+$('#captchax').val());
 			var Regex = /^[a-zA-Z0-9\ ']*$/;
 			if(!Regex.test($val)){isValid = false;}
-			if($val.length<6){isValid = false;}	
+			if($val.length<5){isValid = false;}	
 		//Check for not empty empty
 		}else if($(this).hasClass('vpasswd')){
 			//alert($val+' - '+$('#captchax').val());			

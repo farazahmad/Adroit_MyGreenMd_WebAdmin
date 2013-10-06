@@ -32,7 +32,7 @@
                                                                         </td>
 								</tr>
 								<tr>
-									<td width="100" class="bold ">Name</td>
+									<td width="100" class="bold ">Name (*)</td>
 									<td width="10" class="bold ">:</td>
 									<td><input type="text" name="name" id="name" value="{$name}" size="60" class="is_required"/></td>
 								</tr>
@@ -61,7 +61,8 @@
 									<td>&nbsp;</td>
 									<td>
 									 <input type="hidden" name="save" value="Save" />
-									 <input class="buttonForm button_save" type="button" name="save_now" id="save" value="Save">
+									 <div class="buttonForm bluebtn button_save" style="float:left;margin-right:10px;"><a href="#" name="save_now" name="save_now" id="save" value="Save">Save</a></div>
+                                                                         <div class="buttonForm bluebtn button_reset" style="float:left;margin-right:10px;"><a href="{$BASE_URL}member/deals" name="save_now" name="cancel" id="cancel" value="Cancel">Cancel</a></div>
 									</td>
 								</tr>
 							</table>

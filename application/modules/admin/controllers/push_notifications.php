@@ -35,7 +35,7 @@ class Push_notifications extends AdminController {
         //use search sql method here and use {searchVar} for input
         $searchVar['query']="message LIKE '%{searchVar}%'";
         $this->pagnav->addSearch($searchVar);
-        $getData=$this->pagnav->pagination("","","push_notifications","id DESC","","",ADMIN_PATH."push_notifications/page/","",$searchVar);		
+        $getData=$this->pagnav->pagination("","","push_notifications","datetime DESC","","",ADMIN_PATH."push_notifications/page/","",$searchVar);		
         $this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
         $this->smarty->assign('list', $rows);
@@ -51,7 +51,7 @@ class Push_notifications extends AdminController {
         //use search sql method here and use {searchVar} for input
         $searchVar['query']="message LIKE '%{searchVar}%'";
         $this->pagnav->addSearch($searchVar);
-        $getData=$this->pagnav->pagination($noPage,"","push_notifications","id DESC","","",ADMIN_PATH."push_notifications/page/","",$searchVar);			
+        $getData=$this->pagnav->pagination($noPage,"","push_notifications","datetime DESC","","",ADMIN_PATH."push_notifications/page/","",$searchVar);			
         $this->smarty->assign("pagination", $getData['paging']);
         $rows   = $getData['result'];
         $this->smarty->assign('list', $rows);
@@ -87,6 +87,11 @@ class Push_notifications extends AdminController {
         $query = $this->db->get_where('push_notifications', array('id' => $id));
 	$data=$query->row_array();
         $message = $data['message'];
+        // save the object
+        $fields = array ('datetime' => date("Y-m-d h:i:s"));
+        $this->db->where('id', $id);
+        $this->db->update('push_notifications', $fields);
+        
         $warning=$this->send_notif($message);
         $this->session->set_flashdata('confirmtxt',$warning);       
         redirect('admin/push_notifications/', 'refresh');
